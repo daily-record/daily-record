@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2020-03-30T10:54:57.086Z</updated>
+  <updated>2020-03-31T04:12:50.254Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -17,11 +17,11 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>DevOps</title>
-    <link href="http://yoursite.com/2020/03/30/devops/"/>
-    <id>http://yoursite.com/2020/03/30/devops/</id>
-    <published>2020-03-30T10:52:23.000Z</published>
-    <updated>2020-03-30T10:54:57.086Z</updated>
+    <title>DevOps与CI/CD</title>
+    <link href="http://yoursite.com/2020/03/31/devops-yu-ci-cd/"/>
+    <id>http://yoursite.com/2020/03/31/devops-yu-ci-cd/</id>
+    <published>2020-03-31T04:08:04.000Z</published>
+    <updated>2020-03-31T04:12:50.254Z</updated>
     
     <summary type="html">
     
@@ -29,7 +29,7 @@
       
         
         
-          &lt;h2 id=&quot;DevOps&quot;&gt;&lt;a href=&quot;#DevOps&quot; class=&quot;headerlink&quot; title=&quot;DevOps&quot;&gt;&lt;/a&gt;DevOps&lt;/h2&gt;&lt;h4 id=&quot;测试&quot;&gt;&lt;a href=&quot;#测试&quot; class=&quot;headerlink&quot;
+          &lt;h2 id=&quot;&quot;&gt;&lt;a href=&quot;#&quot; class=&quot;headerlink&quot;
         
       
     
@@ -38,6 +38,10 @@
     
     
       <category term="DevOps" scheme="http://yoursite.com/tags/DevOps/"/>
+    
+      <category term="CI" scheme="http://yoursite.com/tags/CI/"/>
+    
+      <category term="CD" scheme="http://yoursite.com/tags/CD/"/>
     
   </entry>
   
