@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2020-03-31T10:06:51.124Z</updated>
+  <updated>2020-04-04T17:00:38.946Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,236 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>compiler_principles/第四讲</title>
+    <link href="http://yoursite.com/2020/04/04/compiler-principles/di-si-jiang/"/>
+    <id>http://yoursite.com/2020/04/04/compiler-principles/di-si-jiang/</id>
+    <published>2020-04-04T17:00:38.946Z</published>
+    <updated>2020-04-04T17:00:38.946Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;4-1-词法分析概述&quot;&gt;&lt;a href=&quot;#4-1-词法分析概述&quot; class=&quot;headerlink&quot; title=&quot;4.1 词法分析概述&quot;&gt;&lt;/a&gt;4.1 词法分析概述&lt;/h2&gt;&lt;h4 id=&quot;词法分析&quot;&gt;&lt;a href=&quot;#词法分析&quot;
+        
+      
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>compiler_principles/第十讲</title>
+    <link href="http://yoursite.com/2020/04/04/compiler-principles/di-shi-jiang/"/>
+    <id>http://yoursite.com/2020/04/04/compiler-principles/di-shi-jiang/</id>
+    <published>2020-04-04T17:00:38.942Z</published>
+    <updated>2020-04-04T17:00:38.942Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;语法分析-自下而上分析1&quot;&gt;&lt;a href=&quot;#语法分析-自下而上分析1&quot; class=&quot;headerlink&quot; title=&quot;语法分析-自下而上分析1&quot;&gt;&lt;/a&gt;语法分析-自下而上分析1&lt;/h1&gt;&lt;h2 id=&quot;自下而上分析&quot;&gt;&lt;a
+        
+      
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>compiler_principles/第六讲</title>
+    <link href="http://yoursite.com/2020/04/04/compiler-principles/di-liu-jiang/"/>
+    <id>http://yoursite.com/2020/04/04/compiler-principles/di-liu-jiang/</id>
+    <published>2020-04-04T17:00:38.934Z</published>
+    <updated>2020-04-04T17:00:38.934Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;6-1-有限自动机的等价性&quot;&gt;&lt;a href=&quot;#6-1-有限自动机的等价性&quot; class=&quot;headerlink&quot; title=&quot;6.1 有限自动机的等价性&quot;&gt;&lt;/a&gt;6.1 有限自动机的等价性&lt;/h2&gt;&lt;h4 id=&quot;DFA与NFA的等价性证明思路&quot;&gt;&lt;a
+        
+      
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>compiler_principles/第五讲</title>
+    <link href="http://yoursite.com/2020/04/04/compiler-principles/di-wu-jiang/"/>
+    <id>http://yoursite.com/2020/04/04/compiler-principles/di-wu-jiang/</id>
+    <published>2020-04-04T17:00:38.926Z</published>
+    <updated>2020-04-04T17:00:38.926Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;5-1-词法规则形式化-正规集与正规式&quot;&gt;&lt;a href=&quot;#5-1-词法规则形式化-正规集与正规式&quot; class=&quot;headerlink&quot; title=&quot;5.1 词法规则形式化-正规集与正规式&quot;&gt;&lt;/a&gt;5.1 词法规则形式化-正规集与正规式&lt;/h2&gt;&lt;h4
+        
+      
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>compiler_principles/第八讲</title>
+    <link href="http://yoursite.com/2020/04/04/compiler-principles/di-ba-jiang/"/>
+    <id>http://yoursite.com/2020/04/04/compiler-principles/di-ba-jiang/</id>
+    <published>2020-04-04T17:00:38.926Z</published>
+    <updated>2020-04-04T17:00:38.926Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;语法分析-自上而下分析2&quot;&gt;&lt;a href=&quot;#语法分析-自上而下分析2&quot; class=&quot;headerlink&quot; title=&quot;语法分析-自上而下分析2&quot;&gt;&lt;/a&gt;语法分析-自上而下分析2&lt;/h1&gt;&lt;h2 id=&quot;构造递归下降分析器&quot;&gt;&lt;a
+        
+      
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>compiler_principles/第九讲</title>
+    <link href="http://yoursite.com/2020/04/04/compiler-principles/di-jiu-jiang/"/>
+    <id>http://yoursite.com/2020/04/04/compiler-principles/di-jiu-jiang/</id>
+    <published>2020-04-04T17:00:38.922Z</published>
+    <updated>2020-04-04T17:00:38.922Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;语法分析-自上而下分析3&quot;&gt;&lt;a href=&quot;#语法分析-自上而下分析3&quot; class=&quot;headerlink&quot; title=&quot;语法分析-自上而下分析3&quot;&gt;&lt;/a&gt;语法分析-自上而下分析3&lt;/h1&gt;&lt;h2 id=&quot;预测分析程序&quot;&gt;&lt;a
+        
+      
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>compiler_principles/第二讲</title>
+    <link href="http://yoursite.com/2020/04/04/compiler-principles/di-er-jiang/"/>
+    <id>http://yoursite.com/2020/04/04/compiler-principles/di-er-jiang/</id>
+    <published>2020-04-04T17:00:38.922Z</published>
+    <updated>2020-04-04T17:00:38.922Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;2-1-常用的高级程序设计语言&quot;&gt;&lt;a href=&quot;#2-1-常用的高级程序设计语言&quot; class=&quot;headerlink&quot; title=&quot;2.1 常用的高级程序设计语言&quot;&gt;&lt;/a&gt;2.1 常用的高级程序设计语言&lt;/h2&gt;&lt;h2
+        
+      
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>compiler_principles/第三讲</title>
+    <link href="http://yoursite.com/2020/04/04/compiler-principles/di-san-jiang/"/>
+    <id>http://yoursite.com/2020/04/04/compiler-principles/di-san-jiang/</id>
+    <published>2020-04-04T17:00:38.918Z</published>
+    <updated>2020-04-04T17:00:38.918Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;3-1-上下文无关文法&quot;&gt;&lt;a href=&quot;#3-1-上下文无关文法&quot; class=&quot;headerlink&quot; title=&quot;3.1 上下文无关文法&quot;&gt;&lt;/a&gt;3.1 上下文无关文法&lt;/h2&gt;&lt;h4 id=&quot;文法&quot;&gt;&lt;a href=&quot;#文法&quot;
+        
+      
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>compiler_principles/第七讲</title>
+    <link href="http://yoursite.com/2020/04/04/compiler-principles/di-qi-jiang/"/>
+    <id>http://yoursite.com/2020/04/04/compiler-principles/di-qi-jiang/</id>
+    <published>2020-04-04T17:00:38.914Z</published>
+    <updated>2020-04-04T17:00:38.914Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;语法分析-自上而下分析1&quot;&gt;&lt;a href=&quot;#语法分析-自上而下分析1&quot; class=&quot;headerlink&quot; title=&quot;语法分析-自上而下分析1&quot;&gt;&lt;/a&gt;语法分析-自上而下分析1&lt;/h1&gt;&lt;h2 id=&quot;自上而下分析的基本问题&quot;&gt;&lt;a
+        
+      
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>compiler_principles/第一讲</title>
+    <link href="http://yoursite.com/2020/04/04/compiler-principles/di-yi-jiang/"/>
+    <id>http://yoursite.com/2020/04/04/compiler-principles/di-yi-jiang/</id>
+    <published>2020-04-04T17:00:38.910Z</published>
+    <updated>2020-04-04T17:00:38.910Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;第一讲&quot;&gt;&lt;a href=&quot;#第一讲&quot; class=&quot;headerlink&quot; title=&quot;第一讲&quot;&gt;&lt;/a&gt;第一讲&lt;/h2&gt;&lt;h4 id=&quot;main-content&quot;&gt;&lt;a href=&quot;#main-content&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+    
+    
+  </entry>
   
   <entry>
     <title>DevOps与CI/CD</title>

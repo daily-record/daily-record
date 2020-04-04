@@ -4,8 +4,15 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="DevOps与CI/CD, null">
-    <meta name="description" content="简单了解了DevOps与CI/CD的概念">
+    <meta name="keywords" content="compiler_principles/第七讲, null">
+    <meta name="description" content="语法分析-自上而下分析1自上而下分析的基本问题语法分析的任务
+分析一个文法的句子结构
+
+语法分析器的功能
+按照文法的产生式（语言的语法规则），识别输入符号串是否为一个句子（合式程序）
+
+语法分析器在编译器中的地位
+语法分析的方法自下而上（B">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -13,7 +20,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>DevOps与CI/CD | null</title>
+    <title>compiler_principles/第七讲 | null</title>
     <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -255,12 +262,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/15.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/21.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">DevOps与CI/CD</h1>
+                    <h1 class="description center-align post-title">compiler_principles/第七讲</h1>
                 </div>
             </div>
         </div>
@@ -375,21 +382,9 @@
             <div class="row tag-cate">
                 <div class="col s7">
                     
-                    <div class="article-tag">
-                        
-                            <a href="/tags/DevOps/">
-                                <span class="chip bg-color">DevOps</span>
-                            </a>
-                        
-                            <a href="/tags/CI/">
-                                <span class="chip bg-color">CI</span>
-                            </a>
-                        
-                            <a href="/tags/CD/">
-                                <span class="chip bg-color">CD</span>
-                            </a>
-                        
-                    </div>
+                          <div class="article-tag">
+                            <span class="chip bg-color">无标签</span>
+                          </div>
                     
                 </div>
                 <div class="col s5 right-align">
@@ -401,7 +396,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-03-31
+                    2020-04-04
                 </div>
                 
 
@@ -410,14 +405,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.9k
+                    1.1k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    6 分
+                    4 分
                 </div>
                 
 				
@@ -428,121 +423,98 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="DevOps"><a href="#DevOps" class="headerlink" title="DevOps"></a>DevOps</h2><h4 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h4><blockquote>
-<p>DevOps 一词的来自于 Development 和 Operations 的组合，突出重视软件开发人员和运维人员的沟通合作，通过自动化流程来使得软件构建、测试、发布更加快捷、频繁和可靠</p>
-</blockquote>
-<p>DevOps 其实包含了三个部分:</p>
-<ul>
-<li>开发</li>
-<li>测试</li>
-<li>运维</li>
+                <h1 id="语法分析-自上而下分析1"><a href="#语法分析-自上而下分析1" class="headerlink" title="语法分析-自上而下分析1"></a>语法分析-自上而下分析1</h1><h2 id="自上而下分析的基本问题"><a href="#自上而下分析的基本问题" class="headerlink" title="自上而下分析的基本问题"></a>自上而下分析的基本问题</h2><h4 id="语法分析的任务"><a href="#语法分析的任务" class="headerlink" title="语法分析的任务"></a>语法分析的任务</h4><ul>
+<li>分析一个文法的句子结构</li>
 </ul>
-<p>一个团队中各个角色存在天然上的工作矛盾：<br><img src="https://raw.githubusercontent.com/daily-record/daily-record-img/master/20200331144227.png" alt=""></p>
-<p>对于运维来说，稳定性压到一切，新feature越少越好；而对于研发来说，能够开发的新功能越多越好，这种矛盾会导致大量资源的浪费。</p>
-<p>DevOps 希望将产品交付过程中各种壁垒打破，让Dev和Ops一体化，通过自动化工具辅助开发完成运维的部分工作，减少成本。</p>
-</br>
-
-<h4 id="概述工作流"><a href="#概述工作流" class="headerlink" title="概述工作流"></a>概述工作流</h4><h5 id="传统工作流"><a href="#传统工作流" class="headerlink" title="传统工作流"></a>传统工作流</h5><p>PD(Demond) -&gt; [DEV(Coding) -&gt; SCM(Build) -&gt; QA(Test) -&gt; OPS(Deploy)]-&gt; Release<br>PD 提出需求 -&gt; [开发者根据需求写代码 -&gt; SCM 拿着代码去打包 -&gt; QA 测试 -&gt; 运维进行上线部署]</p>
-</br>
-
-<h4 id="DevOps工作流"><a href="#DevOps工作流" class="headerlink" title="DevOps工作流"></a>DevOps工作流</h4><p>通过高度自动化工具与流程来使得软件构建、测试、发布更加快捷、频繁和可靠；</p>
-<p>同时，<code>CI/CD</code>（持续集成/持续部署）可看作传统工作流的增强版；<code>DevOps</code> 可看作是 <code>CI/CD</code> 的增强版。</p>
-<p><img src="https://raw.githubusercontent.com/daily-record/daily-record-img/master/20200331150116.png" alt=""></p>
-<p><img src="https://raw.githubusercontent.com/daily-record/daily-record-img/master/20200331150144.png" alt=""></p>
-</br>
-
-<h2 id="CI与CD"><a href="#CI与CD" class="headerlink" title="CI与CD"></a>CI与CD</h2><p>CI/CD 是一种通过在应用开发阶段引入自动化来频繁向客户交付应用的方法。CI/CD 的核心概念是持续集成、持续交付和持续部署。</p>
-<p>不过，由于还需要编写自动化测试以适应 CI/CD 管道中的各种测试和发布阶段，因此前期投资还是会很大。</p>
+<h4 id="语法分析器的功能"><a href="#语法分析器的功能" class="headerlink" title="语法分析器的功能"></a>语法分析器的功能</h4><ul>
+<li>按照文法的产生式（语言的语法规则），识别输入符号串是否为一个句子（合式程序）</li>
+</ul>
+<h4 id="语法分析器在编译器中的地位"><a href="#语法分析器在编译器中的地位" class="headerlink" title="语法分析器在编译器中的地位"></a>语法分析器在编译器中的地位</h4><p><img src="F:%5Clearning%5Cnote%5C%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86%5C%E7%AC%AC%E4%B8%83%E8%AE%B2.assets%5Cimage-20200315165955316.png" alt="image-20200315165955316"></p>
+<h4 id="语法分析的方法"><a href="#语法分析的方法" class="headerlink" title="语法分析的方法"></a>语法分析的方法</h4><h5 id="自下而上（Bottom-up）"><a href="#自下而上（Bottom-up）" class="headerlink" title="自下而上（Bottom-up）"></a>自下而上（Bottom-up）</h5><ul>
+<li><p>从输入串开始，逐步进行归约，直到文法的开始符号</p>
+</li>
+<li><p>根据文法的产生式规则，把串中出现的产生式的右部替换成左部符号</p>
+</li>
+<li><p>从<strong>树叶节点</strong>开始，构造语法树</p>
+</li>
+<li><p>算符优先分析法、LR分析法</p>
+</li>
+</ul>
+<h5 id="自上而下（Top-down）"><a href="#自上而下（Top-down）" class="headerlink" title="自上而下（Top-down）"></a>自上而下（Top-down）</h5><ul>
+<li>从文法的开始符号出发， 反复使用各种产生式，寻找”匹配”的推导</li>
+<li>推导：根据文法的产生式 规则，把串中出现的产生式的左部符号替换成右部</li>
+<li>从树的根开始，构造语法树</li>
+<li>递归下降分析法、预测分析程序</li>
+</ul>
+<h4 id="自上而下分析面临的问题"><a href="#自上而下分析面临的问题" class="headerlink" title="自上而下分析面临的问题"></a>自上而下分析面临的问题</h4><p><img src="F:%5Clearning%5Cnote%5C%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86%5C%E7%AC%AC%E4%B8%83%E8%AE%B2.assets%5Cimage-20200315211034207.png" alt="image-20200315211034207"></p>
+<h5 id="回溯问题"><a href="#回溯问题" class="headerlink" title="回溯问题"></a>回溯问题</h5><ul>
+<li>分析过程中，当一个非终结符用某一个候选匹配成功时，这种匹配可能是暂时的</li>
+<li>出错时，不得不“回溯”</li>
+</ul>
+<h5 id="文法左递归问题"><a href="#文法左递归问题" class="headerlink" title="文法左递归问题"></a>文法左递归问题</h5><p><img src="F:%5Clearning%5Cnote%5C%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86%5C%E7%AC%AC%E4%B8%83%E8%AE%B2.assets%5Cimage-20200315211439235.png" alt="image-20200315211439235"></p>
 <ul>
-<li>CI:持续集成(Continuous Integration)</li>
-<li>CD:<ul>
-<li>持续交付(Continuous Delivery)</li>
-<li>持续部署(Continuous Deployment)</li>
+<li>一个文法是含有左递归的，如果存在非终结符P</li>
+</ul>
+<h2 id="LL-1-文法-消除左递归"><a href="#LL-1-文法-消除左递归" class="headerlink" title="LL(1)文法-消除左递归"></a>LL(1)文法-消除左递归</h2><h4 id="消除直接左递归"><a href="#消除直接左递归" class="headerlink" title="消除直接左递归"></a>消除直接左递归</h4><p>左递归转换为右递归，使得处理的单词能够一直推进，直到最后的非终结符，相比于左递归，不会在一开始就出现无限递归的情况（导致后续单词无法解析）</p>
+<ul>
+<li>假定P关于的全部产生式是</li>
+</ul>
+<p>$$<br>p \to P\alpha_1 | P\alpha_2 | … | P\alpha_m | \beta_1 | \beta_2 | … | \beta_n<br>$$</p>
+<p>(每个 α都不等于 ε，每个 β都不以P开头)</p>
+<p><img src="F:%5Clearning%5Cnote%5C%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86%5C%E7%AC%AC%E4%B8%83%E8%AE%B2.assets%5Cimage-20200315213315489.png" alt="image-20200315213315489"></p>
+<p>例：</p>
+<p><img src="F:%5Clearning%5Cnote%5C%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86%5C%E7%AC%AC%E4%B8%83%E8%AE%B2.assets%5Cimage-20200315224604783.png" alt="image-20200315224604783"></p>
+<h4 id="消除间接左递归"><a href="#消除间接左递归" class="headerlink" title="消除间接左递归"></a>消除间接左递归</h4><ul>
+<li>一个文法消除左递归的条件<ul>
+<li>不含以 ε为右部的产生式</li>
+<li>不含回路 （P =&gt; P）</li>
 </ul>
 </li>
 </ul>
-</br>
-
-<h4 id="持续集成"><a href="#持续集成" class="headerlink" title="持续集成"></a>持续集成</h4><p><strong>持续集成指的是，频繁地（一天多次）将代码集成到主干。</strong></p>
-<p>持续集成可以帮助开发人员更加频繁地（有时甚至每天）将代码更改合并到共享分支或“主干”中。一旦开发人员对应用所做的更改被合并，系统就会通过自动构建应用并运行不同级别的自动化测试（通常是单元测试和集成测试）来验证这些更改，确保这些更改没有对应用造成破坏。这意味着测试内容涵盖了从类和函数到构成整个应用的不同模块。如果自动化测试发现新代码和现有代码之间存在冲突，CI 可以更加轻松地快速修复这些错误。</p>
-</br>
-
-<h5 id="目的"><a href="#目的" class="headerlink" title="目的"></a>目的</h5><p><strong>让产品可以快速迭代，同时还能保持高质量。</strong>它的核心措施是，代码集成到主干之前，<strong>必须通过自动化测试</strong>。只要有一个测试用例失败，就不能集成。</p>
-</br>
-
-<h5 id="好处"><a href="#好处" class="headerlink" title="好处"></a>好处</h5><ol>
-<li><strong>快速发现错误。</strong>每完成一点更新，就集成到主干，可以快速发现错误，定位错误也比较容易。</li>
-<li><strong>防止分支大幅偏离主干。</strong>如果不是经常集成，主干又在不断更新，会导致以后集成的难度会非常的大，甚至难以集成。</li>
+<p><img src="F:%5Clearning%5Cnote%5C%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86%5C%E7%AC%AC%E4%B8%83%E8%AE%B2.assets%5Cimage-20200316143951616.png" alt="image-20200316143951616"></p>
+<h4 id="消除左递归的算法"><a href="#消除左递归的算法" class="headerlink" title="消除左递归的算法"></a>消除左递归的算法</h4><p><img src="F:%5Clearning%5Cnote%5C%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86%5C%E7%AC%AC%E4%B8%83%E8%AE%B2.assets%5Cimage-20200316152048032.png" alt="image-20200316152048032"></p>
+<p>例：</p>
+<p><img src="F:%5Clearning%5Cnote%5C%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86%5C%E7%AC%AC%E4%B8%83%E8%AE%B2.assets%5Cimage-20200316152234717.png" alt="image-20200316152234717"></p>
+<p>由于从S出发到达S’，S’出发还是到达S’，所以Q和R没用，定义时多余的，可以删除</p>
+<p><img src="F:%5Clearning%5Cnote%5C%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86%5C%E7%AC%AC%E4%B8%83%E8%AE%B2.assets%5Cimage-20200316152446994.png" alt="image-20200316152446994"></p>
+<h2 id="LL-1-文法-消除回溯"><a href="#LL-1-文法-消除回溯" class="headerlink" title="LL(1)文法-消除回溯"></a>LL(1)文法-消除回溯</h2><p><strong>为了消除回溯必须保证：</strong></p>
+<ul>
+<li>对文法的任何非终结符，当要它去匹配输入串时，能够根据它所面临的输入符号准确地指派它的一个候选去执行任务，并且此候选的工作结果应是确信无疑的</li>
+</ul>
+<p><strong>对于当前读入的一个符号a，在非终结符A的所有候选当中，准确地指派一个候选，去扩展A，使得最后一定能够分析成功（句子分析成功或是读入的不是句子）</strong></p>
+<h4 id="FIRST集合"><a href="#FIRST集合" class="headerlink" title="FIRST集合"></a>FIRST集合</h4><p>令G是一个不含左递归的文法，对G的所有非终结符的每个候选α定义它的终结首符集FIRST(α) 为：<br>$$<br>FIRST(\alpha) = {a | \alpha =&gt; a … , a \in V_T}<br>$$<br>如果非终结符A的所有候选首符集两两不相交，即A的任何两个不同候选α<del>i</del>和α<del>j</del><br>$$<br>FIRST(\alpha_i) \cap FIRST(\alpha_j) = \empty<br>$$<br>当要求A匹配输入串时，A能根据它所面临的第一个输入符号a，准确地指派某一个候选去执行任务。这个候选就是那个终结首符集含a的α</p>
+<p>例：</p>
+<p><img src="F:%5Clearning%5Cnote%5C%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86%5C%E7%AC%AC%E4%B8%83%E8%AE%B2.assets%5Cimage-20200316192005200.png" alt="image-20200316192005200"></p>
+<h5 id="提取公共左因子"><a href="#提取公共左因子" class="headerlink" title="提取公共左因子"></a>提取公共左因子</h5><p><img src="F:%5Clearning%5Cnote%5C%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86%5C%E7%AC%AC%E4%B8%83%E8%AE%B2.assets%5Cimage-20200316191229572.png" alt="image-20200316191229572"></p>
+<h4 id="FOLLOW集合"><a href="#FOLLOW集合" class="headerlink" title="FOLLOW集合"></a>FOLLOW集合</h4><p><img src="F:%5Clearning%5Cnote%5C%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86%5C%E7%AC%AC%E4%B8%83%E8%AE%B2.assets%5Cimage-20200316193550925.png" alt="image-20200316193550925"></p>
+<h2 id="LL-1-文法"><a href="#LL-1-文法" class="headerlink" title="LL(1)文法"></a>LL(1)文法</h2><h4 id="LL-1-文法条件"><a href="#LL-1-文法条件" class="headerlink" title="LL(1)文法条件"></a>LL(1)文法条件</h4><ul>
+<li><p>构造不带回溯的自上而下分析的文法条件</p>
+<ol>
+<li><p>文法不含左递归</p>
+</li>
+<li><p>对于文法中每一个非终结符A的各个产生式的候选首符集两两不相交。即，若</p>
+<p>$$A \to \alpha_1 | \alpha_2 | \alpha_3 | … | \alpha_n$$</p>
+<p>则 $$FIRST(\alpha_i) \cap FIRST(\alpha_j) = \empty$$</p>
+</li>
 </ol>
-<blockquote>
-<p>持续集成并不能消除Bug，而是让它们非常容易发现和改正。</p>
-</blockquote>
-</br>
-
-<h4 id="持续交付"><a href="#持续交付" class="headerlink" title="持续交付"></a>持续交付</h4><p><strong>持续交付指的是，频繁地将软件的新版本，交付给质量团队或者用户，以供评审。</strong>如果评审通过，代码就进入生产阶段。</p>
-<p>在持续交付中，每个阶段（从代码更改的合并，到生产就绪型构建版本的交付）都涉及测试自动化和代码发布自动化。在流程结束时，运维团队可以快速、轻松地将应用部署到生产环境中。</p>
-<p>持续交付可以看作持续集成的下一步。它强调的是，不管怎么更新，软件是随时随地可以交付的。</p>
-</br>
-
-<h4 id="持续部署"><a href="#持续部署" class="headerlink" title="持续部署"></a>持续部署</h4><p><strong>持续部署是持续交付的下一步，指的是代码通过评审以后，自动部署到生产环境。</strong></p>
-<p>持续部署的目标是，代码在任何时刻都是可部署的，可以进入生产阶段。</p>
-<p>持续部署的前提是能自动化完成测试、构建、部署等步骤。</p>
-<p>持续部署意味着开发人员对应用的更改在编写后的几分钟内就能生效（假设它通过了自动化测试）。这更加便于持续接收和整合用户反馈。总而言之，所有这些 CI/CD 的关联步骤都有助于降低应用的部署风险，因此更便于以小件的方式（而非一次性）发布对应用的更改。</p>
-</br>
-
-<h2 id="工作流程"><a href="#工作流程" class="headerlink" title="工作流程"></a>工作流程</h2><h4 id="DevOps工具链"><a href="#DevOps工具链" class="headerlink" title="DevOps工具链"></a>DevOps工具链</h4><p><img src="https://raw.githubusercontent.com/daily-record/daily-record-img/master/20200331175003.png" alt=""></p>
-<ul>
-<li>版本控制&amp;协作开发：GitHub、GitLab、BitBucket、SubVersion、Coding、Bazaar</li>
-<li>自动化构建和测试: Apache Ant、Maven 、Selenium、PyUnit、QUnit、JMeter、Gradle、PHPUnit</li>
-<li>持续集成&amp;交付:Jenkins、Capistrano、BuildBot、Fabric、Tinderbox、Travis CI、flow.ci Continuum、LuntBuild、CruiseControl、Integrity、Gump、Go</li>
-<li>容器平台: Docker、Rocket、Ubuntu（LXC）、第三方厂商如（AWS/阿里云）</li>
-<li>配置管理：Chef、Puppet、CFengine、Bash、Rudder、Powershell、RunDeck、Saltstack、Ansible</li>
-<li>微服务平台：OpenShift、Cloud Foundry、Kubernetes、Mesosphere</li>
-<li>服务开通：Puppet、Docker Swarm、Vagrant、Powershell、OpenStack Heat</li>
-<li>日志管理：Logstash、CollectD、StatsD</li>
-<li>监控，警告&amp;分析：Nagios、Ganglia、Sensu、zabbix、ICINGA、Graphite、Kibana</li>
+</li>
 </ul>
-</br>
+<pre><code>3.  对文法中的每个非终结符A，若它存在某个候选首符集包含ε，则
 
-<h4 id="1-提交"><a href="#1-提交" class="headerlink" title="1. 提交"></a>1. 提交</h4><p>开发者向代码仓库提交代码。所有后面的步骤都始于本地代码的一次提交（commit）。</p>
-</br>
-
-<h4 id="2-测试（第一轮）"><a href="#2-测试（第一轮）" class="headerlink" title="2. 测试（第一轮）"></a>2. 测试（第一轮）</h4><p>代码仓库对commit操作配置了钩子（hook），只要提交代码或者合并进主干，就会跑自动化测试。</p>
-<p>测试分为多钟：</p>
-<ul>
-<li>单元测试：针对函数或模块的测试</li>
-<li>集成测试：针对整体产品的某个功能的测试，又称功能测试</li>
-<li>端对端测试：从用户界面直达数据库的全链路测试</li>
+  $$FIRST(\alpha_i) \cap FOLLOW(A) = \empty, i = 1, 2, ..., n$$</code></pre><p>如果一个文法G满足以上条件，则称该文法G为<strong>LL(1)</strong>（第一个L指从左向右推导，第二个L指最左推导，1指每一步只向前查看一个符号）</p>
+<h4 id="LL-1-分析"><a href="#LL-1-分析" class="headerlink" title="LL(1)分析"></a>LL(1)分析</h4><ol>
+<li>假设要用非终结符A进行匹配，面临的输入符号为a，A 的所有产生式为$$A\to\alpha_1|\alpha_2|…|\alpha_n$$<ul>
+<li>若$$a\in FIRST(\alpha_i)$$，则指派α<del>i</del>执行匹配任务；</li>
+<li>若a不属于任何一个候选首符集，则<ul>
+<li>若ε属于某个FIRST(α<del>i</del>)且 $$a\in FOLLOW(A)$$， 则让 A与ε自动匹配</li>
+<li>否则，a的出现是一种语法错误</li>
 </ul>
-<p>第一轮至少要跑单元测试。</p>
-</br>
-
-<h4 id="3-构建"><a href="#3-构建" class="headerlink" title="3. 构建"></a>3. 构建</h4><p>通过第一轮测试，代码就可以合并进主干，就算可以交付了。</p>
-<p>交付后，就先进行构建（build），再进入第二轮测试。所谓构建，指的是将源码转换为可以运行的实际代码，比如安装依赖，配置各种资源（样式表、JS脚本、图片）等等。</p>
-<p>常用的构建工具如下：</p>
-<ul>
-<li>Jenkins</li>
-<li>Travis</li>
-<li>Codeship</li>
-<li>Strider</li>
+</li>
 </ul>
-</br>
-
-<h4 id="4-测试（第二轮）"><a href="#4-测试（第二轮）" class="headerlink" title="4. 测试（第二轮）"></a>4. 测试（第二轮）</h4><p>构建完成，就要进行第二轮测试。如果第一轮已经涵盖了所有测试内容，第二轮可以省略，当然，这时构建步骤也要移到第一轮测试前面。</p>
-<p>第二轮是全面测试，单元测试和集成测试都会跑，有条件的话，也要做端对端测试。所有测试以自动化为主，少数无法自动化的测试用例，就要人工跑。</p>
-<p>需要强调的是，新版本的每一个更新点都必须测试到。如果测试的覆盖率不高，进入后面的部署阶段后，很可能会出现严重的问题。</p>
-</br>
-
-<h4 id="5-部署"><a href="#5-部署" class="headerlink" title="5. 部署"></a>5. 部署</h4><p>通过了第二轮测试，当前代码就是一个可以直接部署的版本（artifact）。将这个版本的所有文件打包（ tar filename.tar * ）存档，发到生产服务器。</p>
-<p>生产服务器将打包文件，解包成本地的一个目录，再将运行路径的符号链接（symlink）指向这个目录，然后重新启动应用。这方面的部署工具有Ansible，Chef，Puppet等。</p>
-</br>
-
-<h4 id="6-回滚"><a href="#6-回滚" class="headerlink" title="6. 回滚"></a>6. 回滚</h4><p>一旦当前版本发生问题，就要回滚到上一个版本的构建结果。最简单的做法就是修改一下符号链接，指向上一个版本的目录。</p>
-</br>
-
-<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><p><a href="http://www.ruanyifeng.com/blog/2015/09/continuous-integration.html" target="_blank" rel="noopener">阮一峰：持续集成是什么</a></p>
-<p><a href="https://marlous.github.io/2018/10/31/DevOps%20%E4%B8%8E%20CICD%20%E7%9A%84%E6%A6%82%E5%BF%B5/#%E4%B8%89-DevOps-%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1" target="_blank" rel="noopener">DevOps工作流</a></p>
-<p><a href="https://www.redhat.com/zh/topics/devops/what-is-ci-cd" target="_blank" rel="noopener">RedHat：什么是CI/CD</a></p>
+</li>
+</ol>
+<h2 id="FIRST和FOLLOW集合的构造"><a href="#FIRST和FOLLOW集合的构造" class="headerlink" title="FIRST和FOLLOW集合的构造"></a>FIRST和FOLLOW集合的构造</h2><h4 id="FIRST集合的构造"><a href="#FIRST集合的构造" class="headerlink" title="FIRST集合的构造"></a>FIRST集合的构造</h4><p><img src="F:%5Clearning%5Cnote%5C%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86%5C%E7%AC%AC%E4%B8%83%E8%AE%B2.assets%5Cimage-20200321222107014.png" alt="image-20200321222107014"></p>
+<h4 id="FOLLOW集合的构造"><a href="#FOLLOW集合的构造" class="headerlink" title="FOLLOW集合的构造"></a>FOLLOW集合的构造</h4><p><img src="F:%5Clearning%5Cnote%5C%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86%5C%E7%AC%AC%E4%B8%83%E8%AE%B2.assets%5Cimage-20200321222132139.png" alt="image-20200321222132139"></p>
 
             </div>
             <hr/>
@@ -568,7 +540,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://yoursite.com/2020/03/31/devops-yu-ci-cd/">http://yoursite.com/2020/03/31/devops-yu-ci-cd/</a>
+                    <a href="http://yoursite.com/2020/04/04/compiler-principles/di-qi-jiang/">http://yoursite.com/2020/04/04/compiler-principles/di-qi-jiang/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -605,19 +577,7 @@
                 <div class="post-meta__tag-list" style="display: inline-block;">
                     
                         <div class="article-tag">
-                            
-                                <a href="/tags/DevOps/">
-                                    <span class="chip bg-color">DevOps</span>
-                                </a>
-                            
-                                <a href="/tags/CI/">
-                                    <span class="chip bg-color">CI</span>
-                                </a>
-                            
-                                <a href="/tags/CD/">
-                                    <span class="chip bg-color">CD</span>
-                                </a>
-                            
+                            <span class="chip bg-color">无标签</span>
                         </div>
                     
                 </div>
@@ -660,6 +620,51 @@
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
+                <a href="/2020/04/04/compiler-principles/di-san-jiang/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/3.jpg" class="responsive-img" alt="compiler_principles/第三讲">
+                        
+                        <span class="card-title">compiler_principles/第三讲</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            3.1 上下文无关文法文法
+描述语言的语法结构的形式规则
+
+
+语言描述的基本概念
+字母表：一个有穷字符集，记为∑
+字母表中每个元素称为字符
+∑上的 字(也叫字符串) 是指由∑中的字符所构成 的一个有穷序列
+不包含任何字符的序列称为空字，记为
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2020-04-04
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            霜雨
+                            
+                        </span>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
                 <a href="/2020/04/04/compiler-principles/di-yi-jiang/">
                     <div class="card-image">
                         
@@ -686,45 +691,8 @@ solution
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-04-04
-                        </span>
-                        <span class="publish-author">
-                            
-                            <i class="fas fa-user fa-fw"></i>
-                            霜雨
-                            
-                        </span>
-                    </div>
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                本篇&nbsp;<i class="far fa-dot-circle"></i>
-            </div>
-            <div class="card">
-                <a href="/2020/03/31/devops-yu-ci-cd/">
-                    <div class="card-image">
-                        
-                        
-                        <img src="/medias/featureimages/15.jpg" class="responsive-img" alt="DevOps与CI/CD">
-                        
-                        <span class="card-title">DevOps与CI/CD</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            简单了解了DevOps与CI/CD的概念
-                        
-                    </div>
-                    <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-03-31
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-04-04
                             </span>
                         <span class="publish-author">
                             
@@ -733,23 +701,6 @@ solution
                             
                         </span>
                     </div>
-                </div>
-
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/DevOps/">
-                        <span class="chip bg-color">DevOps</span>
-                    </a>
-                    
-                    <a href="/tags/CI/">
-                        <span class="chip bg-color">CI</span>
-                    </a>
-                    
-                    <a href="/tags/CD/">
-                        <span class="chip bg-color">CD</span>
-                    </a>
-                    
                 </div>
                 
             </div>

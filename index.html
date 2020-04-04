@@ -489,25 +489,38 @@
             
             <div class="article col s12 m6 l4" data-aos="zoom-in">
                 <div class="card">
-                    <a href="/2020/03/31/devops-yu-ci-cd/">
+                    <a href="/2020/04/04/compiler-principles/di-si-jiang/">
                         <div class="card-image">
                             
                             
-                            <img src="/medias/featureimages/15.jpg" class="responsive-img" alt="DevOps与CI/CD">
+                            <img src="/medias/featureimages/13.jpg" class="responsive-img" alt="compiler_principles/第四讲">
                             
-                            <span class="card-title">DevOps与CI/CD</span>
+                            <span class="card-title">compiler_principles/第四讲</span>
                         </div>
                     </a>
 
                     <div class="card-content article-content">
                         <div class="summary block-with-text">
                             
-                                简单了解了DevOps与CI/CD的概念
+                                4.1 词法分析概述词法分析
+词法分析器的设计
+
+正规表达式与有限自动机
+
+词法分析器的自动产生–LEX
+
+
+词法分析的任务
+从左至右逐个字符地对源程序进行扫描，产生一个个单词符号
+
+
+词法分析器(Lexical Analyzer)
+扫描器
                             
                         </div>
                         <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-03-31
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-04-04
                             </span>
                             <span class="publish-author">
                                 
@@ -519,21 +532,402 @@
                     </div>
 
                     
-                    <div class="card-action article-tags">
-                        
-                        <a href="/tags/DevOps/">
-                            <span class="chip bg-color">DevOps</span>
-                        </a>
-                        
-                        <a href="/tags/CI/">
-                            <span class="chip bg-color">CI</span>
-                        </a>
-                        
-                        <a href="/tags/CD/">
-                            <span class="chip bg-color">CD</span>
-                        </a>
-                        
+                </div>
+            </div>
+            
+            <div class="article col s12 m6 l4" data-aos="zoom-in">
+                <div class="card">
+                    <a href="/2020/04/04/compiler-principles/di-shi-jiang/">
+                        <div class="card-image">
+                            
+                            
+                            <img src="/medias/featureimages/11.jpg" class="responsive-img" alt="compiler_principles/第十讲">
+                            
+                            <span class="card-title">compiler_principles/第十讲</span>
+                        </div>
+                    </a>
+
+                    <div class="card-content article-content">
+                        <div class="summary block-with-text">
+                            
+                                语法分析-自下而上分析1自下而上分析定义：
+
+从输入串开始，逐步进行归约，直到文法的开始符号
+归约：根据文法的产生式规则，把串中出现的产生式的右部替换成左部符号
+从树叶节点开始，构造语法树
+算符优先分析法、LR分析法
+
+
+移进－归约思想
+用
+                            
+                        </div>
+                        <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-04-04
+                            </span>
+                            <span class="publish-author">
+                                
+                                <i class="fas fa-user fa-fw"></i>
+                                霜雨
+                                
+                            </span>
+                        </div>
                     </div>
+
+                    
+                </div>
+            </div>
+            
+            <div class="article col s12 m6 l4" data-aos="zoom-in">
+                <div class="card">
+                    <a href="/2020/04/04/compiler-principles/di-liu-jiang/">
+                        <div class="card-image">
+                            
+                            
+                            <img src="/medias/featureimages/23.jpg" class="responsive-img" alt="compiler_principles/第六讲">
+                            
+                            <span class="card-title">compiler_principles/第六讲</span>
+                        </div>
+                    </a>
+
+                    <div class="card-content article-content">
+                        <div class="summary block-with-text">
+                            
+                                6.1 有限自动机的等价性DFA与NFA的等价性证明思路二者差别：
+
+
+
+
+NFA
+DFA
+
+
+
+初始状态
+不唯一
+唯一
+
+
+弧上的标记
+字（单字字符、ε）
+字符
+
+
+转换关系
+非确定
+确定
+
+
+如果能够消除二者在初始状态，在弧上的标记以及
+                            
+                        </div>
+                        <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-04-04
+                            </span>
+                            <span class="publish-author">
+                                
+                                <i class="fas fa-user fa-fw"></i>
+                                霜雨
+                                
+                            </span>
+                        </div>
+                    </div>
+
+                    
+                </div>
+            </div>
+            
+            <div class="article col s12 m6 l4" data-aos="zoom-in">
+                <div class="card">
+                    <a href="/2020/04/04/compiler-principles/di-wu-jiang/">
+                        <div class="card-image">
+                            
+                            
+                            <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="compiler_principles/第五讲">
+                            
+                            <span class="card-title">compiler_principles/第五讲</span>
+                        </div>
+                    </a>
+
+                    <div class="card-content article-content">
+                        <div class="summary block-with-text">
+                            
+                                5.1 词法规则形式化-正规集与正规式正规式和正规集程序语言定义的合法单词集合都是正规集
+
+正规集可以用正规式表示
+正规式是表示正规集的一种办法
+一个字集合是正规集当且仅当它能用正规式表示
+
+正规式和正规集的递归定义对于给定的字母表Σ：
+
+
+                            
+                        </div>
+                        <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-04-04
+                            </span>
+                            <span class="publish-author">
+                                
+                                <i class="fas fa-user fa-fw"></i>
+                                霜雨
+                                
+                            </span>
+                        </div>
+                    </div>
+
+                    
+                </div>
+            </div>
+            
+            <div class="article col s12 m6 l4" data-aos="zoom-in">
+                <div class="card">
+                    <a href="/2020/04/04/compiler-principles/di-ba-jiang/">
+                        <div class="card-image">
+                            
+                            
+                            <img src="/medias/featureimages/13.jpg" class="responsive-img" alt="compiler_principles/第八讲">
+                            
+                            <span class="card-title">compiler_principles/第八讲</span>
+                        </div>
+                    </a>
+
+                    <div class="card-content article-content">
+                        <div class="summary block-with-text">
+                            
+                                语法分析-自上而下分析2构造递归下降分析器递归下降分析器
+分析程序由一组子程序组成， 对每一语法单位(非终结符)构造一个相应的子程序，识别对应的语法单位
+通过子程序间的相互调用实现对输入串的识别，如 A → BcD
+子程序A调用子程序B识别
+                            
+                        </div>
+                        <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-04-04
+                            </span>
+                            <span class="publish-author">
+                                
+                                <i class="fas fa-user fa-fw"></i>
+                                霜雨
+                                
+                            </span>
+                        </div>
+                    </div>
+
+                    
+                </div>
+            </div>
+            
+            <div class="article col s12 m6 l4" data-aos="zoom-in">
+                <div class="card">
+                    <a href="/2020/04/04/compiler-principles/di-jiu-jiang/">
+                        <div class="card-image">
+                            
+                            
+                            <img src="/medias/featureimages/15.jpg" class="responsive-img" alt="compiler_principles/第九讲">
+                            
+                            <span class="card-title">compiler_principles/第九讲</span>
+                        </div>
+                    </a>
+
+                    <div class="card-content article-content">
+                        <div class="summary block-with-text">
+                            
+                                语法分析-自上而下分析3预测分析程序构成
+总控程序：根据现行栈顶符号和当前输入符号， 执行动作
+分析表 M[A， a]矩阵：A ∈ V N ，a ∈ VT 是终 结符或‘＃’
+分析栈 STACK 用于存放文法符号
+
+
+总控程序总是根据现行栈
+                            
+                        </div>
+                        <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-04-04
+                            </span>
+                            <span class="publish-author">
+                                
+                                <i class="fas fa-user fa-fw"></i>
+                                霜雨
+                                
+                            </span>
+                        </div>
+                    </div>
+
+                    
+                </div>
+            </div>
+            
+            <div class="article col s12 m6 l4" data-aos="zoom-in">
+                <div class="card">
+                    <a href="/2020/04/04/compiler-principles/di-er-jiang/">
+                        <div class="card-image">
+                            
+                            
+                            <img src="/medias/featureimages/22.jpg" class="responsive-img" alt="compiler_principles/第二讲">
+                            
+                            <span class="card-title">compiler_principles/第二讲</span>
+                        </div>
+                    </a>
+
+                    <div class="card-content article-content">
+                        <div class="summary block-with-text">
+                            
+                                2.1 常用的高级程序设计语言2.2 程序设计语言的定义标识符是语法概念，名字是语义概念
+语法
+程序本质上是一定字符集上的字符串
+语法：一组规则，用它可以形成和产生一个合式(well-formed)的程序
+
+词法规则：单词符号的形成规则
+单
+                            
+                        </div>
+                        <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-04-04
+                            </span>
+                            <span class="publish-author">
+                                
+                                <i class="fas fa-user fa-fw"></i>
+                                霜雨
+                                
+                            </span>
+                        </div>
+                    </div>
+
+                    
+                </div>
+            </div>
+            
+            <div class="article col s12 m6 l4" data-aos="zoom-in">
+                <div class="card">
+                    <a href="/2020/04/04/compiler-principles/di-san-jiang/">
+                        <div class="card-image">
+                            
+                            
+                            <img src="/medias/featureimages/3.jpg" class="responsive-img" alt="compiler_principles/第三讲">
+                            
+                            <span class="card-title">compiler_principles/第三讲</span>
+                        </div>
+                    </a>
+
+                    <div class="card-content article-content">
+                        <div class="summary block-with-text">
+                            
+                                3.1 上下文无关文法文法
+描述语言的语法结构的形式规则
+
+
+语言描述的基本概念
+字母表：一个有穷字符集，记为∑
+字母表中每个元素称为字符
+∑上的 字(也叫字符串) 是指由∑中的字符所构成 的一个有穷序列
+不包含任何字符的序列称为空字，记为
+                            
+                        </div>
+                        <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-04-04
+                            </span>
+                            <span class="publish-author">
+                                
+                                <i class="fas fa-user fa-fw"></i>
+                                霜雨
+                                
+                            </span>
+                        </div>
+                    </div>
+
+                    
+                </div>
+            </div>
+            
+            <div class="article col s12 m6 l4" data-aos="zoom-in">
+                <div class="card">
+                    <a href="/2020/04/04/compiler-principles/di-qi-jiang/">
+                        <div class="card-image">
+                            
+                            
+                            <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="compiler_principles/第七讲">
+                            
+                            <span class="card-title">compiler_principles/第七讲</span>
+                        </div>
+                    </a>
+
+                    <div class="card-content article-content">
+                        <div class="summary block-with-text">
+                            
+                                语法分析-自上而下分析1自上而下分析的基本问题语法分析的任务
+分析一个文法的句子结构
+
+语法分析器的功能
+按照文法的产生式（语言的语法规则），识别输入符号串是否为一个句子（合式程序）
+
+语法分析器在编译器中的地位
+语法分析的方法自下而上（B
+                            
+                        </div>
+                        <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-04-04
+                            </span>
+                            <span class="publish-author">
+                                
+                                <i class="fas fa-user fa-fw"></i>
+                                霜雨
+                                
+                            </span>
+                        </div>
+                    </div>
+
+                    
+                </div>
+            </div>
+            
+            <div class="article col s12 m6 l4" data-aos="zoom-in">
+                <div class="card">
+                    <a href="/2020/04/04/compiler-principles/di-yi-jiang/">
+                        <div class="card-image">
+                            
+                            
+                            <img src="/medias/featureimages/18.jpg" class="responsive-img" alt="compiler_principles/第一讲">
+                            
+                            <span class="card-title">compiler_principles/第一讲</span>
+                        </div>
+                    </a>
+
+                    <div class="card-content article-content">
+                        <div class="summary block-with-text">
+                            
+                                第一讲main content
+什么是编译程序？
+
+编译程序的各个阶段，理解各个阶段的任务，各个阶段所依循的规则。
+ 
+
+会画编译程序的总框
+
+
+solution
+把某一种高级语言程序等价地转换成另一种低级语言程序（如汇编或机器语言程序）的
+                            
+                        </div>
+                        <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-04-04
+                            </span>
+                            <span class="publish-author">
+                                
+                                <i class="fas fa-user fa-fw"></i>
+                                霜雨
+                                
+                            </span>
+                        </div>
+                    </div>
+
                     
                 </div>
             </div>
@@ -542,6 +936,30 @@
     </article>
 
 </main>
+
+
+<div class="container paging">
+    <div class="row">
+        <div class="col s6 m4 l4">
+            
+            <a class="left btn-floating btn-large disabled">
+                <i class="fas fa-angle-left"></i>
+            </a>
+            
+        </div>
+        <div class="page-info col m4 l4 hide-on-small-only">
+            <div class="center-align b-text-gray">1 / 2</div>
+        </div>
+        <div class="col s6 m4 l4">
+            
+            <a href="/page/2/"
+               class="right btn-floating btn-large waves-effect waves-light bg-color">
+                <i class="fas fa-angle-right"></i>
+            </a>
+            
+        </div>
+    </div>
+</div>
 
 
 
