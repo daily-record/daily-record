@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="compiler_principles/第四讲, null">
+    <meta name="keywords" content="compiler_principles/第4讲, null">
     <meta name="description" content="4.1 词法分析概述词法分析
 词法分析器的设计
 
@@ -26,7 +26,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>compiler_principles/第四讲 | null</title>
+    <title>compiler_principles/第4讲 | null</title>
     <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -268,12 +268,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/13.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/14.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">compiler_principles/第四讲</h1>
+                    <h1 class="description center-align post-title">compiler_principles/第4讲</h1>
                 </div>
             </div>
         </div>
@@ -402,7 +402,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-04-04
+                    2020-04-08
                 </div>
                 
 
@@ -472,14 +472,14 @@
 </ul>
 </li>
 </ul>
-<p><img src="F:%5Clearning%5Cnote%5C%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86%5C%E7%AC%AC%E5%9B%9B%E8%AE%B2.assets%5Cimage-20200305204957424.png" alt="image-20200305204957424"></p>
-<p><img src="F:%5Clearning%5Cnote%5C%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86%5C%E7%AC%AC%E5%9B%9B%E8%AE%B2.assets%5Cimage-20200305205006022.png" alt="image-20200305205006022"></p>
-<h5 id="词法分析器在编译器中的地位"><a href="#词法分析器在编译器中的地位" class="headerlink" title="词法分析器在编译器中的地位"></a>词法分析器在编译器中的地位</h5><p><img src="F:%5Clearning%5Cnote%5C%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86%5C%E7%AC%AC%E5%9B%9B%E8%AE%B2.assets%5Cimage-20200305213155855.png" alt="image-20200305213155855"></p>
+<p><img src="%E7%AC%AC4%E8%AE%B2.assets%5Cimage-20200305204957424.png" alt="image-20200305204957424"></p>
+<p><img src="%E7%AC%AC4%E8%AE%B2.assets%5Cimage-20200305205006022.png" alt="image-20200305205006022"></p>
+<h5 id="词法分析器在编译器中的地位"><a href="#词法分析器在编译器中的地位" class="headerlink" title="词法分析器在编译器中的地位"></a>词法分析器在编译器中的地位</h5><p><img src="%E7%AC%AC4%E8%AE%B2.assets%5Cimage-20200305213155855.png" alt="image-20200305213155855"></p>
 <ul>
 <li>词法分析器和语法分析器都会在符号表中记录访问，修改编译过程各类信息</li>
 <li>分模块相互调用提高了系统的利用率</li>
 </ul>
-<h2 id="4-2-词法分析器的设计"><a href="#4-2-词法分析器的设计" class="headerlink" title="4.2 词法分析器的设计"></a>4.2 词法分析器的设计</h2><h4 id="词法分析器的结构"><a href="#词法分析器的结构" class="headerlink" title="词法分析器的结构"></a>词法分析器的结构</h4><p><img src="F:%5Clearning%5Cnote%5C%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86%5C%E7%AC%AC%E5%9B%9B%E8%AE%B2.assets%5Cimage-20200305214422322.png" alt="image-20200305214422322"></p>
+<h2 id="4-2-词法分析器的设计"><a href="#4-2-词法分析器的设计" class="headerlink" title="4.2 词法分析器的设计"></a>4.2 词法分析器的设计</h2><h4 id="词法分析器的结构"><a href="#词法分析器的结构" class="headerlink" title="词法分析器的结构"></a>词法分析器的结构</h4><p><img src="%E7%AC%AC4%E8%AE%B2.assets%5Cimage-20200305214422322.png" alt="image-20200305214422322"></p>
 <ol>
 <li><p>预处理子程序在扫描器的调用下，将源程序输入到输入缓冲区中，读入输入缓冲区的字符，进行文本的预处理</p>
 </li>
@@ -491,10 +491,10 @@
 <h5 id="扫描缓冲区"><a href="#扫描缓冲区" class="headerlink" title="扫描缓冲区"></a>扫描缓冲区</h5><blockquote>
 <p>两个半区互补使用，防止一个单词的扫描被打断</p>
 </blockquote>
-<p><img src="F:%5Clearning%5Cnote%5C%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86%5C%E7%AC%AC%E5%9B%9B%E8%AE%B2.assets%5Cimage-20200305221130549.png" alt="image-20200305221130549"></p>
+<p><img src="%E7%AC%AC4%E8%AE%B2.assets%5Cimage-20200305221130549.png" alt="image-20200305221130549"></p>
 <p><strong>半区的长度就是一个单词所允许的最大长度</strong></p>
 <p>某些语言规定标识符的长度不能超过某个t值，可以推断编译器的扫描缓冲区长度为2t</p>
-<h4 id="超前搜索"><a href="#超前搜索" class="headerlink" title="超前搜索"></a>超前搜索</h4><p><img src="F:%5Clearning%5Cnote%5C%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86%5C%E7%AC%AC%E5%9B%9B%E8%AE%B2.assets%5Cimage-20200305233628880.png" alt="image-20200305233628880"></p>
+<h4 id="超前搜索"><a href="#超前搜索" class="headerlink" title="超前搜索"></a>超前搜索</h4><p><img src="%E7%AC%AC4%E8%AE%B2.assets%5Cimage-20200305233628880.png" alt="image-20200305233628880"></p>
 <ul>
 <li><p>标识符识别</p>
 <ul>
@@ -535,18 +535,18 @@
 <li><code>状态</code>之间用箭弧连结，箭弧上的标记(字符)代表射出结状态下可能出现的输入<code>字符</code>或<code>字符类</code>（箭头上的标记表示输入此标记后状态转换）</li>
 <li>一张转换图只包含<code>有限个状态</code>，其中有一个为<code>初态</code>， 至少要有一个<code>终态</code>（用双圈表示）</li>
 </ul>
-<p><img src="F:%5Clearning%5Cnote%5C%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86%5C%E7%AC%AC%E5%9B%9B%E8%AE%B2.assets%5Cimage-20200305235938616.png" alt="image-20200305235938616"></p>
+<p><img src="%E7%AC%AC4%E8%AE%B2.assets%5Cimage-20200305235938616.png" alt="image-20200305235938616"></p>
 <blockquote>
 <p>状态转换图可用于识别(或接受)一定的字符串</p>
 </blockquote>
 <ul>
 <li>若存在一条从初态到某一终态的道路，且这条路上所有弧上的标记符连接成的字等于α，则称α被该状态转换图所识别(接受)（最后读入的字符不属于当前识别的字符串）</li>
 </ul>
-<p><img src="F:%5Clearning%5Cnote%5C%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86%5C%E7%AC%AC%E5%9B%9B%E8%AE%B2.assets%5Cimage-20200306000755729.png" alt="image-20200306000755729"></p>
+<p><img src="%E7%AC%AC4%E8%AE%B2.assets%5Cimage-20200306000755729.png" alt="image-20200306000755729"></p>
 <p><strong>*号表示最后面读入的字符不属于刚才读入的单词</strong></p>
 <p>以下则是识别标识符的状态转换图：</p>
-<p><img src="F:%5Clearning%5Cnote%5C%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86%5C%E7%AC%AC%E5%9B%9B%E8%AE%B2.assets%5Cimage-20200306001126007.png" alt="image-20200306001126007"></p>
-<h5 id="词法分析器设计示例"><a href="#词法分析器设计示例" class="headerlink" title="词法分析器设计示例"></a>词法分析器设计示例</h5><p><img src="F:%5Clearning%5Cnote%5C%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86%5C%E7%AC%AC%E5%9B%9B%E8%AE%B2.assets%5Cimage-20200306111428825.png" alt="image-20200306111428825"></p>
+<p><img src="%E7%AC%AC4%E8%AE%B2.assets%5Cimage-20200306001126007.png" alt="image-20200306001126007"></p>
+<h5 id="词法分析器设计示例"><a href="#词法分析器设计示例" class="headerlink" title="词法分析器设计示例"></a>词法分析器设计示例</h5><p><img src="%E7%AC%AC4%E8%AE%B2.assets%5Cimage-20200306111428825.png" alt="image-20200306111428825"></p>
 <ul>
 <li>状态0识别单词前的空白符</li>
 <li>0 -&gt; 13 是出错处理</li>
@@ -554,16 +554,16 @@
 <h4 id="状态转换图的实现"><a href="#状态转换图的实现" class="headerlink" title="状态转换图的实现"></a>状态转换图的实现</h4><h5 id="不含回路的状态结点"><a href="#不含回路的状态结点" class="headerlink" title="不含回路的状态结点"></a>不含回路的状态结点</h5><ul>
 <li>可用一个<code>CASE</code>语句或一组<code>IF-THEN-ELSE</code>语句实现</li>
 </ul>
-<p><img src="F:%5Clearning%5Cnote%5C%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86%5C%E7%AC%AC%E5%9B%9B%E8%AE%B2.assets%5Cimage-20200306113509712.png" alt="image-20200306113509712"></p>
+<p><img src="%E7%AC%AC4%E8%AE%B2.assets%5Cimage-20200306113509712.png" alt="image-20200306113509712"></p>
 <h5 id="含回路的状态结点"><a href="#含回路的状态结点" class="headerlink" title="含回路的状态结点"></a>含回路的状态结点</h5><ul>
 <li>对应一段由<code>WHILE</code>结构和<code>IF</code>语句构成的程序</li>
 </ul>
-<p><img src="F:%5Clearning%5Cnote%5C%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86%5C%E7%AC%AC%E5%9B%9B%E8%AE%B2.assets%5Cimage-20200306113537952.png" alt="image-20200306113537952"></p>
+<p><img src="%E7%AC%AC4%E8%AE%B2.assets%5Cimage-20200306113537952.png" alt="image-20200306113537952"></p>
 <h5 id="终态结点"><a href="#终态结点" class="headerlink" title="终态结点"></a>终态结点</h5><ul>
 <li>表示识别出某种单词符号，对应返回语句</li>
 </ul>
-<p><img src="F:%5Clearning%5Cnote%5C%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86%5C%E7%AC%AC%E5%9B%9B%E8%AE%B2.assets%5Cimage-20200306114751041.png" alt="image-20200306114751041"></p>
-<h5 id="全局变量与过程"><a href="#全局变量与过程" class="headerlink" title="全局变量与过程"></a>全局变量与过程</h5><h5 id="词法分析器的实现"><a href="#词法分析器的实现" class="headerlink" title="词法分析器的实现"></a>词法分析器的实现</h5><h6 id="识别标识符"><a href="#识别标识符" class="headerlink" title="识别标识符"></a>识别标识符</h6><p><img src="F:%5Clearning%5Cnote%5C%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86%5C%E7%AC%AC%E5%9B%9B%E8%AE%B2.assets%5Cimage-20200306120105948.png" alt="image-20200306120105948"></p>
+<p><img src="%E7%AC%AC4%E8%AE%B2.assets%5Cimage-20200306114751041.png" alt="image-20200306114751041"></p>
+<h5 id="全局变量与过程"><a href="#全局变量与过程" class="headerlink" title="全局变量与过程"></a>全局变量与过程</h5><h5 id="词法分析器的实现"><a href="#词法分析器的实现" class="headerlink" title="词法分析器的实现"></a>词法分析器的实现</h5><h6 id="识别标识符"><a href="#识别标识符" class="headerlink" title="识别标识符"></a>识别标识符</h6><p><img src="%E7%AC%AC4%E8%AE%B2.assets%5Cimage-20200306120105948.png" alt="image-20200306120105948"></p>
 <pre class="line-numbers language-c"><code class="language-c"><span class="token keyword">int</span> code<span class="token punctuation">,</span> value<span class="token punctuation">;</span> strToken <span class="token punctuation">:</span><span class="token operator">=</span> “ ”<span class="token punctuation">;</span> <span class="token comment" spellcheck="true">/*置strToken为空串*/</span>
 <span class="token function">GetChar</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token function">GetBC</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//跳过空白</span>
@@ -584,7 +584,7 @@ begin
     <span class="token keyword">else</span>
         <span class="token keyword">return</span> <span class="token punctuation">(</span>code<span class="token punctuation">,</span> <span class="token operator">-</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 直接返回保留字的种别编码，无值</span>
 end<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h6 id="识别整常数"><a href="#识别整常数" class="headerlink" title="识别整常数"></a>识别整常数</h6><p><img src="F:%5Clearning%5Cnote%5C%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86%5C%E7%AC%AC%E5%9B%9B%E8%AE%B2.assets%5Cimage-20200306120145223.png" alt="image-20200306120145223"></p>
+<h6 id="识别整常数"><a href="#识别整常数" class="headerlink" title="识别整常数"></a>识别整常数</h6><p><img src="%E7%AC%AC4%E8%AE%B2.assets%5Cimage-20200306120145223.png" alt="image-20200306120145223"></p>
 <pre class="line-numbers language-c"><code class="language-c"><span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">IsDigit</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
 begin
     <span class="token keyword">while</span> <span class="token punctuation">(</span><span class="token function">IsDigit</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
@@ -598,7 +598,7 @@ begin
 end
 <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>ch <span class="token operator">=</span>‘<span class="token operator">=</span>’<span class="token punctuation">)</span> <span class="token keyword">return</span> <span class="token punctuation">(</span>$ASSIGN<span class="token punctuation">,</span> <span class="token operator">-</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>ch <span class="token operator">=</span>‘<span class="token operator">+</span>’<span class="token punctuation">)</span> <span class="token keyword">return</span> <span class="token punctuation">(</span>$PLUS<span class="token punctuation">,</span> <span class="token operator">-</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h6 id="识别其它字符"><a href="#识别其它字符" class="headerlink" title="识别其它字符"></a>识别其它字符</h6><p><img src="F:%5Clearning%5Cnote%5C%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86%5C%E7%AC%AC%E5%9B%9B%E8%AE%B2.assets%5Cimage-20200306120208499.png" alt="image-20200306120208499"></p>
+<h6 id="识别其它字符"><a href="#识别其它字符" class="headerlink" title="识别其它字符"></a>识别其它字符</h6><p><img src="%E7%AC%AC4%E8%AE%B2.assets%5Cimage-20200306120208499.png" alt="image-20200306120208499"></p>
 <pre class="line-numbers language-c"><code class="language-c"><span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>ch <span class="token operator">=</span>‘<span class="token operator">*</span>’<span class="token punctuation">)</span>
 begin
     <span class="token function">GetChar</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -650,7 +650,7 @@ end
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://yoursite.com/2020/04/04/compiler-principles/di-si-jiang/">http://yoursite.com/2020/04/04/compiler-principles/di-si-jiang/</a>
+                    <a href="http://yoursite.com/2020/04/08/compiler-principles/di-4-jiang/">http://yoursite.com/2020/04/08/compiler-principles/di-4-jiang/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -726,43 +726,37 @@ end
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="far fa-dot-circle"></i>&nbsp;本篇
-            </div>
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2020/04/04/compiler-principles/di-si-jiang/">
+                <a href="/2020/04/08/compiler-principles/di-5-jiang/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/13.jpg" class="responsive-img" alt="compiler_principles/第四讲">
+                        <img src="/medias/featureimages/7.jpg" class="responsive-img" alt="compiler_principles/第5讲">
                         
-                        <span class="card-title">compiler_principles/第四讲</span>
+                        <span class="card-title">compiler_principles/第5讲</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            4.1 词法分析概述词法分析
-词法分析器的设计
+                            5.1 词法规则形式化-正规集与正规式正规式和正规集程序语言定义的合法单词集合都是正规集
 
-正规表达式与有限自动机
+正规集可以用正规式表示
+正规式是表示正规集的一种办法
+一个字集合是正规集当且仅当它能用正规式表示
 
-词法分析器的自动产生–LEX
-
-
-词法分析的任务
-从左至右逐个字符地对源程序进行扫描，产生一个个单词符号
+正规式和正规集的递归定义对于给定的字母表Σ：
 
 
-词法分析器(Lexical Analyzer)
-扫描器
                         
                     </div>
                     <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-04-04
-                            </span>
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2020-04-08
+                        </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-user fa-fw"></i>
@@ -771,7 +765,6 @@ end
                         </span>
                     </div>
                 </div>
-
                 
             </div>
         </div>
@@ -782,33 +775,32 @@ end
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/04/04/compiler-principles/di-shi-jiang/">
+                <a href="/2020/04/08/compiler-principles/di-3-jiang/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/11.jpg" class="responsive-img" alt="compiler_principles/第十讲">
+                        <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="compiler_principles/第3讲">
                         
-                        <span class="card-title">compiler_principles/第十讲</span>
+                        <span class="card-title">compiler_principles/第3讲</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            语法分析-自下而上分析1自下而上分析定义：
-
-从输入串开始，逐步进行归约，直到文法的开始符号
-归约：根据文法的产生式规则，把串中出现的产生式的右部替换成左部符号
-从树叶节点开始，构造语法树
-算符优先分析法、LR分析法
+                            3.1 上下文无关文法文法
+描述语言的语法结构的形式规则
 
 
-移进－归约思想
-用
+语言描述的基本概念
+字母表：一个有穷字符集，记为∑
+字母表中每个元素称为字符
+∑上的 字(也叫字符串) 是指由∑中的字符所构成 的一个有穷序列
+不包含任何字符的序列称为空字，记为
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-04-04
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-04-08
                             </span>
                         <span class="publish-author">
                             

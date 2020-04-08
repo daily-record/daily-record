@@ -4,14 +4,15 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="compiler_principles/第二讲, null">
-    <meta name="description" content="2.1 常用的高级程序设计语言2.2 程序设计语言的定义标识符是语法概念，名字是语义概念
-语法
-程序本质上是一定字符集上的字符串
-语法：一组规则，用它可以形成和产生一个合式(well-formed)的程序
+    <meta name="keywords" content="compiler_principles/第7讲, null">
+    <meta name="description" content="语法分析-自上而下分析1自上而下分析的基本问题语法分析的任务
+分析一个文法的句子结构
 
-词法规则：单词符号的形成规则
-单">
+语法分析器的功能
+按照文法的产生式（语言的语法规则），识别输入符号串是否为一个句子（合式程序）
+
+语法分析器在编译器中的地位
+语法分析的方法自下而上（B">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -19,7 +20,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>compiler_principles/第二讲 | null</title>
+    <title>compiler_principles/第7讲 | null</title>
     <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -261,12 +262,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/22.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/17.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">compiler_principles/第二讲</h1>
+                    <h1 class="description center-align post-title">compiler_principles/第7讲</h1>
                 </div>
             </div>
         </div>
@@ -395,7 +396,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-04-04
+                    2020-04-08
                 </div>
                 
 
@@ -404,14 +405,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1k
+                    1.1k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    3 分
+                    4 分
                 </div>
                 
 				
@@ -422,136 +423,98 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="2-1-常用的高级程序设计语言"><a href="#2-1-常用的高级程序设计语言" class="headerlink" title="2.1 常用的高级程序设计语言"></a>2.1 常用的高级程序设计语言</h2><h2 id="2-2-程序设计语言的定义"><a href="#2-2-程序设计语言的定义" class="headerlink" title="2.2 程序设计语言的定义"></a>2.2 程序设计语言的定义</h2><p><strong>标识符是语法概念，名字是语义概念</strong></p>
-<h4 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h4><blockquote>
-<p>程序本质上是一定字符集上的字符串</p>
-<p>语法：一组规则，用它可以形成和产生一个合式(well-formed)的程序</p>
-</blockquote>
-<h5 id="词法规则：单词符号的形成规则"><a href="#词法规则：单词符号的形成规则" class="headerlink" title="词法规则：单词符号的形成规则"></a>词法规则：单词符号的形成规则</h5><ul>
-<li><p>单词符号是语言中具有独立意义的最基本结构</p>
+                <h1 id="语法分析-自上而下分析1"><a href="#语法分析-自上而下分析1" class="headerlink" title="语法分析-自上而下分析1"></a>语法分析-自上而下分析1</h1><h2 id="自上而下分析的基本问题"><a href="#自上而下分析的基本问题" class="headerlink" title="自上而下分析的基本问题"></a>自上而下分析的基本问题</h2><h4 id="语法分析的任务"><a href="#语法分析的任务" class="headerlink" title="语法分析的任务"></a>语法分析的任务</h4><ul>
+<li>分析一个文法的句子结构</li>
+</ul>
+<h4 id="语法分析器的功能"><a href="#语法分析器的功能" class="headerlink" title="语法分析器的功能"></a>语法分析器的功能</h4><ul>
+<li>按照文法的产生式（语言的语法规则），识别输入符号串是否为一个句子（合式程序）</li>
+</ul>
+<h4 id="语法分析器在编译器中的地位"><a href="#语法分析器在编译器中的地位" class="headerlink" title="语法分析器在编译器中的地位"></a>语法分析器在编译器中的地位</h4><p><img src="%E7%AC%AC7%E8%AE%B2.assets%5Cimage-20200315165955316.png" alt="image-20200315165955316"></p>
+<h4 id="语法分析的方法"><a href="#语法分析的方法" class="headerlink" title="语法分析的方法"></a>语法分析的方法</h4><h5 id="自下而上（Bottom-up）"><a href="#自下而上（Bottom-up）" class="headerlink" title="自下而上（Bottom-up）"></a>自下而上（Bottom-up）</h5><ul>
+<li><p>从输入串开始，逐步进行归约，直到文法的开始符号</p>
 </li>
-<li><p>一般包括：常数、标识符、基本字、算符、界符等</p>
+<li><p>根据文法的产生式规则，把串中出现的产生式的右部替换成左部符号</p>
 </li>
-<li><p>描述工具：有限自动机（描述程序设计语言的词法规则）</p>
+<li><p>从<strong>树叶节点</strong>开始，构造语法树</p>
+</li>
+<li><p>算符优先分析法、LR分析法</p>
 </li>
 </ul>
-<h5 id="语法规则：语法单位的形成规则"><a href="#语法规则：语法单位的形成规则" class="headerlink" title="语法规则：语法单位的形成规则"></a>语法规则：语法单位的形成规则</h5><ul>
-<li>语法单位通常包括：表达式、语句、分程序、过程、 函数、程序等</li>
-<li>描述工具：上下文无关文法</li>
+<h5 id="自上而下（Top-down）"><a href="#自上而下（Top-down）" class="headerlink" title="自上而下（Top-down）"></a>自上而下（Top-down）</h5><ul>
+<li>从文法的开始符号出发， 反复使用各种产生式，寻找”匹配”的推导</li>
+<li>推导：根据文法的产生式 规则，把串中出现的产生式的左部符号替换成右部</li>
+<li>从树的根开始，构造语法树</li>
+<li>递归下降分析法、预测分析程序</li>
 </ul>
-<h5 id="语法-1"><a href="#语法-1" class="headerlink" title="语法"></a>语法</h5><pre class="line-numbers language-txt"><code class="language-txt">E→i
-E→E+E
-E→E*E
-E→(E)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-<blockquote>
-<p>语法规则和词法规则定义了程序的<strong>形式结构</strong></p>
-<p>定义语法单位的意义属于语义问题</p>
-</blockquote>
-<h4 id="语义"><a href="#语义" class="headerlink" title="语义"></a>语义</h4><blockquote>
-<p>一组规则，用它可以定义一个程序的意义</p>
-</blockquote>
-<p>描述方法：</p>
+<h4 id="自上而下分析面临的问题"><a href="#自上而下分析面临的问题" class="headerlink" title="自上而下分析面临的问题"></a>自上而下分析面临的问题</h4><p><img src="%E7%AC%AC7%E8%AE%B2.assets%5Cimage-20200315211034207.png" alt="image-20200315211034207"></p>
+<h5 id="回溯问题"><a href="#回溯问题" class="headerlink" title="回溯问题"></a>回溯问题</h5><ul>
+<li>分析过程中，当一个非终结符用某一个候选匹配成功时，这种匹配可能是暂时的</li>
+<li>出错时，不得不“回溯”</li>
+</ul>
+<h5 id="文法左递归问题"><a href="#文法左递归问题" class="headerlink" title="文法左递归问题"></a>文法左递归问题</h5><p><img src="%E7%AC%AC7%E8%AE%B2.assets%5Cimage-20200315211439235.png" alt="image-20200315211439235"></p>
 <ul>
-<li>自然语言描述<ul>
-<li>二义性、隐藏错误和不完整性</li>
+<li>一个文法是含有左递归的，如果存在非终结符P</li>
 </ul>
-</li>
-<li>形式描述<ul>
-<li>操作语义</li>
-<li>指称语义</li>
-<li>代数语义</li>
-</ul>
-</li>
-</ul>
-<h4 id="程序的基本功能和层次结构"><a href="#程序的基本功能和层次结构" class="headerlink" title="程序的基本功能和层次结构"></a>程序的基本功能和层次结构</h4><blockquote>
-<p>程序，本质上说是描述一定数据的处理过程</p>
-<p>程序语言的基本功能：描述数据和对数据的运算</p>
-</blockquote>
-<p>程序的层次结构：</p>
-<p><img src="F:%5Clearning%5Cnote%5C%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86%5C%E7%AC%AC%E4%BA%8C%E8%AE%B2.assets%5Cimage-20200229235118402.png" alt="image-20200229235118402"></p>
-<h2 id="2-3-高级语言程序设计语言的一般特性"><a href="#2-3-高级语言程序设计语言的一般特性" class="headerlink" title="2.3 高级语言程序设计语言的一般特性"></a>2.3 高级语言程序设计语言的一般特性</h2><h4 id="高级语言的分类"><a href="#高级语言的分类" class="headerlink" title="高级语言的分类"></a>高级语言的分类</h4><ul>
-<li>强制式语言(Imperative Languge)/过程式语言<ul>
-<li>命令驱动，面向语句</li>
-<li>FORTRAN、C、Pascal，Ada</li>
-</ul>
-</li>
-<li>应用式语言<ul>
-<li>注重程序所表示的功能，而不是一个语句接一个语 句地执行</li>
-<li>LISP、ML</li>
-</ul>
-</li>
-<li>基于规则的语言( Rule-based Language)<ul>
-<li>检查一定的条件，当它满足值，则执行适当的动作</li>
-<li>Prolog</li>
-</ul>
-</li>
-<li>面向对象语言(Object-Oriented Language)<ul>
-<li>封装、继承和多态性</li>
-<li>Smalltalk，C++，Java</li>
-</ul>
-</li>
-</ul>
-<h4 id="程序结构"><a href="#程序结构" class="headerlink" title="程序结构"></a>程序结构</h4><h5 id="作用域"><a href="#作用域" class="headerlink" title="作用域"></a>作用域</h5><ul>
-<li>作用域：一个名字能被使用的区域范围</li>
-<li>同一个标识符在不同过程中代表不同的名字</li>
-<li>名字作用域规则——“最近嵌套原则”</li>
-</ul>
-<h5 id="最近嵌套原则"><a href="#最近嵌套原则" class="headerlink" title="最近嵌套原则"></a>最近嵌套原则</h5><ul>
-<li>一个在子程序B1中说明的名 字X只在B1中有效（局部于 B1）</li>
-<li>如果B2是B1的一个内层子 程序且B2中对标识符X没有新的说明，则原来的名字X 在B2中仍然有效</li>
-<li>如果B2对X重新作了说明， 那么，B2对X的任何引用都是指重新说明过的这个X</li>
-</ul>
-<p><img src="F:%5Clearning%5Cnote%5C%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86%5C%E7%AC%AC%E4%BA%8C%E8%AE%B2.assets%5Cimage-20200301103438757.png" alt="image-20200301103438757"></p>
-<h4 id="数据结构与操作"><a href="#数据结构与操作" class="headerlink" title="数据结构与操作"></a>数据结构与操作</h4><p>数据类型通常包含三要素：</p>
+<h2 id="LL-1-文法-消除左递归"><a href="#LL-1-文法-消除左递归" class="headerlink" title="LL(1)文法-消除左递归"></a>LL(1)文法-消除左递归</h2><h4 id="消除直接左递归"><a href="#消除直接左递归" class="headerlink" title="消除直接左递归"></a>消除直接左递归</h4><p>左递归转换为右递归，使得处理的单词能够一直推进，直到最后的非终结符，相比于左递归，不会在一开始就出现无限递归的情况（导致后续单词无法解析）</p>
 <ul>
-<li>用于区别这种类型数据对象的<strong>属性</strong></li>
-<li>这种类型的数据对象可以具有的<strong>值</strong></li>
-<li>可以作用于这种类型的数据对象的<strong>操作</strong></li>
+<li>假定P关于的全部产生式是</li>
 </ul>
-<h4 id="标识符与名字"><a href="#标识符与名字" class="headerlink" title="标识符与名字"></a>标识符与名字</h4><h4 id="数据结构"><a href="#数据结构" class="headerlink" title="数据结构"></a>数据结构</h4><ul>
-<li><p>数组</p>
+<p>$$<br>p \to P\alpha_1 | P\alpha_2 | … | P\alpha_m | \beta_1 | \beta_2 | … | \beta_n<br>$$</p>
+<p>(每个 α都不等于 ε，每个 β都不以P开头)</p>
+<p><img src="%E7%AC%AC7%E8%AE%B2.assets%5Cimage-20200315213315489.png" alt="image-20200315213315489"></p>
+<p>例：</p>
+<p><img src="%E7%AC%AC7%E8%AE%B2.assets%5Cimage-20200315224604783.png" alt="image-20200315224604783"></p>
+<h4 id="消除间接左递归"><a href="#消除间接左递归" class="headerlink" title="消除间接左递归"></a>消除间接左递归</h4><ul>
+<li>一个文法消除左递归的条件<ul>
+<li>不含以 ε为右部的产生式</li>
+<li>不含回路 （P =&gt; P）</li>
+</ul>
 </li>
-<li><p>内情向量</p>
-</li>
-<li><p>登记维数，各维的上、下限，首地址，以及数组 （元素）的类型等信息</p>
-</li>
-<li><p>记录</p>
+</ul>
+<p><img src="%E7%AC%AC7%E8%AE%B2.assets%5Cimage-20200316143951616.png" alt="image-20200316143951616"></p>
+<h4 id="消除左递归的算法"><a href="#消除左递归的算法" class="headerlink" title="消除左递归的算法"></a>消除左递归的算法</h4><p><img src="%E7%AC%AC7%E8%AE%B2.assets%5Cimage-20200316152048032.png" alt="image-20200316152048032"></p>
+<p>例：</p>
+<p><img src="%E7%AC%AC7%E8%AE%B2.assets%5Cimage-20200316152234717.png" alt="image-20200316152234717"></p>
+<p>由于从S出发到达S’，S’出发还是到达S’，所以Q和R没用，定义时多余的，可以删除</p>
+<p><img src="%E7%AC%AC7%E8%AE%B2.assets%5Cimage-20200316152446994.png" alt="image-20200316152446994"></p>
+<h2 id="LL-1-文法-消除回溯"><a href="#LL-1-文法-消除回溯" class="headerlink" title="LL(1)文法-消除回溯"></a>LL(1)文法-消除回溯</h2><p><strong>为了消除回溯必须保证：</strong></p>
 <ul>
-<li><p>由已知类型的数据组合在一起的一种结构</p>
+<li>对文法的任何非终结符，当要它去匹配输入串时，能够根据它所面临的输入符号准确地指派它的一个候选去执行任务，并且此候选的工作结果应是确信无疑的</li>
+</ul>
+<p><strong>对于当前读入的一个符号a，在非终结符A的所有候选当中，准确地指派一个候选，去扩展A，使得最后一定能够分析成功（句子分析成功或是读入的不是句子）</strong></p>
+<h4 id="FIRST集合"><a href="#FIRST集合" class="headerlink" title="FIRST集合"></a>FIRST集合</h4><p>令G是一个不含左递归的文法，对G的所有非终结符的每个候选α定义它的终结首符集FIRST(α) 为：<br>$$<br>FIRST(\alpha) = {a | \alpha =&gt; a … , a \in V_T}<br>$$<br>如果非终结符A的所有候选首符集两两不相交，即A的任何两个不同候选α<del>i</del>和α<del>j</del><br>$$<br>FIRST(\alpha_i) \cap FIRST(\alpha_j) = \empty<br>$$<br>当要求A匹配输入串时，A能根据它所面临的第一个输入符号a，准确地指派某一个候选去执行任务。这个候选就是那个终结首符集含a的α</p>
+<p>例：</p>
+<p><img src="%E7%AC%AC7%E8%AE%B2.assets%5Cimage-20200316192005200.png" alt="image-20200316192005200"></p>
+<h5 id="提取公共左因子"><a href="#提取公共左因子" class="headerlink" title="提取公共左因子"></a>提取公共左因子</h5><p><img src="%E7%AC%AC7%E8%AE%B2.assets%5Cimage-20200316191229572.png" alt="image-20200316191229572"></p>
+<h4 id="FOLLOW集合"><a href="#FOLLOW集合" class="headerlink" title="FOLLOW集合"></a>FOLLOW集合</h4><p><img src="%E7%AC%AC7%E8%AE%B2.assets%5Cimage-20200316193550925.png" alt="image-20200316193550925"></p>
+<h2 id="LL-1-文法"><a href="#LL-1-文法" class="headerlink" title="LL(1)文法"></a>LL(1)文法</h2><h4 id="LL-1-文法条件"><a href="#LL-1-文法条件" class="headerlink" title="LL(1)文法条件"></a>LL(1)文法条件</h4><ul>
+<li><p>构造不带回溯的自上而下分析的文法条件</p>
+<ol>
+<li><p>文法不含左递归</p>
 </li>
-<li><p>记录或者结构的元素，也叫做域(field) </p>
-<pre class="line-numbers language-pascal"><code class="language-pascal">  <span class="token keyword">record</span> <span class="token comment" spellcheck="true">{ 
-      char name[20];
-      integer age;
-      bool married;
-  }</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<li><p>对于文法中每一个非终结符A的各个产生式的候选首符集两两不相交。即，若</p>
+<p>$$A \to \alpha_1 | \alpha_2 | \alpha_3 | … | \alpha_n$$</p>
+<p>则 $$FIRST(\alpha_i) \cap FIRST(\alpha_j) = \empty$$</p>
+</li>
+</ol>
+</li>
+</ul>
+<pre><code>3.  对文法中的每个非终结符A，若它存在某个候选首符集包含ε，则
+
+  $$FIRST(\alpha_i) \cap FOLLOW(A) = \empty, i = 1, 2, ..., n$$</code></pre><p>如果一个文法G满足以上条件，则称该文法G为<strong>LL(1)</strong>（第一个L指从左向右推导，第二个L指最左推导，1指每一步只向前查看一个符号）</p>
+<h4 id="LL-1-分析"><a href="#LL-1-分析" class="headerlink" title="LL(1)分析"></a>LL(1)分析</h4><ol>
+<li>假设要用非终结符A进行匹配，面临的输入符号为a，A 的所有产生式为$$A\to\alpha_1|\alpha_2|…|\alpha_n$$<ul>
+<li>若$$a\in FIRST(\alpha_i)$$，则指派α<del>i</del>执行匹配任务；</li>
+<li>若a不属于任何一个候选首符集，则<ul>
+<li>若ε属于某个FIRST(α<del>i</del>)且 $$a\in FOLLOW(A)$$， 则让 A与ε自动匹配</li>
+<li>否则，a的出现是一种语法错误</li>
+</ul>
 </li>
 </ul>
 </li>
-<li><p>字符串、表格、栈</p>
-</li>
-<li><p>抽象数据类型</p>
-</li>
-</ul>
-<h5 id="抽象数据类型"><a href="#抽象数据类型" class="headerlink" title="抽象数据类型"></a>抽象数据类型</h5><ul>
-<li>数据对象的集合</li>
-<li>作用于这些对象的抽象运算集合</li>
-<li>这种类型对象的封装，即除了使用类型中所定义的运算之外，用户不能对这些对象进行操作</li>
-</ul>
-<h4 id="语句与控制结构"><a href="#语句与控制结构" class="headerlink" title="语句与控制结构"></a>语句与控制结构</h4><h5 id="表达式"><a href="#表达式" class="headerlink" title="表达式"></a>表达式</h5><blockquote>
-<p>表达式由运算量（也称操作数，即数据引用或函数 调用）和算符（运算符，操作符）组成</p>
-<p>形式：中缀(X*Y)、前缀(-A)、后缀(P↑或者p-&gt;)</p>
-</blockquote>
-<p>表达式形成规则：</p>
-<ul>
-<li>变量（包括下标变量）、常数是表达式</li>
-<li>若E1、E 2为表达式， θ是一个二元算符，则E1θE2是表达式</li>
-<li>若E是表达式， θ为一元算符，则 θE（或E θ）是表达式</li>
-<li><strong>若E是表达式，则（E）是表达式</strong></li>
-</ul>
-<h5 id="语句"><a href="#语句" class="headerlink" title="语句"></a>语句</h5><p>赋值语句：A = B</p>
-<p>名字的左值：该名字代表的存储单元的地址</p>
-<p>名字的右值：该名字代表的存贮单元的内容</p>
+</ol>
+<h2 id="FIRST和FOLLOW集合的构造"><a href="#FIRST和FOLLOW集合的构造" class="headerlink" title="FIRST和FOLLOW集合的构造"></a>FIRST和FOLLOW集合的构造</h2><h4 id="FIRST集合的构造"><a href="#FIRST集合的构造" class="headerlink" title="FIRST集合的构造"></a>FIRST集合的构造</h4><p><img src="%E7%AC%AC7%E8%AE%B2.assets%5Cimage-20200321222107014.png" alt="image-20200321222107014"></p>
+<h4 id="FOLLOW集合的构造"><a href="#FOLLOW集合的构造" class="headerlink" title="FOLLOW集合的构造"></a>FOLLOW集合的构造</h4><p><img src="%E7%AC%AC7%E8%AE%B2.assets%5Cimage-20200321222132139.png" alt="image-20200321222132139"></p>
 
             </div>
             <hr/>
@@ -577,7 +540,7 @@ E→(E)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></s
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://yoursite.com/2020/04/04/compiler-principles/di-er-jiang/">http://yoursite.com/2020/04/04/compiler-principles/di-er-jiang/</a>
+                    <a href="http://yoursite.com/2020/04/08/compiler-principles/di-7-jiang/">http://yoursite.com/2020/04/08/compiler-principles/di-7-jiang/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -657,13 +620,13 @@ E→(E)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></s
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2020/04/04/compiler-principles/di-jiu-jiang/">
+                <a href="/2020/04/08/compiler-principles/di-9-jiang/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/15.jpg" class="responsive-img" alt="compiler_principles/第九讲">
+                        <img src="/medias/featureimages/3.jpg" class="responsive-img" alt="compiler_principles/第9讲">
                         
-                        <span class="card-title">compiler_principles/第九讲</span>
+                        <span class="card-title">compiler_principles/第9讲</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -680,7 +643,7 @@ E→(E)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></s
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-04-04
+                            <i class="far fa-clock fa-fw icon-date"></i>2020-04-08
                         </span>
                         <span class="publish-author">
                             
@@ -700,32 +663,27 @@ E→(E)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></s
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/04/04/compiler-principles/di-san-jiang/">
+                <a href="/2020/04/08/compiler-principles/di-8-jiang/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/3.jpg" class="responsive-img" alt="compiler_principles/第三讲">
+                        <img src="/medias/featureimages/10.jpg" class="responsive-img" alt="compiler_principles/第8讲">
                         
-                        <span class="card-title">compiler_principles/第三讲</span>
+                        <span class="card-title">compiler_principles/第8讲</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            3.1 上下文无关文法文法
-描述语言的语法结构的形式规则
-
-
-语言描述的基本概念
-字母表：一个有穷字符集，记为∑
-字母表中每个元素称为字符
-∑上的 字(也叫字符串) 是指由∑中的字符所构成 的一个有穷序列
-不包含任何字符的序列称为空字，记为
+                            语法分析-自上而下分析2构造递归下降分析器递归下降分析器
+分析程序由一组子程序组成， 对每一语法单位(非终结符)构造一个相应的子程序，识别对应的语法单位
+通过子程序间的相互调用实现对输入串的识别，如 A → BcD
+子程序A调用子程序B识别
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-04-04
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-04-08
                             </span>
                         <span class="publish-author">
                             

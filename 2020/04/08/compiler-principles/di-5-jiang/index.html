@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="compiler_principles/第五讲, null">
+    <meta name="keywords" content="compiler_principles/第5讲, null">
     <meta name="description" content="5.1 词法规则形式化-正规集与正规式正规式和正规集程序语言定义的合法单词集合都是正规集
 
 正规集可以用正规式表示
@@ -21,7 +21,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>compiler_principles/第五讲 | null</title>
+    <title>compiler_principles/第5讲 | null</title>
     <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -263,12 +263,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/14.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/7.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">compiler_principles/第五讲</h1>
+                    <h1 class="description center-align post-title">compiler_principles/第5讲</h1>
                 </div>
             </div>
         </div>
@@ -397,7 +397,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-04-04
+                    2020-04-08
                 </div>
                 
 
@@ -454,7 +454,7 @@
 <h4 id="正规式的等价性"><a href="#正规式的等价性" class="headerlink" title="正规式的等价性"></a>正规式的等价性</h4><blockquote>
 <p>若两个正规式所表示的正规集相同，则称这两个正规式等价</p>
 </blockquote>
-<p><img src="F:%5Clearning%5Cnote%5C%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86%5C%E7%AC%AC%E4%BA%94%E8%AE%B2.assets%5Cimage-20200306222625771.png" alt="image-20200306222625771"></p>
+<p><img src="%E7%AC%AC5%E8%AE%B2.assets%5Cimage-20200306222625771.png" alt="image-20200306222625771"></p>
 <h4 id="正规式的性质"><a href="#正规式的性质" class="headerlink" title="正规式的性质"></a>正规式的性质</h4><p>对正规式，下列等价成立：</p>
 <ul>
 <li>e<del>1</del>|e<del>2</del> = e<del>2</del>|e<del>1</del> 交换律</li>
@@ -465,7 +465,7 @@
 <li>eε = εe = e    e<del>1</del>e<del>2</del> &lt;&gt; e<del>2</del> e<del>1</del>(e<del>1</del>连接e<del>2</del>不等于(e<del>2</del>连接e<del>1</del>)</li>
 </ul>
 <p><strong>利用正规式的等价性可证明上述性质</strong></p>
-<p><img src="F:%5Clearning%5Cnote%5C%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86%5C%E7%AC%AC%E4%BA%94%E8%AE%B2.assets%5Cimage-20200306225813915.png" alt="image-20200306225813915"></p>
+<p><img src="%E7%AC%AC5%E8%AE%B2.assets%5Cimage-20200306225813915.png" alt="image-20200306225813915"></p>
 <p><strong><code>letter(letter|digit)*</code>对应用户自定义标识符</strong></p>
 <p><strong>同一类字符使用同一正规式表示</strong></p>
 <h2 id="5-2-确定有限自动机"><a href="#5-2-确定有限自动机" class="headerlink" title="5.2 确定有限自动机"></a>5.2 确定有限自动机</h2><blockquote>
@@ -479,7 +479,7 @@
 <li>S<del>0</del> ∈S是唯一的一个<code>初态</code></li>
 <li>F⊆S ：<code>终态集</code>(可空)</li>
 </ul>
-<p><img src="F:%5Clearning%5Cnote%5C%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86%5C%E7%AC%AC%E4%BA%94%E8%AE%B2.assets%5Cimage-20200307133849646.png" alt="image-20200307133849646"></p>
+<p><img src="%E7%AC%AC5%E8%AE%B2.assets%5Cimage-20200307133849646.png" alt="image-20200307133849646"></p>
 <h4 id="DFA表示为状态转换图"><a href="#DFA表示为状态转换图" class="headerlink" title="DFA表示为状态转换图"></a>DFA表示为状态转换图</h4><ul>
 <li>假定DFA M含有 <code>m个状态</code> 和 <code>n个输入字符</code></li>
 <li>对应的状态转换图含有m个状态结点，每个结点最多含有n条箭弧射出，且每条箭弧用Σ上的不同的输入字符来作标记</li>
@@ -488,7 +488,7 @@
 <li>对于 Σ*中的任何字 α，若存在一条从初态到某一终态的道路，且这条路上所有弧上的标记符连接成的字等于 α，则称α为DFA M所识别 (接收 )</li>
 <li>DFA M所识别的字的全体记为L(M)</li>
 </ul>
-<p><img src="F:%5Clearning%5Cnote%5C%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86%5C%E7%AC%AC%E4%BA%94%E8%AE%B2.assets%5Cimage-20200307135451228.png" alt="image-20200307135451228"></p>
+<p><img src="%E7%AC%AC5%E8%AE%B2.assets%5Cimage-20200307135451228.png" alt="image-20200307135451228"></p>
 <h2 id="5-3-非确定有限自动机"><a href="#5-3-非确定有限自动机" class="headerlink" title="5.3 非确定有限自动机"></a>5.3 非确定有限自动机</h2><p><code>非确定有限自动机 (Nondeterministic Finite Automata，NFA)</code> M是一个五元式 M=(S, Σ, f, S<del>0</del>, F)，其中：</p>
 <ul>
 <li>S: 有穷<code>状态集</code></li>
@@ -507,7 +507,7 @@
 <li>对于 Σ*中的任何字 α，若存在一条从初态到某一终态的道路，且这条路上所有弧上的标记字连接成的字等于 α (忽略那些标记为 ε的弧 )，则称 α 为NFA M所识别 (接收 )</li>
 <li>NFA M所识别的字的全体记为L(M)</li>
 </ul>
-<p><img src="F:%5Clearning%5Cnote%5C%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86%5C%E7%AC%AC%E4%BA%94%E8%AE%B2.assets%5Cimage-20200307151706864.png" alt="image-20200307151706864"></p>
+<p><img src="%E7%AC%AC5%E8%AE%B2.assets%5Cimage-20200307151706864.png" alt="image-20200307151706864"></p>
 <p><strong>NFA更直观，更容易表达设计者的思想</strong></p>
 <h4 id="DFA和NFA"><a href="#DFA和NFA" class="headerlink" title="DFA和NFA"></a>DFA和NFA</h4><ul>
 <li>定义：对于任何两个有限自动机M和M’，如果 L(M)=L(M’)，则称M与M’等价</li>
@@ -540,7 +540,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://yoursite.com/2020/04/04/compiler-principles/di-wu-jiang/">http://yoursite.com/2020/04/04/compiler-principles/di-wu-jiang/</a>
+                    <a href="http://yoursite.com/2020/04/08/compiler-principles/di-5-jiang/">http://yoursite.com/2020/04/08/compiler-principles/di-5-jiang/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -620,13 +620,13 @@
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2020/04/04/compiler-principles/di-liu-jiang/">
+                <a href="/2020/04/08/compiler-principles/di-6-jiang/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/23.jpg" class="responsive-img" alt="compiler_principles/第六讲">
+                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="compiler_principles/第6讲">
                         
-                        <span class="card-title">compiler_principles/第六讲</span>
+                        <span class="card-title">compiler_principles/第6讲</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -662,7 +662,7 @@ DFA
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-04-04
+                            <i class="far fa-clock fa-fw icon-date"></i>2020-04-08
                         </span>
                         <span class="publish-author">
                             
@@ -682,27 +682,37 @@ DFA
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/04/04/compiler-principles/di-ba-jiang/">
+                <a href="/2020/04/08/compiler-principles/di-4-jiang/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/13.jpg" class="responsive-img" alt="compiler_principles/第八讲">
+                        <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="compiler_principles/第4讲">
                         
-                        <span class="card-title">compiler_principles/第八讲</span>
+                        <span class="card-title">compiler_principles/第4讲</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            语法分析-自上而下分析2构造递归下降分析器递归下降分析器
-分析程序由一组子程序组成， 对每一语法单位(非终结符)构造一个相应的子程序，识别对应的语法单位
-通过子程序间的相互调用实现对输入串的识别，如 A → BcD
-子程序A调用子程序B识别
+                            4.1 词法分析概述词法分析
+词法分析器的设计
+
+正规表达式与有限自动机
+
+词法分析器的自动产生–LEX
+
+
+词法分析的任务
+从左至右逐个字符地对源程序进行扫描，产生一个个单词符号
+
+
+词法分析器(Lexical Analyzer)
+扫描器
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-04-04
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-04-08
                             </span>
                         <span class="publish-author">
                             

@@ -489,38 +489,31 @@
             
             <div class="article col s12 m6 l4" data-aos="zoom-in">
                 <div class="card">
-                    <a href="/2020/04/04/compiler-principles/di-si-jiang/">
+                    <a href="/2020/04/08/compiler-principles/di-9-jiang/">
                         <div class="card-image">
                             
                             
-                            <img src="/medias/featureimages/13.jpg" class="responsive-img" alt="compiler_principles/第四讲">
+                            <img src="/medias/featureimages/3.jpg" class="responsive-img" alt="compiler_principles/第9讲">
                             
-                            <span class="card-title">compiler_principles/第四讲</span>
+                            <span class="card-title">compiler_principles/第9讲</span>
                         </div>
                     </a>
 
                     <div class="card-content article-content">
                         <div class="summary block-with-text">
                             
-                                4.1 词法分析概述词法分析
-词法分析器的设计
-
-正规表达式与有限自动机
-
-词法分析器的自动产生–LEX
+                                语法分析-自上而下分析3预测分析程序构成
+总控程序：根据现行栈顶符号和当前输入符号， 执行动作
+分析表 M[A， a]矩阵：A ∈ V N ，a ∈ VT 是终 结符或‘＃’
+分析栈 STACK 用于存放文法符号
 
 
-词法分析的任务
-从左至右逐个字符地对源程序进行扫描，产生一个个单词符号
-
-
-词法分析器(Lexical Analyzer)
-扫描器
+总控程序总是根据现行栈
                             
                         </div>
                         <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-04-04
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-04-08
                             </span>
                             <span class="publish-author">
                                 
@@ -537,34 +530,32 @@
             
             <div class="article col s12 m6 l4" data-aos="zoom-in">
                 <div class="card">
-                    <a href="/2020/04/04/compiler-principles/di-shi-jiang/">
+                    <a href="/2020/04/08/compiler-principles/di-7-jiang/">
                         <div class="card-image">
                             
                             
-                            <img src="/medias/featureimages/11.jpg" class="responsive-img" alt="compiler_principles/第十讲">
+                            <img src="/medias/featureimages/17.jpg" class="responsive-img" alt="compiler_principles/第7讲">
                             
-                            <span class="card-title">compiler_principles/第十讲</span>
+                            <span class="card-title">compiler_principles/第7讲</span>
                         </div>
                     </a>
 
                     <div class="card-content article-content">
                         <div class="summary block-with-text">
                             
-                                语法分析-自下而上分析1自下而上分析定义：
+                                语法分析-自上而下分析1自上而下分析的基本问题语法分析的任务
+分析一个文法的句子结构
 
-从输入串开始，逐步进行归约，直到文法的开始符号
-归约：根据文法的产生式规则，把串中出现的产生式的右部替换成左部符号
-从树叶节点开始，构造语法树
-算符优先分析法、LR分析法
+语法分析器的功能
+按照文法的产生式（语言的语法规则），识别输入符号串是否为一个句子（合式程序）
 
-
-移进－归约思想
-用
+语法分析器在编译器中的地位
+语法分析的方法自下而上（B
                             
                         </div>
                         <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-04-04
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-04-08
                             </span>
                             <span class="publish-author">
                                 
@@ -581,13 +572,51 @@
             
             <div class="article col s12 m6 l4" data-aos="zoom-in">
                 <div class="card">
-                    <a href="/2020/04/04/compiler-principles/di-liu-jiang/">
+                    <a href="/2020/04/08/compiler-principles/di-8-jiang/">
                         <div class="card-image">
                             
                             
-                            <img src="/medias/featureimages/23.jpg" class="responsive-img" alt="compiler_principles/第六讲">
+                            <img src="/medias/featureimages/10.jpg" class="responsive-img" alt="compiler_principles/第8讲">
                             
-                            <span class="card-title">compiler_principles/第六讲</span>
+                            <span class="card-title">compiler_principles/第8讲</span>
+                        </div>
+                    </a>
+
+                    <div class="card-content article-content">
+                        <div class="summary block-with-text">
+                            
+                                语法分析-自上而下分析2构造递归下降分析器递归下降分析器
+分析程序由一组子程序组成， 对每一语法单位(非终结符)构造一个相应的子程序，识别对应的语法单位
+通过子程序间的相互调用实现对输入串的识别，如 A → BcD
+子程序A调用子程序B识别
+                            
+                        </div>
+                        <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-04-08
+                            </span>
+                            <span class="publish-author">
+                                
+                                <i class="fas fa-user fa-fw"></i>
+                                霜雨
+                                
+                            </span>
+                        </div>
+                    </div>
+
+                    
+                </div>
+            </div>
+            
+            <div class="article col s12 m6 l4" data-aos="zoom-in">
+                <div class="card">
+                    <a href="/2020/04/08/compiler-principles/di-6-jiang/">
+                        <div class="card-image">
+                            
+                            
+                            <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="compiler_principles/第6讲">
+                            
+                            <span class="card-title">compiler_principles/第6讲</span>
                         </div>
                     </a>
 
@@ -624,7 +653,7 @@ DFA
                         </div>
                         <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-04-04
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-04-08
                             </span>
                             <span class="publish-author">
                                 
@@ -641,13 +670,13 @@ DFA
             
             <div class="article col s12 m6 l4" data-aos="zoom-in">
                 <div class="card">
-                    <a href="/2020/04/04/compiler-principles/di-wu-jiang/">
+                    <a href="/2020/04/08/compiler-principles/di-5-jiang/">
                         <div class="card-image">
                             
                             
-                            <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="compiler_principles/第五讲">
+                            <img src="/medias/featureimages/7.jpg" class="responsive-img" alt="compiler_principles/第5讲">
                             
-                            <span class="card-title">compiler_principles/第五讲</span>
+                            <span class="card-title">compiler_principles/第5讲</span>
                         </div>
                     </a>
 
@@ -667,7 +696,7 @@ DFA
                         </div>
                         <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-04-04
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-04-08
                             </span>
                             <span class="publish-author">
                                 
@@ -684,28 +713,38 @@ DFA
             
             <div class="article col s12 m6 l4" data-aos="zoom-in">
                 <div class="card">
-                    <a href="/2020/04/04/compiler-principles/di-ba-jiang/">
+                    <a href="/2020/04/08/compiler-principles/di-4-jiang/">
                         <div class="card-image">
                             
                             
-                            <img src="/medias/featureimages/13.jpg" class="responsive-img" alt="compiler_principles/第八讲">
+                            <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="compiler_principles/第4讲">
                             
-                            <span class="card-title">compiler_principles/第八讲</span>
+                            <span class="card-title">compiler_principles/第4讲</span>
                         </div>
                     </a>
 
                     <div class="card-content article-content">
                         <div class="summary block-with-text">
                             
-                                语法分析-自上而下分析2构造递归下降分析器递归下降分析器
-分析程序由一组子程序组成， 对每一语法单位(非终结符)构造一个相应的子程序，识别对应的语法单位
-通过子程序间的相互调用实现对输入串的识别，如 A → BcD
-子程序A调用子程序B识别
+                                4.1 词法分析概述词法分析
+词法分析器的设计
+
+正规表达式与有限自动机
+
+词法分析器的自动产生–LEX
+
+
+词法分析的任务
+从左至右逐个字符地对源程序进行扫描，产生一个个单词符号
+
+
+词法分析器(Lexical Analyzer)
+扫描器
                             
                         </div>
                         <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-04-04
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-04-08
                             </span>
                             <span class="publish-author">
                                 
@@ -722,95 +761,13 @@ DFA
             
             <div class="article col s12 m6 l4" data-aos="zoom-in">
                 <div class="card">
-                    <a href="/2020/04/04/compiler-principles/di-jiu-jiang/">
+                    <a href="/2020/04/08/compiler-principles/di-3-jiang/">
                         <div class="card-image">
                             
                             
-                            <img src="/medias/featureimages/15.jpg" class="responsive-img" alt="compiler_principles/第九讲">
+                            <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="compiler_principles/第3讲">
                             
-                            <span class="card-title">compiler_principles/第九讲</span>
-                        </div>
-                    </a>
-
-                    <div class="card-content article-content">
-                        <div class="summary block-with-text">
-                            
-                                语法分析-自上而下分析3预测分析程序构成
-总控程序：根据现行栈顶符号和当前输入符号， 执行动作
-分析表 M[A， a]矩阵：A ∈ V N ，a ∈ VT 是终 结符或‘＃’
-分析栈 STACK 用于存放文法符号
-
-
-总控程序总是根据现行栈
-                            
-                        </div>
-                        <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-04-04
-                            </span>
-                            <span class="publish-author">
-                                
-                                <i class="fas fa-user fa-fw"></i>
-                                霜雨
-                                
-                            </span>
-                        </div>
-                    </div>
-
-                    
-                </div>
-            </div>
-            
-            <div class="article col s12 m6 l4" data-aos="zoom-in">
-                <div class="card">
-                    <a href="/2020/04/04/compiler-principles/di-er-jiang/">
-                        <div class="card-image">
-                            
-                            
-                            <img src="/medias/featureimages/22.jpg" class="responsive-img" alt="compiler_principles/第二讲">
-                            
-                            <span class="card-title">compiler_principles/第二讲</span>
-                        </div>
-                    </a>
-
-                    <div class="card-content article-content">
-                        <div class="summary block-with-text">
-                            
-                                2.1 常用的高级程序设计语言2.2 程序设计语言的定义标识符是语法概念，名字是语义概念
-语法
-程序本质上是一定字符集上的字符串
-语法：一组规则，用它可以形成和产生一个合式(well-formed)的程序
-
-词法规则：单词符号的形成规则
-单
-                            
-                        </div>
-                        <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-04-04
-                            </span>
-                            <span class="publish-author">
-                                
-                                <i class="fas fa-user fa-fw"></i>
-                                霜雨
-                                
-                            </span>
-                        </div>
-                    </div>
-
-                    
-                </div>
-            </div>
-            
-            <div class="article col s12 m6 l4" data-aos="zoom-in">
-                <div class="card">
-                    <a href="/2020/04/04/compiler-principles/di-san-jiang/">
-                        <div class="card-image">
-                            
-                            
-                            <img src="/medias/featureimages/3.jpg" class="responsive-img" alt="compiler_principles/第三讲">
-                            
-                            <span class="card-title">compiler_principles/第三讲</span>
+                            <span class="card-title">compiler_principles/第3讲</span>
                         </div>
                     </a>
 
@@ -830,7 +787,7 @@ DFA
                         </div>
                         <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-04-04
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-04-08
                             </span>
                             <span class="publish-author">
                                 
@@ -847,62 +804,20 @@ DFA
             
             <div class="article col s12 m6 l4" data-aos="zoom-in">
                 <div class="card">
-                    <a href="/2020/04/04/compiler-principles/di-qi-jiang/">
+                    <a href="/2020/04/08/compiler-principles/di-1-jiang/">
                         <div class="card-image">
                             
                             
-                            <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="compiler_principles/第七讲">
+                            <img src="/medias/featureimages/11.jpg" class="responsive-img" alt="compiler_principles/第1讲">
                             
-                            <span class="card-title">compiler_principles/第七讲</span>
+                            <span class="card-title">compiler_principles/第1讲</span>
                         </div>
                     </a>
 
                     <div class="card-content article-content">
                         <div class="summary block-with-text">
                             
-                                语法分析-自上而下分析1自上而下分析的基本问题语法分析的任务
-分析一个文法的句子结构
-
-语法分析器的功能
-按照文法的产生式（语言的语法规则），识别输入符号串是否为一个句子（合式程序）
-
-语法分析器在编译器中的地位
-语法分析的方法自下而上（B
-                            
-                        </div>
-                        <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-04-04
-                            </span>
-                            <span class="publish-author">
-                                
-                                <i class="fas fa-user fa-fw"></i>
-                                霜雨
-                                
-                            </span>
-                        </div>
-                    </div>
-
-                    
-                </div>
-            </div>
-            
-            <div class="article col s12 m6 l4" data-aos="zoom-in">
-                <div class="card">
-                    <a href="/2020/04/04/compiler-principles/di-yi-jiang/">
-                        <div class="card-image">
-                            
-                            
-                            <img src="/medias/featureimages/18.jpg" class="responsive-img" alt="compiler_principles/第一讲">
-                            
-                            <span class="card-title">compiler_principles/第一讲</span>
-                        </div>
-                    </a>
-
-                    <div class="card-content article-content">
-                        <div class="summary block-with-text">
-                            
-                                第一讲main content
+                                第1讲main content
 什么是编译程序？
 
 编译程序的各个阶段，理解各个阶段的任务，各个阶段所依循的规则。
@@ -917,7 +832,92 @@ solution
                         </div>
                         <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-04-04
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-04-08
+                            </span>
+                            <span class="publish-author">
+                                
+                                <i class="fas fa-user fa-fw"></i>
+                                霜雨
+                                
+                            </span>
+                        </div>
+                    </div>
+
+                    
+                </div>
+            </div>
+            
+            <div class="article col s12 m6 l4" data-aos="zoom-in">
+                <div class="card">
+                    <a href="/2020/04/08/compiler-principles/di-2-jiang/">
+                        <div class="card-image">
+                            
+                            
+                            <img src="/medias/featureimages/4.jpg" class="responsive-img" alt="compiler_principles/第2讲">
+                            
+                            <span class="card-title">compiler_principles/第2讲</span>
+                        </div>
+                    </a>
+
+                    <div class="card-content article-content">
+                        <div class="summary block-with-text">
+                            
+                                2.1 常用的高级程序设计语言2.2 程序设计语言的定义标识符是语法概念，名字是语义概念
+语法
+程序本质上是一定字符集上的字符串
+语法：一组规则，用它可以形成和产生一个合式(well-formed)的程序
+
+词法规则：单词符号的形成规则
+单
+                            
+                        </div>
+                        <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-04-08
+                            </span>
+                            <span class="publish-author">
+                                
+                                <i class="fas fa-user fa-fw"></i>
+                                霜雨
+                                
+                            </span>
+                        </div>
+                    </div>
+
+                    
+                </div>
+            </div>
+            
+            <div class="article col s12 m6 l4" data-aos="zoom-in">
+                <div class="card">
+                    <a href="/2020/04/08/compiler-principles/di-10-jiang/">
+                        <div class="card-image">
+                            
+                            
+                            <img src="/medias/featureimages/9.jpg" class="responsive-img" alt="compiler_principles/第10讲">
+                            
+                            <span class="card-title">compiler_principles/第10讲</span>
+                        </div>
+                    </a>
+
+                    <div class="card-content article-content">
+                        <div class="summary block-with-text">
+                            
+                                语法分析-自下而上分析1自下而上分析定义：
+
+从输入串开始，逐步进行归约，直到文法的开始符号
+归约：根据文法的产生式规则，把串中出现的产生式的右部替换成左部符号
+从树叶节点开始，构造语法树
+算符优先分析法、LR分析法
+
+
+移进－归约思想
+用
+                            
+                        </div>
+                        <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-04-08
                             </span>
                             <span class="publish-author">
                                 

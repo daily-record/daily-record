@@ -4,8 +4,8 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="compiler_principles/第一讲, null">
-    <meta name="description" content="第一讲main content
+    <meta name="keywords" content="compiler_principles/第1讲, null">
+    <meta name="description" content="第1讲main content
 什么是编译程序？
 
 编译程序的各个阶段，理解各个阶段的任务，各个阶段所依循的规则。
@@ -23,7 +23,7 @@ solution
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>compiler_principles/第一讲 | null</title>
+    <title>compiler_principles/第1讲 | null</title>
     <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -265,12 +265,12 @@ solution
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/18.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/11.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">compiler_principles/第一讲</h1>
+                    <h1 class="description center-align post-title">compiler_principles/第1讲</h1>
                 </div>
             </div>
         </div>
@@ -399,7 +399,7 @@ solution
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-04-04
+                    2020-04-08
                 </div>
                 
 
@@ -426,11 +426,11 @@ solution
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="第一讲"><a href="#第一讲" class="headerlink" title="第一讲"></a>第一讲</h2><h4 id="main-content"><a href="#main-content" class="headerlink" title="main content"></a>main content</h4><ol>
+                <h2 id="第1讲"><a href="#第1讲" class="headerlink" title="第1讲"></a>第1讲</h2><h4 id="main-content"><a href="#main-content" class="headerlink" title="main content"></a>main content</h4><ol>
 <li><p>什么是编译程序？</p>
 </li>
 <li><p>编译程序的各个阶段，理解各个阶段的任务，各个阶段所依循的规则。</p>
-<p> <img src="F:%5Clearning%5Cnote%5C%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86%5C%E7%AC%AC%E4%B8%80%E8%AE%B2.assets%5Cimage-20200229170429773.png" alt="image-20200229170429773"></p>
+<p> <img src="%E7%AC%AC1%E8%AE%B2.assets%5Cimage-20200229170429773.png" alt="image-20200229170429773"></p>
 </li>
 <li><p>会画编译程序的总框</p>
 </li>
@@ -444,11 +444,11 @@ solution
 <h2 id="1-1-什么是编译程序"><a href="#1-1-什么是编译程序" class="headerlink" title="1.1 什么是编译程序"></a>1.1 什么是编译程序</h2><h4 id="翻译程序"><a href="#翻译程序" class="headerlink" title="翻译程序"></a>翻译程序</h4><blockquote>
 <p>把某一种语言程序(称为源语言程序)等价地转换成另一种语言程序(称为目标语言程序)的程序</p>
 </blockquote>
-<p><img src="F:%5Clearning%5Cnote%5C%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86%5C%E7%AC%AC%E4%B8%80%E8%AE%B2.assets%5Cimage-20200229113252306.png" alt="image-20200229113252306"></p>
+<p><img src="%E7%AC%AC1%E8%AE%B2.assets%5Cimage-20200229113252306.png" alt="image-20200229113252306"></p>
 <h4 id="编译程序"><a href="#编译程序" class="headerlink" title="编译程序"></a>编译程序</h4><blockquote>
 <p>把某一种高级语言程序等价地转换成另一种低级语言程序(如汇编语言或机器语言程序)的程序</p>
 </blockquote>
-<p><img src="F:%5Clearning%5Cnote%5C%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86%5C%E7%AC%AC%E4%B8%80%E8%AE%B2.assets%5Cimage-20200229113408377.png" alt="image-20200229113408377"></p>
+<p><img src="%E7%AC%AC1%E8%AE%B2.assets%5Cimage-20200229113408377.png" alt="image-20200229113408377"></p>
 <p><strong>运行编译程序的称为宿主机，运行目标语言程序的称为目标机</strong></p>
 <h5 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h5><ul>
 <li>诊断编译程序(Diagnostic Compiler)：帮助开发人员开发、调试和排错，主要在发现程序的错误</li>
@@ -459,7 +459,7 @@ solution
 <h4 id="解释程序"><a href="#解释程序" class="headerlink" title="解释程序"></a>解释程序</h4><blockquote>
 <p>把源语言写的源程序作为输入，但不产生目标 程序，而是边解释边执行源程序</p>
 </blockquote>
-<p><img src="F:%5Clearning%5Cnote%5C%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86%5C%E7%AC%AC%E4%B8%80%E8%AE%B2.assets%5Cimage-20200229114354757.png" alt="image-20200229114354757"></p>
+<p><img src="%E7%AC%AC1%E8%AE%B2.assets%5Cimage-20200229114354757.png" alt="image-20200229114354757"></p>
 <h2 id="1-2-为什么要学习编译原理"><a href="#1-2-为什么要学习编译原理" class="headerlink" title="1.2 为什么要学习编译原理"></a>1.2 为什么要学习编译原理</h2><h4 id="计算思维"><a href="#计算思维" class="headerlink" title="计算思维"></a>计算思维</h4><blockquote>
 <p>计算思维是运用计算机科学的基础概念去求解问题、 设计系统和理解人类的行为，它包括了一系列广泛的计算机科学的思维方法</p>
 </blockquote>
@@ -488,7 +488,7 @@ solution
 <h5 id="分解"><a href="#分解" class="headerlink" title="分解"></a>分解</h5><blockquote>
 <p>将大规模的复杂问题分解成若 干个较小规模的、更简单的问题加以解决</p>
 </blockquote>
-<p><img src="F:%5Clearning%5Cnote%5C%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86%5C%E7%AC%AC%E4%B8%80%E8%AE%B2.assets%5Cimage-20200229155051400.png" alt="image-20200229155051400"></p>
+<p><img src="%E7%AC%AC1%E8%AE%B2.assets%5Cimage-20200229155051400.png" alt="image-20200229155051400"></p>
 <p>编译原理中的问题分解：</p>
 <ol>
 <li>引入中间语言，复杂度与抽象程度介于高级语言程序与膜表语言程序之间，使得一个很难的转换问题分解成两个相对简单的转换问题</li>
@@ -524,7 +524,7 @@ solution
 <li>查询语言：SQL，XQuery</li>
 <li>网络协议：HTTP， SOAP</li>
 </ul>
-<h2 id="1-3-编译过程"><a href="#1-3-编译过程" class="headerlink" title="1.3 编译过程"></a>1.3 编译过程</h2><p><img src="F:%5Clearning%5Cnote%5C%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86%5C%E7%AC%AC%E4%B8%80%E8%AE%B2.assets%5Cimage-20200229170342770.png" alt="image-20200229170342770"></p>
+<h2 id="1-3-编译过程"><a href="#1-3-编译过程" class="headerlink" title="1.3 编译过程"></a>1.3 编译过程</h2><p><img src="%E7%AC%AC1%E8%AE%B2.assets%5Cimage-20200229170342770.png" alt="image-20200229170342770"></p>
 <h4 id="词法分析"><a href="#词法分析" class="headerlink" title="词法分析"></a>词法分析</h4><blockquote>
 <p>任务: 输入源程序，对构成源程序的字符串进行 扫描和分解，识别出单词符号</p>
 <p>依循的原则：构词规则</p>
@@ -537,7 +537,7 @@ solution
 <p>依循的原则：语法规则</p>
 <p>描述工具：上下文无关文法</p>
 </blockquote>
-<p><img src="F:%5Clearning%5Cnote%5C%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86%5C%E7%AC%AC%E4%B8%80%E8%AE%B2.assets%5Cimage-20200229171637192.png" alt="image-20200229171637192"></p>
+<p><img src="%E7%AC%AC1%E8%AE%B2.assets%5Cimage-20200229171637192.png" alt="image-20200229171637192"></p>
 <h4 id="中间代码产生"><a href="#中间代码产生" class="headerlink" title="中间代码产生"></a>中间代码产生</h4><blockquote>
 <p>任务：对各类语法单位按语言的语义进行初步翻译 </p>
 <p>依循的原则：语义规则</p>
@@ -545,7 +545,7 @@ solution
 <p>中间代码：三元式，四元式，树，… </p>
 </blockquote>
 <p>Z:=X + 0.618 * Y 翻译成四元式为:</p>
-<p><img src="F:%5Clearning%5Cnote%5C%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86%5C%E7%AC%AC%E4%B8%80%E8%AE%B2.assets%5Cimage-20200229171829152.png" alt="image-20200229171829152"></p>
+<p><img src="%E7%AC%AC1%E8%AE%B2.assets%5Cimage-20200229171829152.png" alt="image-20200229171829152"></p>
 <h4 id="优化"><a href="#优化" class="headerlink" title="优化"></a>优化</h4><blockquote>
 <p>任务：对前阶段产生的中间代码进行加工变换， 以期在最后阶段产生更高效的目标代码</p>
 <p>依循的原则：程序的等价变换规则</p>
@@ -560,7 +560,7 @@ solution
 <li>绝对指令代码：可直接运行</li>
 <li>可重定位指令代码：需要链接</li>
 </ul>
-<h2 id="1-4-编译程序的结构"><a href="#1-4-编译程序的结构" class="headerlink" title="1.4 编译程序的结构"></a>1.4 编译程序的结构</h2><h4 id="编译程序总框"><a href="#编译程序总框" class="headerlink" title="编译程序总框"></a>编译程序总框</h4><p><img src="F:%5Clearning%5Cnote%5C%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86%5C%E7%AC%AC%E4%B8%80%E8%AE%B2.assets%5Cimage-20200229183106660.png" alt="image-20200229183106660"></p>
+<h2 id="1-4-编译程序的结构"><a href="#1-4-编译程序的结构" class="headerlink" title="1.4 编译程序的结构"></a>1.4 编译程序的结构</h2><h4 id="编译程序总框"><a href="#编译程序总框" class="headerlink" title="编译程序总框"></a>编译程序总框</h4><p><img src="%E7%AC%AC1%E8%AE%B2.assets%5Cimage-20200229183106660.png" alt="image-20200229183106660"></p>
 <ul>
 <li>符号表管理：完成编译过程中各种对象的信息的存储，组织和修改，为各阶段的分析和转换提供依据，存储信息</li>
 <li>出错处理程序：发现源程序中的错误，把有关错误信息报告给用户，<strong>甚至给出纠错建议</strong><ul>
@@ -593,8 +593,8 @@ solution
 <blockquote>
 <p>与目标机有关，与目标机有关的优化，目标代码产生</p>
 </blockquote>
-<h2 id="1-5-编译程序生成"><a href="#1-5-编译程序生成" class="headerlink" title="1.5 编译程序生成"></a>1.5 编译程序生成</h2><p><img src="F:%5Clearning%5Cnote%5C%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86%5C%E7%AC%AC%E4%B8%80%E8%AE%B2.assets%5Cimage-20200229203247891.png" alt="image-20200229203247891"></p>
-<h4 id="编译程序的移植"><a href="#编译程序的移植" class="headerlink" title="编译程序的移植"></a>编译程序的移植</h4><p><img src="F:%5Clearning%5Cnote%5C%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86%5C%E7%AC%AC%E4%B8%80%E8%AE%B2.assets%5Cimage-20200229210817947.png" alt="image-20200229210817947"></p>
+<h2 id="1-5-编译程序生成"><a href="#1-5-编译程序生成" class="headerlink" title="1.5 编译程序生成"></a>1.5 编译程序生成</h2><p><img src="%E7%AC%AC1%E8%AE%B2.assets%5Cimage-20200229203247891.png" alt="image-20200229203247891"></p>
+<h4 id="编译程序的移植"><a href="#编译程序的移植" class="headerlink" title="编译程序的移植"></a>编译程序的移植</h4><p><img src="%E7%AC%AC1%E8%AE%B2.assets%5Cimage-20200229210817947.png" alt="image-20200229210817947"></p>
 <h4 id="编译程序自动产生"><a href="#编译程序自动产生" class="headerlink" title="编译程序自动产生"></a>编译程序自动产生</h4><blockquote>
 <p>编译程序-编译程序，编译程序产生器，编译程序书写系统</p>
 </blockquote>
@@ -602,7 +602,7 @@ solution
 <li>LEX：词法分析程序产生器</li>
 <li>YACC：语法分析程序产生器</li>
 </ul>
-<p><img src="F:%5Clearning%5Cnote%5C%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86%5C%E7%AC%AC%E4%B8%80%E8%AE%B2.assets%5Cimage-20200229211018928.png" alt="image-20200229211018928"></p>
+<p><img src="%E7%AC%AC1%E8%AE%B2.assets%5Cimage-20200229211018928.png" alt="image-20200229211018928"></p>
 
             </div>
             <hr/>
@@ -628,7 +628,7 @@ solution
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://yoursite.com/2020/04/04/compiler-principles/di-yi-jiang/">http://yoursite.com/2020/04/04/compiler-principles/di-yi-jiang/</a>
+                    <a href="http://yoursite.com/2020/04/08/compiler-principles/di-1-jiang/">http://yoursite.com/2020/04/08/compiler-principles/di-1-jiang/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -708,31 +708,32 @@ solution
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2020/04/04/compiler-principles/di-qi-jiang/">
+                <a href="/2020/04/08/compiler-principles/di-3-jiang/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="compiler_principles/第七讲">
+                        <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="compiler_principles/第3讲">
                         
-                        <span class="card-title">compiler_principles/第七讲</span>
+                        <span class="card-title">compiler_principles/第3讲</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            语法分析-自上而下分析1自上而下分析的基本问题语法分析的任务
-分析一个文法的句子结构
+                            3.1 上下文无关文法文法
+描述语言的语法结构的形式规则
 
-语法分析器的功能
-按照文法的产生式（语言的语法规则），识别输入符号串是否为一个句子（合式程序）
 
-语法分析器在编译器中的地位
-语法分析的方法自下而上（B
+语言描述的基本概念
+字母表：一个有穷字符集，记为∑
+字母表中每个元素称为字符
+∑上的 字(也叫字符串) 是指由∑中的字符所构成 的一个有穷序列
+不包含任何字符的序列称为空字，记为
                         
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-04-04
+                            <i class="far fa-clock fa-fw icon-date"></i>2020-04-08
                         </span>
                         <span class="publish-author">
                             
@@ -752,24 +753,30 @@ solution
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/03/31/devops-yu-ci-cd/">
+                <a href="/2020/04/08/compiler-principles/di-2-jiang/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/15.jpg" class="responsive-img" alt="DevOps与CI/CD">
+                        <img src="/medias/featureimages/4.jpg" class="responsive-img" alt="compiler_principles/第2讲">
                         
-                        <span class="card-title">DevOps与CI/CD</span>
+                        <span class="card-title">compiler_principles/第2讲</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            简单了解了DevOps与CI/CD的概念
+                            2.1 常用的高级程序设计语言2.2 程序设计语言的定义标识符是语法概念，名字是语义概念
+语法
+程序本质上是一定字符集上的字符串
+语法：一组规则，用它可以形成和产生一个合式(well-formed)的程序
+
+词法规则：单词符号的形成规则
+单
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-03-31
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-04-08
                             </span>
                         <span class="publish-author">
                             
@@ -778,22 +785,6 @@ solution
                             
                         </span>
                     </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/DevOps/">
-                        <span class="chip bg-color">DevOps</span>
-                    </a>
-                    
-                    <a href="/tags/CI/">
-                        <span class="chip bg-color">CI</span>
-                    </a>
-                    
-                    <a href="/tags/CD/">
-                        <span class="chip bg-color">CD</span>
-                    </a>
-                    
                 </div>
                 
             </div>

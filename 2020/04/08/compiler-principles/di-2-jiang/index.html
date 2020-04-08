@@ -4,33 +4,14 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="compiler_principles/第六讲, null">
-    <meta name="description" content="6.1 有限自动机的等价性DFA与NFA的等价性证明思路二者差别：
+    <meta name="keywords" content="compiler_principles/第2讲, null">
+    <meta name="description" content="2.1 常用的高级程序设计语言2.2 程序设计语言的定义标识符是语法概念，名字是语义概念
+语法
+程序本质上是一定字符集上的字符串
+语法：一组规则，用它可以形成和产生一个合式(well-formed)的程序
 
-
-
-
-NFA
-DFA
-
-
-
-初始状态
-不唯一
-唯一
-
-
-弧上的标记
-字（单字字符、ε）
-字符
-
-
-转换关系
-非确定
-确定
-
-
-如果能够消除二者在初始状态，在弧上的标记以及">
+词法规则：单词符号的形成规则
+单">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -38,7 +19,7 @@ DFA
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>compiler_principles/第六讲 | null</title>
+    <title>compiler_principles/第2讲 | null</title>
     <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -280,12 +261,12 @@ DFA
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/23.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/4.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">compiler_principles/第六讲</h1>
+                    <h1 class="description center-align post-title">compiler_principles/第2讲</h1>
                 </div>
             </div>
         </div>
@@ -414,7 +395,7 @@ DFA
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-04-04
+                    2020-04-08
                 </div>
                 
 
@@ -423,14 +404,14 @@ DFA
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.5k
+                    1k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    5 分
+                    3 分
                 </div>
                 
 				
@@ -441,148 +422,136 @@ DFA
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="6-1-有限自动机的等价性"><a href="#6-1-有限自动机的等价性" class="headerlink" title="6.1 有限自动机的等价性"></a>6.1 有限自动机的等价性</h2><h4 id="DFA与NFA的等价性证明思路"><a href="#DFA与NFA的等价性证明思路" class="headerlink" title="DFA与NFA的等价性证明思路"></a>DFA与NFA的等价性证明思路</h4><p>二者差别：</p>
-<table>
-<thead>
-<tr>
-<th></th>
-<th>NFA</th>
-<th>DFA</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>初始状态</td>
-<td>不唯一</td>
-<td>唯一</td>
-</tr>
-<tr>
-<td>弧上的标记</td>
-<td>字（单字字符、ε）</td>
-<td>字符</td>
-</tr>
-<tr>
-<td>转换关系</td>
-<td>非确定</td>
-<td>确定</td>
-</tr>
-</tbody></table>
-<p><strong>如果能够消除二者在初始状态，在弧上的标记以及在转换关系上这三方面的差别，就能够把NFA变换成DFA</strong></p>
-<h4 id="DFA与NFA的等价性证明"><a href="#DFA与NFA的等价性证明" class="headerlink" title="DFA与NFA的等价性证明"></a>DFA与NFA的等价性证明</h4><p>假定NFA M=&lt;S,Σ,δ, S<del>0</del>, F&gt;，我们对M的状 态转换图进行以下改造：</p>
-<h5 id="解决初始状态唯一性"><a href="#解决初始状态唯一性" class="headerlink" title="解决初始状态唯一性"></a>解决初始状态唯一性</h5><ul>
-<li>引进新的初态结点X和终态结点Y，X,Y ∉S，从X到S<del>0</del>中任意状态结点连一条ε箭弧， 从F中任意状态结点连一条 ε箭弧到Y</li>
-</ul>
-<p><img src="F:%5Clearning%5Cnote%5C%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86%5C%E7%AC%AC%E5%85%AD%E8%AE%B2.assets%5Cimage-20200307183141018.png" alt="image-20200307183141018"></p>
-<h5 id="简化弧上的标记"><a href="#简化弧上的标记" class="headerlink" title="简化弧上的标记"></a>简化弧上的标记</h5><ul>
-<li>对M的状态转换图进一步施行替换，其中k是新引入的状态</li>
-</ul>
-<p><img src="F:%5Clearning%5Cnote%5C%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86%5C%E7%AC%AC%E5%85%AD%E8%AE%B2.assets%5Cimage-20200307183303977.png" alt="image-20200307183303977"></p>
-<ul>
-<li>逐步把图转变为每条弧只标记为 Σ上的一个字符或 ε，最后得到一个NFA M’，显然 L(M’)=L(M)</li>
-</ul>
-<p><img src="F:%5Clearning%5Cnote%5C%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86%5C%E7%AC%AC%E5%85%AD%E8%AE%B2.assets%5Cimage-20200307183610945.png" alt="image-20200307183610945"></p>
-<h5 id="解决ε弧和转换关系"><a href="#解决ε弧和转换关系" class="headerlink" title="解决ε弧和转换关系"></a>解决ε弧和转换关系</h5><p><strong>NFA确定化–子集法</strong></p>
-<h6 id="解决ε弧"><a href="#解决ε弧" class="headerlink" title="解决ε弧"></a>解决ε弧</h6><p>设I是的状态集的一个子集，定义I的 ε-闭包 <code>ε-closure(I)</code>为:</p>
-<ul>
-<li>若s ∈I，则<code>s∈ε-closure(I)</code>；</li>
-<li>若s ∈I，则从s出发经过<strong>任意</strong>条ε弧而能到达的任何状态s’都属于 <code>ε-closure(I)</code></li>
-</ul>
-<p>即<br>$$<br>ε-closure(I)=I ∪{s’|从某个s ∈I出发经过任意条 ε 弧能到达s’}<br>$$</p>
-<p>设a是 Σ中的一个字符，定义<br>$$<br>I_a = ε-closure(J)<br>$$<br>其中，J为I中的某个状态出发经过一条a弧而到达的状态集合</p>
-<p><img src="F:%5Clearning%5Cnote%5C%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86%5C%E7%AC%AC%E5%85%AD%E8%AE%B2.assets%5Cimage-20200307210803068.png" alt="image-20200307210803068"></p>
-<p>例：</p>
-<p><img src="F:%5Clearning%5Cnote%5C%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86%5C%E7%AC%AC%E5%85%AD%E8%AE%B2.assets%5Cimage-20200307215358059.png" alt="image-20200307215358059"></p>
-<h6 id="确定化"><a href="#确定化" class="headerlink" title="确定化"></a>确定化</h6><p>不失一般性，设字母表只包含两个a 和 b，构造一张计算状态集的转换表：</p>
-<ol>
-<li>首先，置第 1行第 1列为 ε - closure({X})求出这一列的I<del>a</del>，I<del>b</del></li>
-<li>检查这两个I<del>a</del>，I<del>b</del>，看它们是否已在表中的第一列中出现，把未曾出现的填入后面的空行的第 1列上，求出每行第 2， 3列上的集合…</li>
-<li>重复上述过程，直到所有第 2，3列子集全部出现在第一列为止</li>
-</ol>
-<p><img src="F:%5Clearning%5Cnote%5C%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86%5C%E7%AC%AC%E5%85%AD%E8%AE%B2.assets%5Cimage-20200307232209075.png" alt="image-20200307232209075"></p>
-<h5 id="状态转换关系表推算样例"><a href="#状态转换关系表推算样例" class="headerlink" title="状态转换关系表推算样例"></a>状态转换关系表推算样例</h5><p><img src="F:%5Clearning%5Cnote%5C%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86%5C%E7%AC%AC%E5%85%AD%E8%AE%B2.assets%5Cimage-20200307233656083.png" alt="image-20200307233656083"></p>
-<ul>
-<li>把表看成状态转换矩阵，子集视为状态</li>
-<li>转换表唯一刻划了一个确定 的有限自动机M<ul>
-<li><code>初态</code> 是 ε-closure({X})</li>
-<li><code>终态</code>是含有原终态Y的子集</li>
-</ul>
-</li>
-<li>对于每个NFA M存在一个 DFA M ’ ，使得 L(M)=L(M’)</li>
-</ul>
-<p>最终结果：</p>
-<p><img src="F:%5Clearning%5Cnote%5C%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86%5C%E7%AC%AC%E5%85%AD%E8%AE%B2.assets%5Cimage-20200307234407769.png" alt="image-20200307234407769"></p>
-<h4 id="DFA的化简"><a href="#DFA的化简" class="headerlink" title="DFA的化简"></a>DFA的化简</h4><blockquote>
-<p>对于给定的DFA M，寻找一个状态数比M少的DFA M’，使得L(M)=L(M’)</p>
+                <h2 id="2-1-常用的高级程序设计语言"><a href="#2-1-常用的高级程序设计语言" class="headerlink" title="2.1 常用的高级程序设计语言"></a>2.1 常用的高级程序设计语言</h2><h2 id="2-2-程序设计语言的定义"><a href="#2-2-程序设计语言的定义" class="headerlink" title="2.2 程序设计语言的定义"></a>2.2 程序设计语言的定义</h2><p><strong>标识符是语法概念，名字是语义概念</strong></p>
+<h4 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h4><blockquote>
+<p>程序本质上是一定字符集上的字符串</p>
+<p>语法：一组规则，用它可以形成和产生一个合式(well-formed)的程序</p>
 </blockquote>
-<ul>
-<li>状态的等价性<ul>
-<li>假设s和t为M的两个状态，称s和t<strong>等价</strong>：如果从状态 s出发能读出某个字 α而停止于<strong>终态</strong>，那么同样，从t 出发也能读出 α而停止于<strong>终态</strong>；反之亦然（s和t到达的终态可以不一样但必须得是终态）</li>
-<li>两个状态不等价，则称它们是可区别的</li>
-</ul>
+<h5 id="词法规则：单词符号的形成规则"><a href="#词法规则：单词符号的形成规则" class="headerlink" title="词法规则：单词符号的形成规则"></a>词法规则：单词符号的形成规则</h5><ul>
+<li><p>单词符号是语言中具有独立意义的最基本结构</p>
+</li>
+<li><p>一般包括：常数、标识符、基本字、算符、界符等</p>
+</li>
+<li><p>描述工具：有限自动机（描述程序设计语言的词法规则）</p>
 </li>
 </ul>
-<p>两个状态s和t是可区分的，是指：</p>
-<p><strong><code>存在</code>一个字 α，要么s读出 α停止于终态而t读出 α停止于非终态，要么t读出 α停止于终态而s读 出 α停止于非终态</strong></p>
-<h5 id="化简的基本思想"><a href="#化简的基本思想" class="headerlink" title="化简的基本思想"></a>化简的基本思想</h5><ul>
-<li>把M的状态集划分为一些不相交的子集，使得任何两个不同子集的状态是可区别的，而同一子集的任何两个状态是等价的</li>
-<li>最后，让每个子集选出一个代表，同时消去其他状态</li>
+<h5 id="语法规则：语法单位的形成规则"><a href="#语法规则：语法单位的形成规则" class="headerlink" title="语法规则：语法单位的形成规则"></a>语法规则：语法单位的形成规则</h5><ul>
+<li>语法单位通常包括：表达式、语句、分程序、过程、 函数、程序等</li>
+<li>描述工具：上下文无关文法</li>
 </ul>
-<p><strong>按照上述原则对DFA的状态集合S进行第一次划分，正确的分法是：<code>终态和非终态</code></strong></p>
+<h5 id="语法-1"><a href="#语法-1" class="headerlink" title="语法"></a>语法</h5><pre class="line-numbers language-txt"><code class="language-txt">E→i
+E→E+E
+E→E*E
+E→(E)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 <blockquote>
-<p>可区别：存在一个字 α，要么 s读出 α停止于终态而 t读出 α 停 止于非终态，要么 t读出 α停止于终态而 s读出 α停止于非终态</p>
+<p>语法规则和词法规则定义了程序的<strong>形式结构</strong></p>
+<p>定义语法单位的意义属于语义问题</p>
 </blockquote>
-<p><strong>归根结底，需要找到一个字，把状态集区分开来，而 <code>ε</code> 可以把终态与非终态区分开来（终态经过ε依然在终态，而非终态经过ε依然处于非终态）</strong></p>
-<h4 id="DFA化简算法"><a href="#DFA化简算法" class="headerlink" title="DFA化简算法"></a>DFA化简算法</h4><p> <img src="F:%5Clearning%5Cnote%5C%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86%5C%E7%AC%AC%E5%85%AD%E8%AE%B2.assets%5Cimage-20200308155035199.png" alt="image-20200308155035199"></p>
-<h2 id="6-2-正规式与有限自动机的等价性"><a href="#6-2-正规式与有限自动机的等价性" class="headerlink" title="6.2 正规式与有限自动机的等价性"></a>6.2 正规式与有限自动机的等价性</h2><h4 id="正规式与有限自动机的等价性"><a href="#正规式与有限自动机的等价性" class="headerlink" title="正规式与有限自动机的等价性"></a>正规式与有限自动机的等价性</h4><ul>
-<li>一个正规式r与一个有限自动机M等价<ul>
-<li>L(r)=L(M)</li>
-</ul>
-</li>
-<li>FA -&gt;正规式<ul>
-<li>对任何FA M，都存在一个正规式r，使得L(r)=L(M)</li>
-</ul>
-</li>
-<li>正规式 -&gt; FA<ul>
-<li>对任何正规式r，都存在一个FA M，使得L(M)=L(r)</li>
-</ul>
-</li>
-</ul>
-<h4 id="为NFA构造正规式"><a href="#为NFA构造正规式" class="headerlink" title="为NFA构造正规式"></a>为NFA构造正规式</h4><p>假定NFA M=&lt;S,Σ,δ, S<del>0</del>, F&gt;，我们对M的状态转换图进行以下改造：</p>
+<h4 id="语义"><a href="#语义" class="headerlink" title="语义"></a>语义</h4><blockquote>
+<p>一组规则，用它可以定义一个程序的意义</p>
+</blockquote>
+<p>描述方法：</p>
 <ul>
-<li>在M的转换图上加进两个状态X和Y，从X用 ε弧连接到M的所有初态结点，从M的所有终态结点用 ε弧连接到Y</li>
-<li>然后，反复使用下面的三条规则，逐步消去结点， 直到只剩下X和Y为止</li>
+<li>自然语言描述<ul>
+<li>二义性、隐藏错误和不完整性</li>
 </ul>
-<p><img src="F:%5Clearning%5Cnote%5C%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86%5C%E7%AC%AC%E5%85%AD%E8%AE%B2.assets%5Cimage-20200308171844080.png" alt="image-20200308171844080"></p>
-<p><img src="F:%5Clearning%5Cnote%5C%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86%5C%E7%AC%AC%E5%85%AD%E8%AE%B2.assets%5Cimage-20200308205920564.png" alt="image-20200308205920564"></p>
-<ul>
-<li><strong>对任何FA M，都存在一个正规式r，使得L(r)=L(M)</strong></li>
-</ul>
-<h4 id="为正规式构造NFA"><a href="#为正规式构造NFA" class="headerlink" title="为正规式构造NFA"></a>为正规式构造NFA</h4><p>对给定正规式r中的运算符数目进行归纳（归纳法）：</p>
-<ul>
-<li>验证r中的运算符数目为0时，结论成立</li>
-<li>假设结论对于运算符数目少于k(k ≥1)的正规式成立</li>
-<li>基于该假设，证明结论对于运算符数目为k的正规式成立</li>
-</ul>
-<ol>
-<li>若r具有零个运算符，则r= ε 或r= φ 或r=a，其中 a∈Σ，针对上述3类正规式r，分别按照下图构造NFA M，M只有一个初态和一个终态，而且没有从终态出发的箭弧，而且使L(M)和对应的L(r)相等</li>
-</ol>
-<p><img src="F:%5Clearning%5Cnote%5C%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86%5C%E7%AC%AC%E5%85%AD%E8%AE%B2.assets%5Cimage-20200308214257087.png" alt="image-20200308214257087"></p>
-<ol start="2">
-<li>假设对于运算符数目少于k(k ≥1) 的正规式成立</li>
-</ol>
-<p><img src="F:%5Clearning%5Cnote%5C%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86%5C%E7%AC%AC%E5%85%AD%E8%AE%B2.assets%5Cimage-20200308234846121.png" alt="image-20200308234846121"></p>
-<p><img src="F:%5Clearning%5Cnote%5C%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86%5C%E7%AC%AC%E5%85%AD%E8%AE%B2.assets%5Cimage-20200308234856521.png" alt="image-20200308234856521"></p>
-<p><img src="F:%5Clearning%5Cnote%5C%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86%5C%E7%AC%AC%E5%85%AD%E8%AE%B2.assets%5Cimage-20200308234907737.png" alt="image-20200308234907737"></p>
-<h4 id="由正规式构造DFA示例"><a href="#由正规式构造DFA示例" class="headerlink" title="由正规式构造DFA示例"></a>由正规式构造DFA示例</h4><p><img src="F:%5Clearning%5Cnote%5C%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86%5C%E7%AC%AC%E5%85%AD%E8%AE%B2.assets%5Cimage-20200309000326351.png" alt="image-20200309000326351"></p>
-<h2 id="6-3-词法分析程序自动生成"><a href="#6-3-词法分析程序自动生成" class="headerlink" title="6.3 词法分析程序自动生成"></a>6.3 词法分析程序自动生成</h2><h4 id="词法分析器的自动产生–LEX"><a href="#词法分析器的自动产生–LEX" class="headerlink" title="词法分析器的自动产生–LEX"></a>词法分析器的自动产生–LEX</h4><p><img src="F:%5Clearning%5Cnote%5C%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86%5C%E7%AC%AC%E5%85%AD%E8%AE%B2.assets%5Cimage-20200309002138905.png" alt="image-20200309002138905"></p>
-<p><img src="F:%5Clearning%5Cnote%5C%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86%5C%E7%AC%AC%E5%85%AD%E8%AE%B2.assets%5Cimage-20200309003237097.png" alt="image-20200309003237097"></p>
-<p><img src="F:%5Clearning%5Cnote%5C%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86%5C%E7%AC%AC%E5%85%AD%E8%AE%B2.assets%5Cimage-20200309003514036.png" alt="image-20200309003514036"></p>
-<ul>
-<li><p><code>辅助定义</code>：以文法形式，给一些常用的正规式进行命名</p>
 </li>
-<li><p><code>识别规则</code>：多条词法分析规则，每一个规则都要返回单词对应的种类编码及对应的值</p>
+<li>形式描述<ul>
+<li>操作语义</li>
+<li>指称语义</li>
+<li>代数语义</li>
+</ul>
 </li>
 </ul>
-<h5 id="LEX工作过程"><a href="#LEX工作过程" class="headerlink" title="LEX工作过程"></a>LEX工作过程</h5><p><img src="F:%5Clearning%5Cnote%5C%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86%5C%E7%AC%AC%E5%85%AD%E8%AE%B2.assets%5Cimage-20200309004110313.png" alt="image-20200309004110313"></p>
+<h4 id="程序的基本功能和层次结构"><a href="#程序的基本功能和层次结构" class="headerlink" title="程序的基本功能和层次结构"></a>程序的基本功能和层次结构</h4><blockquote>
+<p>程序，本质上说是描述一定数据的处理过程</p>
+<p>程序语言的基本功能：描述数据和对数据的运算</p>
+</blockquote>
+<p>程序的层次结构：</p>
+<p><img src="%E7%AC%AC2%E8%AE%B2.assets%5Cimage-20200229235118402.png" alt="image-20200229235118402"></p>
+<h2 id="2-3-高级语言程序设计语言的一般特性"><a href="#2-3-高级语言程序设计语言的一般特性" class="headerlink" title="2.3 高级语言程序设计语言的一般特性"></a>2.3 高级语言程序设计语言的一般特性</h2><h4 id="高级语言的分类"><a href="#高级语言的分类" class="headerlink" title="高级语言的分类"></a>高级语言的分类</h4><ul>
+<li>强制式语言(Imperative Languge)/过程式语言<ul>
+<li>命令驱动，面向语句</li>
+<li>FORTRAN、C、Pascal，Ada</li>
+</ul>
+</li>
+<li>应用式语言<ul>
+<li>注重程序所表示的功能，而不是一个语句接一个语 句地执行</li>
+<li>LISP、ML</li>
+</ul>
+</li>
+<li>基于规则的语言( Rule-based Language)<ul>
+<li>检查一定的条件，当它满足值，则执行适当的动作</li>
+<li>Prolog</li>
+</ul>
+</li>
+<li>面向对象语言(Object-Oriented Language)<ul>
+<li>封装、继承和多态性</li>
+<li>Smalltalk，C++，Java</li>
+</ul>
+</li>
+</ul>
+<h4 id="程序结构"><a href="#程序结构" class="headerlink" title="程序结构"></a>程序结构</h4><h5 id="作用域"><a href="#作用域" class="headerlink" title="作用域"></a>作用域</h5><ul>
+<li>作用域：一个名字能被使用的区域范围</li>
+<li>同一个标识符在不同过程中代表不同的名字</li>
+<li>名字作用域规则——“最近嵌套原则”</li>
+</ul>
+<h5 id="最近嵌套原则"><a href="#最近嵌套原则" class="headerlink" title="最近嵌套原则"></a>最近嵌套原则</h5><ul>
+<li>一个在子程序B1中说明的名 字X只在B1中有效（局部于 B1）</li>
+<li>如果B2是B1的一个内层子 程序且B2中对标识符X没有新的说明，则原来的名字X 在B2中仍然有效</li>
+<li>如果B2对X重新作了说明， 那么，B2对X的任何引用都是指重新说明过的这个X</li>
+</ul>
+<p><img src="%E7%AC%AC2%E8%AE%B2.assets%5Cimage-20200301103438757.png" alt="image-20200301103438757"></p>
+<h4 id="数据结构与操作"><a href="#数据结构与操作" class="headerlink" title="数据结构与操作"></a>数据结构与操作</h4><p>数据类型通常包含三要素：</p>
+<ul>
+<li>用于区别这种类型数据对象的<strong>属性</strong></li>
+<li>这种类型的数据对象可以具有的<strong>值</strong></li>
+<li>可以作用于这种类型的数据对象的<strong>操作</strong></li>
+</ul>
+<h4 id="标识符与名字"><a href="#标识符与名字" class="headerlink" title="标识符与名字"></a>标识符与名字</h4><h4 id="数据结构"><a href="#数据结构" class="headerlink" title="数据结构"></a>数据结构</h4><ul>
+<li><p>数组</p>
+</li>
+<li><p>内情向量</p>
+</li>
+<li><p>登记维数，各维的上、下限，首地址，以及数组 （元素）的类型等信息</p>
+</li>
+<li><p>记录</p>
+<ul>
+<li><p>由已知类型的数据组合在一起的一种结构</p>
+</li>
+<li><p>记录或者结构的元素，也叫做域(field) </p>
+<pre class="line-numbers language-pascal"><code class="language-pascal">  <span class="token keyword">record</span> <span class="token comment" spellcheck="true">{ 
+      char name[20];
+      integer age;
+      bool married;
+  }</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
+</ul>
+</li>
+<li><p>字符串、表格、栈</p>
+</li>
+<li><p>抽象数据类型</p>
+</li>
+</ul>
+<h5 id="抽象数据类型"><a href="#抽象数据类型" class="headerlink" title="抽象数据类型"></a>抽象数据类型</h5><ul>
+<li>数据对象的集合</li>
+<li>作用于这些对象的抽象运算集合</li>
+<li>这种类型对象的封装，即除了使用类型中所定义的运算之外，用户不能对这些对象进行操作</li>
+</ul>
+<h4 id="语句与控制结构"><a href="#语句与控制结构" class="headerlink" title="语句与控制结构"></a>语句与控制结构</h4><h5 id="表达式"><a href="#表达式" class="headerlink" title="表达式"></a>表达式</h5><blockquote>
+<p>表达式由运算量（也称操作数，即数据引用或函数 调用）和算符（运算符，操作符）组成</p>
+<p>形式：中缀(X*Y)、前缀(-A)、后缀(P↑或者p-&gt;)</p>
+</blockquote>
+<p>表达式形成规则：</p>
+<ul>
+<li>变量（包括下标变量）、常数是表达式</li>
+<li>若E1、E 2为表达式， θ是一个二元算符，则E1θE2是表达式</li>
+<li>若E是表达式， θ为一元算符，则 θE（或E θ）是表达式</li>
+<li><strong>若E是表达式，则（E）是表达式</strong></li>
+</ul>
+<h5 id="语句"><a href="#语句" class="headerlink" title="语句"></a>语句</h5><p>赋值语句：A = B</p>
+<p>名字的左值：该名字代表的存储单元的地址</p>
+<p>名字的右值：该名字代表的存贮单元的内容</p>
 
             </div>
             <hr/>
@@ -608,7 +577,7 @@ DFA
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://yoursite.com/2020/04/04/compiler-principles/di-liu-jiang/">http://yoursite.com/2020/04/04/compiler-principles/di-liu-jiang/</a>
+                    <a href="http://yoursite.com/2020/04/08/compiler-principles/di-2-jiang/">http://yoursite.com/2020/04/08/compiler-principles/di-2-jiang/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -688,33 +657,34 @@ DFA
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2020/04/04/compiler-principles/di-shi-jiang/">
+                <a href="/2020/04/08/compiler-principles/di-1-jiang/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/11.jpg" class="responsive-img" alt="compiler_principles/第十讲">
+                        <img src="/medias/featureimages/11.jpg" class="responsive-img" alt="compiler_principles/第1讲">
                         
-                        <span class="card-title">compiler_principles/第十讲</span>
+                        <span class="card-title">compiler_principles/第1讲</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            语法分析-自下而上分析1自下而上分析定义：
+                            第1讲main content
+什么是编译程序？
 
-从输入串开始，逐步进行归约，直到文法的开始符号
-归约：根据文法的产生式规则，把串中出现的产生式的右部替换成左部符号
-从树叶节点开始，构造语法树
-算符优先分析法、LR分析法
+编译程序的各个阶段，理解各个阶段的任务，各个阶段所依循的规则。
+ 
+
+会画编译程序的总框
 
 
-移进－归约思想
-用
+solution
+把某一种高级语言程序等价地转换成另一种低级语言程序（如汇编或机器语言程序）的
                         
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-04-04
+                            <i class="far fa-clock fa-fw icon-date"></i>2020-04-08
                         </span>
                         <span class="publish-author">
                             
@@ -734,32 +704,33 @@ DFA
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/04/04/compiler-principles/di-wu-jiang/">
+                <a href="/2020/04/08/compiler-principles/di-10-jiang/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="compiler_principles/第五讲">
+                        <img src="/medias/featureimages/9.jpg" class="responsive-img" alt="compiler_principles/第10讲">
                         
-                        <span class="card-title">compiler_principles/第五讲</span>
+                        <span class="card-title">compiler_principles/第10讲</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            5.1 词法规则形式化-正规集与正规式正规式和正规集程序语言定义的合法单词集合都是正规集
+                            语法分析-自下而上分析1自下而上分析定义：
 
-正规集可以用正规式表示
-正规式是表示正规集的一种办法
-一个字集合是正规集当且仅当它能用正规式表示
+从输入串开始，逐步进行归约，直到文法的开始符号
+归约：根据文法的产生式规则，把串中出现的产生式的右部替换成左部符号
+从树叶节点开始，构造语法树
+算符优先分析法、LR分析法
 
-正规式和正规集的递归定义对于给定的字母表Σ：
 
-
+移进－归约思想
+用
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-04-04
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-04-08
                             </span>
                         <span class="publish-author">
                             

@@ -4,14 +4,17 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="compiler_principles/第九讲, null">
-    <meta name="description" content="语法分析-自上而下分析3预测分析程序构成
-总控程序：根据现行栈顶符号和当前输入符号， 执行动作
-分析表 M[A， a]矩阵：A ∈ V N ，a ∈ VT 是终 结符或‘＃’
-分析栈 STACK 用于存放文法符号
+    <meta name="keywords" content="compiler_principles/第10讲, null">
+    <meta name="description" content="语法分析-自下而上分析1自下而上分析定义：
+
+从输入串开始，逐步进行归约，直到文法的开始符号
+归约：根据文法的产生式规则，把串中出现的产生式的右部替换成左部符号
+从树叶节点开始，构造语法树
+算符优先分析法、LR分析法
 
 
-总控程序总是根据现行栈">
+移进－归约思想
+用">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -19,7 +22,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>compiler_principles/第九讲 | null</title>
+    <title>compiler_principles/第10讲 | null</title>
     <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -261,12 +264,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/15.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/9.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">compiler_principles/第九讲</h1>
+                    <h1 class="description center-align post-title">compiler_principles/第10讲</h1>
                 </div>
             </div>
         </div>
@@ -395,7 +398,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-04-04
+                    2020-04-08
                 </div>
                 
 
@@ -404,14 +407,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    609
+                    2k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    2 分
+                    7 分
                 </div>
                 
 				
@@ -422,58 +425,120 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="语法分析-自上而下分析3"><a href="#语法分析-自上而下分析3" class="headerlink" title="语法分析-自上而下分析3"></a>语法分析-自上而下分析3</h1><h2 id="预测分析程序"><a href="#预测分析程序" class="headerlink" title="预测分析程序"></a>预测分析程序</h2><h5 id="构成"><a href="#构成" class="headerlink" title="构成"></a>构成</h5><ul>
-<li>总控程序：根据现行栈顶符号和当前输入符号， 执行动作</li>
-<li>分析表 M[A， a]矩阵：A ∈ V N ，a ∈ VT 是终 结符或‘＃’</li>
-<li>分析栈 STACK 用于存放文法符号</li>
-</ul>
-<p><img src="F:%5Clearning%5Cnote%5C%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86%5C%E7%AC%AC%E4%B9%9D%E8%AE%B2.assets%5Cimage-20200318224402090.png" alt="image-20200318224402090"></p>
-<p>总控程序总是根据现行栈顶的符号和当前的输入符号来操作分析栈STACK</p>
-<h5 id="过程"><a href="#过程" class="headerlink" title="过程"></a>过程</h5><p>总控程序根据当前栈顶符号X和输入符号a，执行下列三动作之一：</p>
+                <h1 id="语法分析-自下而上分析1"><a href="#语法分析-自下而上分析1" class="headerlink" title="语法分析-自下而上分析1"></a>语法分析-自下而上分析1</h1><h2 id="自下而上分析"><a href="#自下而上分析" class="headerlink" title="自下而上分析"></a>自下而上分析</h2><p>定义：</p>
 <ul>
-<li>若X＝a＝‘＃’，则宣布分析成功，停止分析</li>
-<li>若X＝a ≠‘＃’，则把X从STACK栈顶逐出，让a指向下一个输入符号</li>
-<li>若X是一个非终结符，则<strong>查看分析表M</strong><ul>
-<li>若M[X，a]中存放着关于X的一个产生式，把X逐出STACK栈顶，把产生式的右部符号串按反序一一推进STACK栈(若右部符号为ε ，则意味不推什么东西进栈)</li>
-<li>若M[X，a]中存放着“出错标志”，则调用出错诊察程序ERROR</li>
+<li>从输入串开始，逐步进行归约，直到文法的开始符号</li>
+<li>归约：根据文法的产生式规则，把串中出现的产生式的右部替换成左部符号</li>
+<li><strong>从树叶节点开始，构造语法树</strong></li>
+<li>算符优先分析法、LR分析法</li>
+</ul>
+<p><img src="%E7%AC%AC10%E8%AE%B2.assets/image-20200407233819858.png" alt="image-20200407233819858"></p>
+<h4 id="移进－归约思想"><a href="#移进－归约思想" class="headerlink" title="移进－归约思想"></a>移进－归约思想</h4><ul>
+<li>用一个寄存符号的先进后出栈，把输入符号一个一个地移进到栈里，当栈顶形成某个产生式的候选式时，即把栈顶的这一部分替换成(归约为)该产生式的左部符号</li>
+</ul>
+<p><img src="%E7%AC%AC10%E8%AE%B2.assets/image-20200407233732905.png" alt="image-20200407233732905"></p>
+<p>图中的树称为分析树（区别于语法树）（对于某些分析方法，分析树与语法树不一定完全一样）</p>
+<p>第4步对于b来说，它是一个可归约串，但是对于整个句子来说，它不是一个可归约串</p>
+<h2 id="短语与直接短语"><a href="#短语与直接短语" class="headerlink" title="短语与直接短语"></a>短语与直接短语</h2><h4 id="短语"><a href="#短语" class="headerlink" title="短语"></a>短语</h4><p>令G是一个文法，S是文法的开始符号， 假定αβδ是文法G的一个句型，如果有<br>$$<br>S \Rightarrow \alpha A \delta \space 且 \space A \Rightarrow \beta<br>$$<br>则β称是句型αβδ相对于非终结符A的短语</p>
+<p><img src="%E7%AC%AC10%E8%AE%B2.assets/image-20200407234245525.png" alt="image-20200407234245525"></p>
+<h4 id="直接短语"><a href="#直接短语" class="headerlink" title="直接短语"></a>直接短语</h4><p><strong>如果有A =&gt; β,则称β是句型αβδ相对于规则A→ β的直接短语</strong></p>
+<p>直接短语代表了<strong>可立即归约</strong>的串（不需要与其他串组合）</p>
+<h4 id="短语和直接短语"><a href="#短语和直接短语" class="headerlink" title="短语和直接短语"></a>短语和直接短语</h4><p>在一个句型对应的语法树中:</p>
+<ul>
+<li>以某非终结符为根的<strong>两代以上的子树的所有末端结点从左到右排列</strong>就是相对于该非终结符的一个<strong>短语</strong></li>
+<li>如果子树只有两代，则该短语就是<strong>直接短语</strong></li>
+</ul>
+<p><img src="%E7%AC%AC10%E8%AE%B2.assets%5Cimage-20200320140955945.png" alt="image-20200320140955945"></p>
+<p>短语： i<del>1</del> ，i<del>2</del>，i<del>3</del>， i<del>1</del><em>i<del>2</del> ，i<del>1</del></em>i<del>2</del>+i<del>3</del></p>
+<p>直接短语：i<del>1</del> ，i<del>2</del>，i<del>3</del></p>
+<h2 id="分析过程描述"><a href="#分析过程描述" class="headerlink" title="分析过程描述"></a>分析过程描述</h2><p><img src="%E7%AC%AC10%E8%AE%B2.assets%5Cimage-20200320142039078.png" alt="image-20200320142039078"></p>
+<h2 id="算符优先文法"><a href="#算符优先文法" class="headerlink" title="算符优先文法"></a>算符优先文法</h2><p>如果规定算符的优先次序，并按 这种规定进行归约，则归约过程是唯一的</p>
+<p><img src="%E7%AC%AC10%E8%AE%B2.assets%5Cimage-20200320155409421.png" alt="image-20200320155409421"></p>
+<h4 id="优先关系"><a href="#优先关系" class="headerlink" title="优先关系"></a>优先关系</h4><p>任何两个可能相继出现的终结符a与b可能三种优先关系：</p>
+<ul>
+<li>a &lt; b，a的优先级低于b</li>
+<li>a = b，a的优先级等于b</li>
+<li>a &gt; b，a的优先级高于b</li>
+</ul>
+<p>算符优先关系与数学上的&lt;&gt;=不同</p>
+<ul>
+<li>+ &lt; + 右边的+号优先级高于左边的+号</li>
+<li>a &lt; b并不意味着b &gt; a，如 <code>( &lt; +</code> 和 <code>+ &lt; (</code> (两个符号谁在左边谁的优先级低)</li>
+</ul>
+<h4 id="算符文法"><a href="#算符文法" class="headerlink" title="算符文法"></a>算符文法</h4><p>一个文法，如果它的任一产生式的右部都<strong>不含两个相继(并列)的==非终结符==</strong>，即不含…QR…形式的产生式右部，则我们称该文法为<strong>算符文法</strong></p>
+<h4 id="算符优先文法-1"><a href="#算符优先文法-1" class="headerlink" title="算符优先文法"></a>算符优先文法</h4><p>假定G是一个不含 ε-产生式的算符文法。对于任何一对终结符a、b，我们说：</p>
+<ul>
+<li>a = b，当且仅当文法G中含有形如P→…ab… 或 P→…aQb…的产生式；</li>
+<li>a &lt; b，当且仅当G中含有形如P→…aR…的产生式， 而 R⇒b… 或 R⇒Qb…</li>
+<li>a &gt; b，当且仅当G中含有形如P→…Rb…的产生式， 而 R⇒…a 或 R⇒…aQ</li>
+</ul>
+<p>示例：</p>
+<p><img src="%E7%AC%AC10%E8%AE%B2.assets%5Cimage-20200320162434040.png" alt="image-20200320162434040"></p>
+<h5 id="优先关系表"><a href="#优先关系表" class="headerlink" title="优先关系表"></a>优先关系表</h5><p><img src="%E7%AC%AC10%E8%AE%B2.assets%5Cimage-20200320163521525.png" alt="image-20200320163521525"></p>
+<p>第一列表示处于左边的符号，第一行表示处于右边的符号</p>
+<h2 id="构造优先关系表"><a href="#构造优先关系表" class="headerlink" title="构造优先关系表"></a>构造优先关系表</h2><h4 id="FIRSTVT和LASTVT集合"><a href="#FIRSTVT和LASTVT集合" class="headerlink" title="FIRSTVT和LASTVT集合"></a>FIRSTVT和LASTVT集合</h4><p>$$<br>FIRSVT(P) = {a | P \Rightarrow a … 或 P \Rightarrow Qa …, a \in V_T且Q \in V_N }<br>$$</p>
+<p>P 推出的串里，从左至右第一个终结符<br>$$<br>LASTVT(P) = {a | P \Rightarrow … a 或 P \Rightarrow … aQ, a \in V_T且Q \in V_N }<br>$$<br>P 推出的串里，最后出现的终结符</p>
+<h5 id="构造优先关系表的算法"><a href="#构造优先关系表的算法" class="headerlink" title="构造优先关系表的算法"></a>构造优先关系表的算法</h5><p>根据FIRSTVT和LASTVT集合，检查每个产生式的候选式，确定满足关系 &lt; 和 &gt; 的所有终结符对</p>
+<ul>
+<li>假定有个产生式的一个候选形为 … aP…， 那么，对任何 $$b \in FIRSTVT( P )$$，有 a &lt; b</li>
+<li>假定有个产生式的一个候选形为… Pb…， 那么，对任何 $$a \in LASTVT(P)$$，有 a &gt; b</li>
+</ul>
+<h5 id="构造集合FIRSTVT-P-的算法"><a href="#构造集合FIRSTVT-P-的算法" class="headerlink" title="构造集合FIRSTVT(P)的算法"></a>构造集合FIRSTVT(P)的算法</h5><p>反复使用下面两条规则构造集合FIRSTVT(P)：</p>
+<ul>
+<li>若有产生式P→a … 或P→Qa…，则 $$a \in FIRSTVT(P)$$</li>
+<li>若$$a \in FIRSTVT(Q)$$，且有产生式P→Q…，则$$a \in FIRSTVT(P)$$</li>
+</ul>
+<p>算法的一种实现</p>
+<ul>
+<li><strong>布尔数组F[P，a]</strong>，使得F[P，a]为真的条件是，当且仅当$$a \in FIRSTVT(P)$$。开始时，按上述的规则1对每个数组元素F[P，a]赋初值</li>
+<li><strong>栈STACK</strong>，把所有初值为真的数组元素F[P，a]的符号对(P，a)全都放在STACK之中<ul>
+<li>若栈STACK不空，就将栈顶项弹出，记此项为 (Q，a )。对于每个形如 P → Q…的产生式，若F[ P，a]为假，则变其值为真且将( P，a)推进STACK栈</li>
+<li>上述过程一直重复，直至栈STACK为空为止</li>
 </ul>
 </li>
 </ul>
-<h5 id="总控程序实现"><a href="#总控程序实现" class="headerlink" title="总控程序实现"></a>总控程序实现</h5><pre class="line-numbers language-text"><code class="language-text">BEGIN
-    首先把‘＃’然后把文法开始符号推进STACK栈；
-    把第一个输入符号读进a；
-    FLAG:=TRUE;
-    WHILE FLAG DO
-    BEGIN
-        把STACK栈顶符号上托出去并放在X中；
-        IF X∈VT THEN
-            IF X= a THEN 把下一输入符号读进a
-                   ELSE ERROR
-            ELSE IF X=‘#’ THEN
-            IF X=a THEN FLAG:=FALSE
-            ELSE ERROR
-        ELSE IF M[X,a]={X→X1X2…Xk}THEN
-            把Xk,Xk-1,…,X1一一推进STACK栈
-            /* 若X1X2…Xk=ε，不推什么进栈 */
-        ELSE ERROR
-    END OF WHILE;
-    STOP /*分析成功，过程完毕*/
-END<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h5 id="预测分析例子"><a href="#预测分析例子" class="headerlink" title="预测分析例子"></a>预测分析例子</h5><p><img src="F:%5Clearning%5Cnote%5C%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86%5C%E7%AC%AC%E4%B9%9D%E8%AE%B2.assets%5Cimage-20200319133754390.png" alt="image-20200319133754390"></p>
-<h2 id="预测分析表的构造"><a href="#预测分析表的构造" class="headerlink" title="预测分析表的构造"></a>预测分析表的构造</h2><p>构造G的分析表M[A，a]， 确定每个产生式 A→ α在表中的位置：</p>
-<ol>
-<li>对文法G的每个产生式A→ α执行第2步和第3步</li>
-<li>对每个终结符a ∈FIRST( α)，把A→ α加至M[A， a]中</li>
-<li>若ε∈FIRST( α)，则对任何b ∈FOLLOW(A)把 A→ α加至M[A，b]中</li>
-<li>把所有无定义的M[A，a]标上“出错标志”。</li>
-</ol>
-<p><img src="F:%5Clearning%5Cnote%5C%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86%5C%E7%AC%AC%E4%B9%9D%E8%AE%B2.assets%5Cimage-20200319141252119.png" alt="image-20200319141252119"></p>
-<h2 id="LL-1-文法与二义性"><a href="#LL-1-文法与二义性" class="headerlink" title="LL(1)文法与二义性"></a>LL(1)文法与二义性</h2><ul>
-<li>如果G是左递归或二义的，那么，M至少含有一个多重定义入口。因此，消除左递归和提取左因子将有助于获得无多重定义的分析表M</li>
-<li>可以证明，一个文法G的预测分析表M不含多重定义入口，当且仅当该文法为LL(1)的</li>
-<li><strong>LL(1)文法不是二义的</strong></li>
+<p><img src="%E7%AC%AC10%E8%AE%B2.assets%5Cimage-20200320183952479.png" alt="image-20200320183952479"></p>
+<p>主程序中黑色代码为初始化，蓝色为使用规则1，红色使用规则2</p>
+<p>直至栈为空，构造集合完毕</p>
+<h5 id="构造集合LASTVT-P-的算法"><a href="#构造集合LASTVT-P-的算法" class="headerlink" title="构造集合LASTVT(P)的算法"></a>构造集合LASTVT(P)的算法</h5><p>反复使用下面两条规则构造集合LASTVT(P)：</p>
+<ul>
+<li>若有产生式P→… a 或P→…aQ，则 $$a \in LASTVT(P)$$</li>
+<li>若$$a \in LASTVT(Q)$$，且有产生式P→…Q，则$$a \in LASTVT(P)$$</li>
 </ul>
-<p><img src="F:%5Clearning%5Cnote%5C%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86%5C%E7%AC%AC%E4%B9%9D%E8%AE%B2.assets%5Cimage-20200319143358188.png" alt="image-20200319143358188"></p>
+<h4 id="FIRSTVT和LASTVT集合计算示例"><a href="#FIRSTVT和LASTVT集合计算示例" class="headerlink" title="FIRSTVT和LASTVT集合计算示例"></a>FIRSTVT和LASTVT集合计算示例</h4><p><img src="%E7%AC%AC10%E8%AE%B2.assets%5Cimage-20200320211918714.png" alt="image-20200320211918714"></p>
+<p><img src="%E7%AC%AC10%E8%AE%B2.assets%5Cimage-20200320211927263.png" alt="image-20200320211927263"></p>
+<p>反复扫描，直到矩阵不再变化</p>
+<h4 id="构造优先关系表的算法-1"><a href="#构造优先关系表的算法-1" class="headerlink" title="构造优先关系表的算法"></a>构造优先关系表的算法</h4><ul>
+<li>通过检查G的每个产生式的每个候选式，可找出所有满足a = b的终结符对</li>
+<li>根据FIRSTVT和LASTVT集合，检查每个产生式的候选式，确定满足关系 &lt; 和 &gt; 的所有终结符对<ul>
+<li>假定有个产生式的一个候选形为 … aP…， 那么，对任何 $$b \in FIRSTVT( P )$$，有 a &lt; b</li>
+<li>假定有个产生式的一个候选形为… Pb…， 那么，对任何 $$a \in LASTVT(P)$$，有 a &gt; b</li>
+</ul>
+</li>
+</ul>
+<p><img src="%E7%AC%AC10%E8%AE%B2.assets%5Cimage-20200320213055462.png" alt="image-20200320213055462"></p>
+<h4 id="构造优先关系表示例"><a href="#构造优先关系表示例" class="headerlink" title="构造优先关系表示例"></a>构造优先关系表示例</h4><p><img src="%E7%AC%AC10%E8%AE%B2.assets%5Cimage-20200320225137037.png" alt="image-20200320225137037"></p>
+<p>考虑<strong>#E#</strong>可以完成最后一列的判断</p>
+<h2 id="算符优先分析算法"><a href="#算符优先分析算法" class="headerlink" title="算符优先分析算法"></a>算符优先分析算法</h2><h4 id="最左素短语"><a href="#最左素短语" class="headerlink" title="最左素短语"></a>最左素短语</h4><p>一个文法G的句型的素短语是指这样一个短语， 它至少含有<strong>一个终结符</strong>，并且，除它自身之外不再含任何更小的素短语</p>
+<p><strong>终结符或是算符的优先关系是基于终结符进行比较的，因此，定义至少含有一个终结符的短语以便进行算符的比较</strong></p>
+<p><strong>最左素短语</strong>是指处于句型最左边的那个素短语</p>
+<p><img src="%E7%AC%AC10%E8%AE%B2.assets%5Cimage-20200320225856298.png" alt="image-20200320225856298"></p>
+<h4 id="最左素短语定理"><a href="#最左素短语定理" class="headerlink" title="最左素短语定理"></a>最左素短语定理</h4><p>算符优先文法句型(括在两个＃之间)的一般形式：<br>$$<br>#N_1a_1N_2a_2…N_na_nN_{n+1}) #<br>$$<br>其中，a<del>i</del>都是终结符，N<del>i</del>是可有可无的非终结符(<strong>算符文法不能连续出现两个非终结符，但是可以连续出现多个终结符</strong>)</p>
+<p><strong>定理：一个算符优先文法G的任何句型的最左素短语是满足如下条件的最左子串 N<del>j</del>a<del>j</del>…N<del>i</del> a<del>i</del>N<del>i+1</del></strong></p>
+<p><img src="%E7%AC%AC10%E8%AE%B2.assets%5Cimage-20200320230927888.png" alt="image-20200320230927888"></p>
+<p><strong>内部终结符的优先级相等，都大于外部的终结符</strong></p>
+<h4 id="算符优先分析算法描述"><a href="#算符优先分析算法描述" class="headerlink" title="算符优先分析算法描述"></a>算符优先分析算法描述</h4><ul>
+<li>使用一个符号栈S，用它寄存终结符和非终结符，k代表符号栈S的使用深度</li>
+<li>在正确的情况下，算法工作完毕时，符号栈S应呈现：# N #</li>
+</ul>
+<p><img src="%E7%AC%AC10%E8%AE%B2.assets%5Cimage-20200320231345790.png" alt="image-20200320231345790"></p>
+<p>黑色部分代码将j指向栈中<strong>最上面的终结符</strong></p>
+<p>蓝色部分判断S[j]与输入的终结符符a的优先级，若a的优先级大于或等于S[j]，则a入栈，优先进行归约，若连续输入a的优先级一直大于等于S[j]，则一直读入终结符，<strong>直到a的优先级小于S[j]</strong>（此时栈顶即最左素短语的尾部）</p>
+<p>执行红色部分代码，紫色部分是扫描寻找最左素短语的头部（栈上面的终结符优先级比下面的终结符高）</p>
+<p>找到一个最左素短语后，进行归约，归约规则如下：</p>
+<p>从左至右，<strong>终结符与终结符要对应相等</strong>，非终结符可以不完全对应（只要是非终结符就行，可忽略）</p>
+<p><img src="%E7%AC%AC10%E8%AE%B2.assets%5Cimage-20200320231359559.png" alt="image-20200320231359559"></p>
+<p>按照以上方法分析出来的分析树与语法树不同，分析树可能会简单一些，但是二者都表达了文法的结构</p>
 
             </div>
             <hr/>
@@ -499,7 +564,7 @@ END<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span>
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://yoursite.com/2020/04/04/compiler-principles/di-jiu-jiang/">http://yoursite.com/2020/04/04/compiler-principles/di-jiu-jiang/</a>
+                    <a href="http://yoursite.com/2020/04/08/compiler-principles/di-10-jiang/">http://yoursite.com/2020/04/08/compiler-principles/di-10-jiang/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -579,27 +644,30 @@ END<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span>
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2020/04/04/compiler-principles/di-ba-jiang/">
+                <a href="/2020/04/08/compiler-principles/di-2-jiang/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/13.jpg" class="responsive-img" alt="compiler_principles/第八讲">
+                        <img src="/medias/featureimages/4.jpg" class="responsive-img" alt="compiler_principles/第2讲">
                         
-                        <span class="card-title">compiler_principles/第八讲</span>
+                        <span class="card-title">compiler_principles/第2讲</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            语法分析-自上而下分析2构造递归下降分析器递归下降分析器
-分析程序由一组子程序组成， 对每一语法单位(非终结符)构造一个相应的子程序，识别对应的语法单位
-通过子程序间的相互调用实现对输入串的识别，如 A → BcD
-子程序A调用子程序B识别
+                            2.1 常用的高级程序设计语言2.2 程序设计语言的定义标识符是语法概念，名字是语义概念
+语法
+程序本质上是一定字符集上的字符串
+语法：一组规则，用它可以形成和产生一个合式(well-formed)的程序
+
+词法规则：单词符号的形成规则
+单
                         
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-04-04
+                            <i class="far fa-clock fa-fw icon-date"></i>2020-04-08
                         </span>
                         <span class="publish-author">
                             
@@ -619,30 +687,24 @@ END<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span>
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/04/04/compiler-principles/di-er-jiang/">
+                <a href="/2020/04/08/compiler-principles/di-11-jiang/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/22.jpg" class="responsive-img" alt="compiler_principles/第二讲">
+                        <img src="/medias/featureimages/2.jpg" class="responsive-img" alt="compiler_principles/第11讲">
                         
-                        <span class="card-title">compiler_principles/第二讲</span>
+                        <span class="card-title">compiler_principles/第11讲</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            2.1 常用的高级程序设计语言2.2 程序设计语言的定义标识符是语法概念，名字是语义概念
-语法
-程序本质上是一定字符集上的字符串
-语法：一组规则，用它可以形成和产生一个合式(well-formed)的程序
-
-词法规则：单词符号的形成规则
-单
+                            语法分析-自上而下分析2句柄和规范归约LR分析法
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-04-04
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-04-08
                             </span>
                         <span class="publish-author">
                             
