@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2020-04-08T02:00:27.139Z</updated>
+  <updated>2020-04-13T05:27:39.825Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -18,10 +18,10 @@
   
   <entry>
     <title>compiler_principles/第9讲</title>
-    <link href="http://yoursite.com/2020/04/08/compiler-principles/di-9-jiang/"/>
-    <id>http://yoursite.com/2020/04/08/compiler-principles/di-9-jiang/</id>
-    <published>2020-04-08T02:00:27.139Z</published>
-    <updated>2020-04-08T02:00:27.139Z</updated>
+    <link href="http://yoursite.com/2020/04/13/compiler-principles/di-9-jiang/"/>
+    <id>http://yoursite.com/2020/04/13/compiler-principles/di-9-jiang/</id>
+    <published>2020-04-13T05:27:39.825Z</published>
+    <updated>2020-04-13T05:27:39.825Z</updated>
     
     <summary type="html">
     
@@ -41,10 +41,10 @@
   
   <entry>
     <title>compiler_principles/第7讲</title>
-    <link href="http://yoursite.com/2020/04/08/compiler-principles/di-7-jiang/"/>
-    <id>http://yoursite.com/2020/04/08/compiler-principles/di-7-jiang/</id>
-    <published>2020-04-08T02:00:27.131Z</published>
-    <updated>2020-04-08T02:00:27.131Z</updated>
+    <link href="http://yoursite.com/2020/04/13/compiler-principles/di-7-jiang/"/>
+    <id>http://yoursite.com/2020/04/13/compiler-principles/di-7-jiang/</id>
+    <published>2020-04-13T05:27:39.821Z</published>
+    <updated>2020-04-13T05:27:39.821Z</updated>
     
     <summary type="html">
     
@@ -64,10 +64,10 @@
   
   <entry>
     <title>compiler_principles/第8讲</title>
-    <link href="http://yoursite.com/2020/04/08/compiler-principles/di-8-jiang/"/>
-    <id>http://yoursite.com/2020/04/08/compiler-principles/di-8-jiang/</id>
-    <published>2020-04-08T02:00:27.131Z</published>
-    <updated>2020-04-08T02:00:27.131Z</updated>
+    <link href="http://yoursite.com/2020/04/13/compiler-principles/di-8-jiang/"/>
+    <id>http://yoursite.com/2020/04/13/compiler-principles/di-8-jiang/</id>
+    <published>2020-04-13T05:27:39.821Z</published>
+    <updated>2020-04-13T05:27:39.821Z</updated>
     
     <summary type="html">
     
@@ -87,10 +87,10 @@
   
   <entry>
     <title>compiler_principles/第6讲</title>
-    <link href="http://yoursite.com/2020/04/08/compiler-principles/di-6-jiang/"/>
-    <id>http://yoursite.com/2020/04/08/compiler-principles/di-6-jiang/</id>
-    <published>2020-04-08T02:00:27.127Z</published>
-    <updated>2020-04-08T02:00:27.127Z</updated>
+    <link href="http://yoursite.com/2020/04/13/compiler-principles/di-6-jiang/"/>
+    <id>http://yoursite.com/2020/04/13/compiler-principles/di-6-jiang/</id>
+    <published>2020-04-13T05:27:39.817Z</published>
+    <updated>2020-04-13T05:27:39.817Z</updated>
     
     <summary type="html">
     
@@ -109,34 +109,11 @@
   </entry>
   
   <entry>
-    <title>compiler_principles/第5讲</title>
-    <link href="http://yoursite.com/2020/04/08/compiler-principles/di-5-jiang/"/>
-    <id>http://yoursite.com/2020/04/08/compiler-principles/di-5-jiang/</id>
-    <published>2020-04-08T02:00:27.119Z</published>
-    <updated>2020-04-08T02:00:27.119Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;h2 id=&quot;5-1-词法规则形式化-正规集与正规式&quot;&gt;&lt;a href=&quot;#5-1-词法规则形式化-正规集与正规式&quot; class=&quot;headerlink&quot; title=&quot;5.1 词法规则形式化-正规集与正规式&quot;&gt;&lt;/a&gt;5.1 词法规则形式化-正规集与正规式&lt;/h2&gt;&lt;h4
-        
-      
-    
-    </summary>
-    
-    
-    
-  </entry>
-  
-  <entry>
     <title>compiler_principles/第4讲</title>
-    <link href="http://yoursite.com/2020/04/08/compiler-principles/di-4-jiang/"/>
-    <id>http://yoursite.com/2020/04/08/compiler-principles/di-4-jiang/</id>
-    <published>2020-04-08T02:00:27.115Z</published>
-    <updated>2020-04-08T02:00:27.115Z</updated>
+    <link href="http://yoursite.com/2020/04/13/compiler-principles/di-4-jiang/"/>
+    <id>http://yoursite.com/2020/04/13/compiler-principles/di-4-jiang/</id>
+    <published>2020-04-13T05:27:39.809Z</published>
+    <updated>2020-04-13T05:27:39.809Z</updated>
     
     <summary type="html">
     
@@ -155,11 +132,34 @@
   </entry>
   
   <entry>
+    <title>compiler_principles/第5讲</title>
+    <link href="http://yoursite.com/2020/04/13/compiler-principles/di-5-jiang/"/>
+    <id>http://yoursite.com/2020/04/13/compiler-principles/di-5-jiang/</id>
+    <published>2020-04-13T05:27:39.809Z</published>
+    <updated>2020-04-13T05:27:39.809Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;5-1-词法规则形式化-正规集与正规式&quot;&gt;&lt;a href=&quot;#5-1-词法规则形式化-正规集与正规式&quot; class=&quot;headerlink&quot; title=&quot;5.1 词法规则形式化-正规集与正规式&quot;&gt;&lt;/a&gt;5.1 词法规则形式化-正规集与正规式&lt;/h2&gt;&lt;h4
+        
+      
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
     <title>compiler_principles/第3讲</title>
-    <link href="http://yoursite.com/2020/04/08/compiler-principles/di-3-jiang/"/>
-    <id>http://yoursite.com/2020/04/08/compiler-principles/di-3-jiang/</id>
-    <published>2020-04-08T02:00:27.111Z</published>
-    <updated>2020-04-08T02:00:27.111Z</updated>
+    <link href="http://yoursite.com/2020/04/13/compiler-principles/di-3-jiang/"/>
+    <id>http://yoursite.com/2020/04/13/compiler-principles/di-3-jiang/</id>
+    <published>2020-04-13T05:27:39.801Z</published>
+    <updated>2020-04-13T05:27:39.801Z</updated>
     
     <summary type="html">
     
@@ -179,10 +179,10 @@
   
   <entry>
     <title>compiler_principles/第1讲</title>
-    <link href="http://yoursite.com/2020/04/08/compiler-principles/di-1-jiang/"/>
-    <id>http://yoursite.com/2020/04/08/compiler-principles/di-1-jiang/</id>
-    <published>2020-04-08T02:00:27.107Z</published>
-    <updated>2020-04-08T02:00:27.107Z</updated>
+    <link href="http://yoursite.com/2020/04/13/compiler-principles/di-1-jiang/"/>
+    <id>http://yoursite.com/2020/04/13/compiler-principles/di-1-jiang/</id>
+    <published>2020-04-13T05:27:39.797Z</published>
+    <updated>2020-04-13T05:27:39.797Z</updated>
     
     <summary type="html">
     
@@ -202,10 +202,10 @@
   
   <entry>
     <title>compiler_principles/第2讲</title>
-    <link href="http://yoursite.com/2020/04/08/compiler-principles/di-2-jiang/"/>
-    <id>http://yoursite.com/2020/04/08/compiler-principles/di-2-jiang/</id>
-    <published>2020-04-08T02:00:27.107Z</published>
-    <updated>2020-04-08T02:00:27.107Z</updated>
+    <link href="http://yoursite.com/2020/04/13/compiler-principles/di-2-jiang/"/>
+    <id>http://yoursite.com/2020/04/13/compiler-principles/di-2-jiang/</id>
+    <published>2020-04-13T05:27:39.797Z</published>
+    <updated>2020-04-13T05:27:39.801Z</updated>
     
     <summary type="html">
     
@@ -224,11 +224,103 @@
   </entry>
   
   <entry>
+    <title>compiler_principles/第15讲</title>
+    <link href="http://yoursite.com/2020/04/13/compiler-principles/di-15-jiang/"/>
+    <id>http://yoursite.com/2020/04/13/compiler-principles/di-15-jiang/</id>
+    <published>2020-04-13T05:27:39.793Z</published>
+    <updated>2020-04-13T05:27:39.793Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;属性文法和语法制导翻译2&quot;&gt;&lt;a href=&quot;#属性文法和语法制导翻译2&quot; class=&quot;headerlink&quot; title=&quot;属性文法和语法制导翻译2&quot;&gt;&lt;/a&gt;属性文法和语法制导翻译2&lt;/h1&gt;&lt;h2 id=&quot;S-属性文法&quot;&gt;&lt;a
+        
+      
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>compiler_principles/第14讲</title>
+    <link href="http://yoursite.com/2020/04/13/compiler-principles/di-14-jiang/"/>
+    <id>http://yoursite.com/2020/04/13/compiler-principles/di-14-jiang/</id>
+    <published>2020-04-13T05:27:39.785Z</published>
+    <updated>2020-04-13T05:27:39.785Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;属性文法和语法制导翻译1&quot;&gt;&lt;a href=&quot;#属性文法和语法制导翻译1&quot; class=&quot;headerlink&quot; title=&quot;属性文法和语法制导翻译1&quot;&gt;&lt;/a&gt;属性文法和语法制导翻译1&lt;/h1&gt;&lt;h2 id=&quot;属性文法&quot;&gt;&lt;a href=&quot;#属性文法&quot;
+        
+      
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>compiler_principles/第13讲</title>
+    <link href="http://yoursite.com/2020/04/13/compiler-principles/di-13-jiang/"/>
+    <id>http://yoursite.com/2020/04/13/compiler-principles/di-13-jiang/</id>
+    <published>2020-04-13T05:27:39.781Z</published>
+    <updated>2020-04-13T05:27:39.781Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;语法分析-自下而上分析4&quot;&gt;&lt;a href=&quot;#语法分析-自下而上分析4&quot; class=&quot;headerlink&quot; title=&quot;语法分析-自下而上分析4&quot;&gt;&lt;/a&gt;语法分析-自下而上分析4&lt;/h1&gt;&lt;h2 id=&quot;更强的LR分析&quot;&gt;&lt;a
+        
+      
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>compiler_principles/第12讲</title>
+    <link href="http://yoursite.com/2020/04/13/compiler-principles/di-12-jiang/"/>
+    <id>http://yoursite.com/2020/04/13/compiler-principles/di-12-jiang/</id>
+    <published>2020-04-13T05:27:39.777Z</published>
+    <updated>2020-04-13T05:27:39.777Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;语法分析-自下而上分析3&quot;&gt;&lt;a href=&quot;#语法分析-自下而上分析3&quot; class=&quot;headerlink&quot; title=&quot;语法分析-自下而上分析3&quot;&gt;&lt;/a&gt;语法分析-自下而上分析3&lt;/h1&gt;&lt;h2 id=&quot;活前缀&quot;&gt;&lt;a href=&quot;#活前缀&quot;
+        
+      
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
     <title>compiler_principles/第10讲</title>
-    <link href="http://yoursite.com/2020/04/08/compiler-principles/di-10-jiang/"/>
-    <id>http://yoursite.com/2020/04/08/compiler-principles/di-10-jiang/</id>
-    <published>2020-04-08T02:00:27.103Z</published>
-    <updated>2020-04-08T02:00:27.103Z</updated>
+    <link href="http://yoursite.com/2020/04/13/compiler-principles/di-10-jiang/"/>
+    <id>http://yoursite.com/2020/04/13/compiler-principles/di-10-jiang/</id>
+    <published>2020-04-13T05:27:39.773Z</published>
+    <updated>2020-04-13T05:27:39.773Z</updated>
     
     <summary type="html">
     
@@ -248,10 +340,10 @@
   
   <entry>
     <title>compiler_principles/第11讲</title>
-    <link href="http://yoursite.com/2020/04/08/compiler-principles/di-11-jiang/"/>
-    <id>http://yoursite.com/2020/04/08/compiler-principles/di-11-jiang/</id>
-    <published>2020-04-08T02:00:27.103Z</published>
-    <updated>2020-04-08T02:00:27.103Z</updated>
+    <link href="http://yoursite.com/2020/04/13/compiler-principles/di-11-jiang/"/>
+    <id>http://yoursite.com/2020/04/13/compiler-principles/di-11-jiang/</id>
+    <published>2020-04-13T05:27:39.773Z</published>
+    <updated>2020-04-13T05:27:39.773Z</updated>
     
     <summary type="html">
     
@@ -259,7 +351,7 @@
       
         
         
-          &lt;h1 id=&quot;语法分析-自上而下分析2&quot;&gt;&lt;a href=&quot;#语法分析-自上而下分析2&quot; class=&quot;headerlink&quot; title=&quot;语法分析-自上而下分析2&quot;&gt;&lt;/a&gt;语法分析-自上而下分析2&lt;/h1&gt;&lt;h2 id=&quot;句柄和规范归约&quot;&gt;&lt;a
+          &lt;h1 id=&quot;语法分析-自下而上分析2&quot;&gt;&lt;a href=&quot;#语法分析-自下而上分析2&quot; class=&quot;headerlink&quot; title=&quot;语法分析-自下而上分析2&quot;&gt;&lt;/a&gt;语法分析-自下而上分析2&lt;/h1&gt;&lt;h2 id=&quot;句柄和规范归约&quot;&gt;&lt;a
         
       
     

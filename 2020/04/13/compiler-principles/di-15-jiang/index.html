@@ -4,8 +4,15 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="compiler_principles/第11讲, null">
-    <meta name="description" content="语法分析-自上而下分析2句柄和规范归约LR分析法">
+    <meta name="keywords" content="compiler_principles/第15讲, null">
+    <meta name="description" content="属性文法和语法制导翻译2S-属性文法S-属性文法的自下而上计算
+S-属性文法：只含有综合属性
+
+在自下而上的分析器分析输入符号串的同时计算综合属性
+
+分析栈中保存语法符号和有关的综合属性值
+
+每当进行归约时，新的语法符号的属性值就由栈中正在">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -13,7 +20,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>compiler_principles/第11讲 | null</title>
+    <title>compiler_principles/第15讲 | null</title>
     <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -255,12 +262,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/2.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/22.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">compiler_principles/第11讲</h1>
+                    <h1 class="description center-align post-title">compiler_principles/第15讲</h1>
                 </div>
             </div>
         </div>
@@ -389,7 +396,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-04-08
+                    2020-04-13
                 </div>
                 
 
@@ -398,14 +405,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    21
+                    1.1k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    1 分
+                    3 分
                 </div>
                 
 				
@@ -416,7 +423,99 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="语法分析-自上而下分析2"><a href="#语法分析-自上而下分析2" class="headerlink" title="语法分析-自上而下分析2"></a>语法分析-自上而下分析2</h1><h2 id="句柄和规范归约"><a href="#句柄和规范归约" class="headerlink" title="句柄和规范归约"></a>句柄和规范归约</h2><h2 id="LR分析法"><a href="#LR分析法" class="headerlink" title="LR分析法"></a>LR分析法</h2>
+                <h1 id="属性文法和语法制导翻译2"><a href="#属性文法和语法制导翻译2" class="headerlink" title="属性文法和语法制导翻译2"></a>属性文法和语法制导翻译2</h1><h2 id="S-属性文法"><a href="#S-属性文法" class="headerlink" title="S-属性文法"></a>S-属性文法</h2><h4 id="S-属性文法的自下而上计算"><a href="#S-属性文法的自下而上计算" class="headerlink" title="S-属性文法的自下而上计算"></a>S-属性文法的自下而上计算</h4><ul>
+<li><p>S-属性文法：只含有综合属性</p>
+</li>
+<li><p>在自下而上的分析器分析输入符号串的同时计算综合属性</p>
+<ul>
+<li><p>分析栈中保存语法符号和有关的综合属性值</p>
+</li>
+<li><p>每当进行归约时，新的语法符号的属性值就由栈中正在归约的产生式右边符号的属性值来计算</p>
+</li>
+<li><p>假设产生式A → XYZ对应的语义规则为 a := f(X.x, Y.y, Z.z)</p>
+</li>
+</ul>
+</li>
+</ul>
+<p><img src="%E7%AC%AC15%E8%AE%B2.assets/image-20200412232422364.png" alt="image-20200412232422364"></p>
+<p><img src="%E7%AC%AC15%E8%AE%B2.assets/image-20200412213818775.png" alt="image-20200412213818775"></p>
+<h2 id="L属性文法"><a href="#L属性文法" class="headerlink" title="L属性文法"></a>L属性文法</h2><h4 id="一遍扫描的处理方法"><a href="#一遍扫描的处理方法" class="headerlink" title="一遍扫描的处理方法"></a>一遍扫描的处理方法</h4><ul>
+<li>一遍扫描的处理方法<ul>
+<li>所采用的语法分析方法</li>
+<li>属性的计算次序</li>
+</ul>
+</li>
+<li><strong>S-属性文法</strong>适合一遍扫描的自下而上分析</li>
+<li><strong>L-属性文法</strong>适合一遍扫描的自上而下分析</li>
+</ul>
+<h4 id="L-属性文法和自顶向下翻译"><a href="#L-属性文法和自顶向下翻译" class="headerlink" title="L-属性文法和自顶向下翻译"></a>L-属性文法和自顶向下翻译</h4><ul>
+<li>按照深度优先遍历语法树，计算所有属性值</li>
+<li>与LL(1) 自上而下分析方法结合<ul>
+<li>深度优先建立语法树</li>
+<li>按照语义规则计算属性</li>
+</ul>
+</li>
+</ul>
+<h4 id="L-属性文法"><a href="#L-属性文法" class="headerlink" title="L-属性文法"></a>L-属性文法</h4><p>一个属性文法称为<strong>L-属性文法</strong>，如果对于每个产生式<strong>A → X<del>1</del>X<del>2</del>…X<del>n</del></strong>，其每个语义规则中的每个属性或者是综合属性，或者是X<del>i</del>(1≤i≤n)的一个继承属性且这个继承属性仅依赖于：</p>
+<ul>
+<li><strong>产生式中Xi左边符号</strong>X<del>1</del>, X<del>2</del>, …, X<del>i-1</del>的属性</li>
+<li>A的继承属性</li>
+</ul>
+<p><strong>S-属性文法一定是L-属性文法</strong></p>
+<h2 id="翻译模式"><a href="#翻译模式" class="headerlink" title="翻译模式"></a>翻译模式</h2><ul>
+<li><strong>语义规则</strong>：给出了属性计算的定义，没有属性计算的次序等实现细节</li>
+<li><strong>翻译模式</strong>：给出使用语义规则进行计算的次序，把实现细节表示出来</li>
+<li>在翻译模式中，和文法符号相关的属性和语义规则（也称<strong>语义动作</strong>），用花括号{}括起来，插入到产生式右部的合适位置上</li>
+</ul>
+<p>示例：</p>
+<p><img src="%E7%AC%AC15%E8%AE%B2.assets/image-20200413101323202.png" alt="image-20200413101323202"></p>
+<h4 id="设计翻译模式的原则"><a href="#设计翻译模式的原则" class="headerlink" title="设计翻译模式的原则"></a>设计翻译模式的原则</h4><ul>
+<li>设计翻译模式时，必须保证当某个动作引用一个属性时它必须是有定义的</li>
+<li><strong>L-属性文法</strong>本身就能确保每个动作不会引用尚未计算出来的属性</li>
+</ul>
+<h4 id="建立翻译模式"><a href="#建立翻译模式" class="headerlink" title="建立翻译模式"></a>建立翻译模式</h4><ul>
+<li>当只需要<strong>综合属性</strong>时：为每一个语义规则建立一个包含赋值的动作，并把这个动作放在相应的<strong>产生式右边的末尾</strong></li>
+</ul>
+<p><img src="%E7%AC%AC15%E8%AE%B2.assets/image-20200413103112873.png" alt="image-20200413103112873"></p>
+<ul>
+<li><p>如果既有综合属性又有继承属性，在建立翻译模式时就必须保证：</p>
+<ol>
+<li><p>产生式右边的符号的<strong>继承属性</strong>必须在这个符号以前的动作中计算出来</p>
+</li>
+<li><p>一个动作不能引用这个动作右边的符号的<strong>综合属性</strong>（<strong>某语义规则所引用到的属性一定不能出现它右边符号的属性，右边符号的属性要等右边符号完全匹配完后才能够得到</strong>）</p>
+</li>
+<li><p>产生式左边非终结符的<strong>综合属性</strong>只有在它所引用的所有属性都计算出来以后才能计算。计算这种属性的动作通常可放在产生式右端的<strong>末尾</strong></p>
+</li>
+</ol>
+</li>
+</ul>
+<p><img src="%E7%AC%AC15%E8%AE%B2.assets/image-20200413105448332.png" alt="image-20200413105448332"></p>
+<p>左边的产生式违反了第1条，在自伤而下的分析中，A  → a 产生式使用的规则中的属性未定义。</p>
+<h4 id="翻译模式示例"><a href="#翻译模式示例" class="headerlink" title="翻译模式示例"></a>翻译模式示例</h4><h5 id="数学格式语言EQN"><a href="#数学格式语言EQN" class="headerlink" title="数学格式语言EQN"></a>数学格式语言EQN</h5><p><img src="%E7%AC%AC15%E8%AE%B2.assets/image-20200413110216866.png" alt="image-20200413110216866"></p>
+<p><img src="%E7%AC%AC15%E8%AE%B2.assets/image-20200413112225361.png" alt="image-20200413112225361"></p>
+<h4 id="语义动作执行时机统一"><a href="#语义动作执行时机统一" class="headerlink" title="语义动作执行时机统一"></a>语义动作执行时机统一</h4><ul>
+<li>把所有的语义动作都放在产生式的末尾<ul>
+<li>语义动作的执行时机统一</li>
+</ul>
+</li>
+<li>转换方法<ul>
+<li>加入新产生式M → ε</li>
+<li>把嵌入在产生式中的每个语义动作用不同的非终结符M代替，并把这个动作放在产生式M→ε的末尾</li>
+</ul>
+</li>
+</ul>
+<p><img src="%E7%AC%AC15%E8%AE%B2.assets/image-20200413112903178.png" alt="image-20200413112903178"></p>
+<h4 id="消除翻译模式中的左递归"><a href="#消除翻译模式中的左递归" class="headerlink" title="消除翻译模式中的左递归"></a>消除翻译模式中的左递归</h4><ul>
+<li>语义动作是在相同位置上的符号被展开（匹配成功）时执行的</li>
+<li>为了构造不带回溯的自顶向下语法分析，必须消除文法中的左递归</li>
+<li>当消除一个翻译模式的基本文法的左递归时同时考虑<strong>属性计算</strong><ul>
+<li>适合带<strong>综合属性</strong>的翻译模式</li>
+</ul>
+</li>
+</ul>
+<p><img src="%E7%AC%AC15%E8%AE%B2.assets/image-20200413115829619.png" alt="image-20200413115829619"></p>
+<p><img src="%E7%AC%AC15%E8%AE%B2.assets/image-20200413115839014.png" alt="image-20200413115839014"></p>
+<h4 id="消除翻译模式中的左递归的一般方法"><a href="#消除翻译模式中的左递归的一般方法" class="headerlink" title="消除翻译模式中的左递归的一般方法"></a>消除翻译模式中的左递归的一般方法</h4>
             </div>
             <hr/>
 
@@ -441,7 +540,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://yoursite.com/2020/04/08/compiler-principles/di-11-jiang/">http://yoursite.com/2020/04/08/compiler-principles/di-11-jiang/</a>
+                    <a href="http://yoursite.com/2020/04/13/compiler-principles/di-15-jiang/">http://yoursite.com/2020/04/13/compiler-principles/di-15-jiang/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -521,33 +620,30 @@
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2020/04/08/compiler-principles/di-10-jiang/">
+                <a href="/2020/04/13/compiler-principles/di-2-jiang/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/9.jpg" class="responsive-img" alt="compiler_principles/第10讲">
+                        <img src="/medias/featureimages/4.jpg" class="responsive-img" alt="compiler_principles/第2讲">
                         
-                        <span class="card-title">compiler_principles/第10讲</span>
+                        <span class="card-title">compiler_principles/第2讲</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            语法分析-自下而上分析1自下而上分析定义：
+                            2.1 常用的高级程序设计语言2.2 程序设计语言的定义标识符是语法概念，名字是语义概念
+语法
+程序本质上是一定字符集上的字符串
+语法：一组规则，用它可以形成和产生一个合式(well-formed)的程序
 
-从输入串开始，逐步进行归约，直到文法的开始符号
-归约：根据文法的产生式规则，把串中出现的产生式的右部替换成左部符号
-从树叶节点开始，构造语法树
-算符优先分析法、LR分析法
-
-
-移进－归约思想
-用
+词法规则：单词符号的形成规则
+单
                         
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-04-08
+                            <i class="far fa-clock fa-fw icon-date"></i>2020-04-13
                         </span>
                         <span class="publish-author">
                             
@@ -567,24 +663,28 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/03/31/devops-yu-ci-cd/">
+                <a href="/2020/04/13/compiler-principles/di-14-jiang/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/15.jpg" class="responsive-img" alt="DevOps与CI/CD">
+                        <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="compiler_principles/第14讲">
                         
-                        <span class="card-title">DevOps与CI/CD</span>
+                        <span class="card-title">compiler_principles/第14讲</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            简单了解了DevOps与CI/CD的概念
+                            属性文法和语法制导翻译1属性文法属性文法概念
+属性文法,也称属性翻译文法
+以上下文无关文法为基础
+为每个文法符号（终结符或非终结符）配备若干相关的“值”（称为属性），代表与文法符号相关信息，如类型、值、代码序列、符号表内容等
+对于文法的每个
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-03-31
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-04-13
                             </span>
                         <span class="publish-author">
                             
@@ -593,22 +693,6 @@
                             
                         </span>
                     </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/DevOps/">
-                        <span class="chip bg-color">DevOps</span>
-                    </a>
-                    
-                    <a href="/tags/CI/">
-                        <span class="chip bg-color">CI</span>
-                    </a>
-                    
-                    <a href="/tags/CD/">
-                        <span class="chip bg-color">CD</span>
-                    </a>
-                    
                 </div>
                 
             </div>

@@ -4,16 +4,14 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="compiler_principles/第5讲, null">
-    <meta name="description" content="5.1 词法规则形式化-正规集与正规式正规式和正规集程序语言定义的合法单词集合都是正规集
+    <meta name="keywords" content="compiler_principles/第9讲, null">
+    <meta name="description" content="语法分析-自上而下分析3预测分析程序构成
+总控程序：根据现行栈顶符号和当前输入符号， 执行动作
+分析表 M[A， a]矩阵：A ∈ V N ，a ∈ VT 是终 结符或‘＃’
+分析栈 STACK 用于存放文法符号
 
-正规集可以用正规式表示
-正规式是表示正规集的一种办法
-一个字集合是正规集当且仅当它能用正规式表示
 
-正规式和正规集的递归定义对于给定的字母表Σ：
-
-">
+总控程序总是根据现行栈">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -21,7 +19,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>compiler_principles/第5讲 | null</title>
+    <title>compiler_principles/第9讲 | null</title>
     <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -263,12 +261,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/7.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/3.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">compiler_principles/第5讲</h1>
+                    <h1 class="description center-align post-title">compiler_principles/第9讲</h1>
                 </div>
             </div>
         </div>
@@ -397,7 +395,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-04-08
+                    2020-04-13
                 </div>
                 
 
@@ -406,14 +404,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.2k
+                    609
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    4 分
+                    2 分
                 </div>
                 
 				
@@ -424,97 +422,58 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="5-1-词法规则形式化-正规集与正规式"><a href="#5-1-词法规则形式化-正规集与正规式" class="headerlink" title="5.1 词法规则形式化-正规集与正规式"></a>5.1 词法规则形式化-正规集与正规式</h2><h4 id="正规式和正规集"><a href="#正规式和正规集" class="headerlink" title="正规式和正规集"></a>正规式和正规集</h4><p><strong>程序语言定义的合法单词集合都是正规集</strong></p>
-<ul>
-<li><code>正规集</code>可以用<code>正规式</code>表示</li>
-<li><code>正规式</code>是表示<code>正规集</code>的一种办法</li>
-<li>一个字集合是<code>正规集</code>当且仅当它能用<code>正规式</code>表示</li>
+                <h1 id="语法分析-自上而下分析3"><a href="#语法分析-自上而下分析3" class="headerlink" title="语法分析-自上而下分析3"></a>语法分析-自上而下分析3</h1><h2 id="预测分析程序"><a href="#预测分析程序" class="headerlink" title="预测分析程序"></a>预测分析程序</h2><h5 id="构成"><a href="#构成" class="headerlink" title="构成"></a>构成</h5><ul>
+<li>总控程序：根据现行栈顶符号和当前输入符号， 执行动作</li>
+<li>分析表 M[A， a]矩阵：A ∈ V N ，a ∈ VT 是终 结符或‘＃’</li>
+<li>分析栈 STACK 用于存放文法符号</li>
 </ul>
-<h4 id="正规式和正规集的递归定义"><a href="#正规式和正规集的递归定义" class="headerlink" title="正规式和正规集的递归定义"></a>正规式和正规集的递归定义</h4><p>对于给定的字母表Σ：</p>
+<p><img src="%E7%AC%AC9%E8%AE%B2.assets%5Cimage-20200318224402090.png" alt="image-20200318224402090"></p>
+<p>总控程序总是根据现行栈顶的符号和当前的输入符号来操作分析栈STACK</p>
+<h5 id="过程"><a href="#过程" class="headerlink" title="过程"></a>过程</h5><p>总控程序根据当前栈顶符号X和输入符号a，执行下列三动作之一：</p>
+<ul>
+<li>若X＝a＝‘＃’，则宣布分析成功，停止分析</li>
+<li>若X＝a ≠‘＃’，则把X从STACK栈顶逐出，让a指向下一个输入符号</li>
+<li>若X是一个非终结符，则<strong>查看分析表M</strong><ul>
+<li>若M[X，a]中存放着关于X的一个产生式，把X逐出STACK栈顶，把产生式的右部符号串按反序一一推进STACK栈(若右部符号为ε ，则意味不推什么东西进栈)</li>
+<li>若M[X，a]中存放着“出错标志”，则调用出错诊察程序ERROR</li>
+</ul>
+</li>
+</ul>
+<h5 id="总控程序实现"><a href="#总控程序实现" class="headerlink" title="总控程序实现"></a>总控程序实现</h5><pre class="line-numbers language-text"><code class="language-text">BEGIN
+    首先把‘＃’然后把文法开始符号推进STACK栈；
+    把第一个输入符号读进a；
+    FLAG:=TRUE;
+    WHILE FLAG DO
+    BEGIN
+        把STACK栈顶符号上托出去并放在X中；
+        IF X∈VT THEN
+            IF X= a THEN 把下一输入符号读进a
+                   ELSE ERROR
+            ELSE IF X=‘#’ THEN
+            IF X=a THEN FLAG:=FALSE
+            ELSE ERROR
+        ELSE IF M[X,a]={X→X1X2…Xk}THEN
+            把Xk,Xk-1,…,X1一一推进STACK栈
+            /* 若X1X2…Xk=ε，不推什么进栈 */
+        ELSE ERROR
+    END OF WHILE;
+    STOP /*分析成功，过程完毕*/
+END<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h5 id="预测分析例子"><a href="#预测分析例子" class="headerlink" title="预测分析例子"></a>预测分析例子</h5><p><img src="%E7%AC%AC9%E8%AE%B2.assets%5Cimage-20200319133754390.png" alt="image-20200319133754390"></p>
+<h2 id="预测分析表的构造"><a href="#预测分析表的构造" class="headerlink" title="预测分析表的构造"></a>预测分析表的构造</h2><p>构造G的分析表M[A，a]， 确定每个产生式 A→ α在表中的位置：</p>
 <ol>
-<li><p><code>ε</code> (空字)和 <code>∅</code>(空集) 都是 Σ上的正规式，它们所表示的正规集为 <code>{ε}</code> 和 <code>∅</code>;</p>
-</li>
-<li><p>任何 <code>a∈Σ</code> ，<code>a</code> 是 <code>Σ</code> 上的正规式，它所表示的正规集为 <code>{a}</code>;</p>
-</li>
-<li><p>假定 e<del>1</del>和 e<del>2</del>都是 <code>Σ</code> 上的正规式，它们所表示的正规集为L(e<del>1</del>) 和L(e<del>2</del>)，则</p>
-<ul>
-<li><p>(e<del>1</del>|e<del>2</del> )为正规式，它所表示的正规集为 L(e<del>1</del>) ∪L(e<del>2</del>)</p>
-</li>
-<li><p>(e<del>1</del>·e<del>2</del> )为正规式，它所表示的正规集为 L(e<del>1</del>)L(e<del>2</del>) (字的集合进行连接运算)</p>
-</li>
-<li><p>(e<del>1</del>)*为正规式，它所表示的正规集为 (L(e<del>1</del>)) *</p>
-<p>仅由有限次使用上述三步骤而定义的表达式才是 <code>Σ</code> 上的正规式，仅由这些正规式表示的字集才是 <code>Σ</code> 上的正规集</p>
-</li>
-</ul>
-</li>
+<li>对文法G的每个产生式A→ α执行第2步和第3步</li>
+<li>对每个终结符a ∈FIRST( α)，把A→ α加至M[A， a]中</li>
+<li>若ε∈FIRST( α)，则对任何b ∈FOLLOW(A)把 A→ α加至M[A，b]中</li>
+<li>把所有无定义的M[A，a]标上“出错标志”。</li>
 </ol>
-<p><strong><code>ε</code> 是字、正规式</strong></p>
-<p><strong><code>∅</code>是集合、正规式</strong></p>
-<p><strong><code>a (a ∈Σ)</code> 是字符、字（一个字符a构成的长度为1的字符串）、正规式</strong></p>
-<h4 id="正规式的等价性"><a href="#正规式的等价性" class="headerlink" title="正规式的等价性"></a>正规式的等价性</h4><blockquote>
-<p>若两个正规式所表示的正规集相同，则称这两个正规式等价</p>
-</blockquote>
-<p><img src="%E7%AC%AC5%E8%AE%B2.assets%5Cimage-20200306222625771.png" alt="image-20200306222625771"></p>
-<h4 id="正规式的性质"><a href="#正规式的性质" class="headerlink" title="正规式的性质"></a>正规式的性质</h4><p>对正规式，下列等价成立：</p>
-<ul>
-<li>e<del>1</del>|e<del>2</del> = e<del>2</del>|e<del>1</del> 交换律</li>
-<li>e<del>1</del> |(e<del>2</del>|e<del>3</del>) = (e<del>1</del>|e<del>2</del>)|e<del>3</del> 结合律</li>
-<li>e<del>1</del>(e<del>2</del>e<del>3</del>) = (e<del>1</del>e<del>2</del>)e<del>3</del> 结合律</li>
-<li>e<del>1</del>(e<del>2</del>|e<del>3</del>) = e<del>1</del>e<del>2</del>|e<del>1</del>e<del>3</del> 分配律</li>
-<li>(e<del>2</del>|e<del>3</del>)e<del>1</del> = e<del>2</del>e<del>1</del>|e<del>3</del> e<del>1</del> 分配律</li>
-<li>eε = εe = e    e<del>1</del>e<del>2</del> &lt;&gt; e<del>2</del> e<del>1</del>(e<del>1</del>连接e<del>2</del>不等于(e<del>2</del>连接e<del>1</del>)</li>
+<p><img src="%E7%AC%AC9%E8%AE%B2.assets%5Cimage-20200319141252119.png" alt="image-20200319141252119"></p>
+<h2 id="LL-1-文法与二义性"><a href="#LL-1-文法与二义性" class="headerlink" title="LL(1)文法与二义性"></a>LL(1)文法与二义性</h2><ul>
+<li>如果G是左递归或二义的，那么，M至少含有一个多重定义入口。因此，消除左递归和提取左因子将有助于获得无多重定义的分析表M</li>
+<li>可以证明，一个文法G的预测分析表M不含多重定义入口，当且仅当该文法为LL(1)的</li>
+<li><strong>LL(1)文法不是二义的</strong></li>
 </ul>
-<p><strong>利用正规式的等价性可证明上述性质</strong></p>
-<p><img src="%E7%AC%AC5%E8%AE%B2.assets%5Cimage-20200306225813915.png" alt="image-20200306225813915"></p>
-<p><strong><code>letter(letter|digit)*</code>对应用户自定义标识符</strong></p>
-<p><strong>同一类字符使用同一正规式表示</strong></p>
-<h2 id="5-2-确定有限自动机"><a href="#5-2-确定有限自动机" class="headerlink" title="5.2 确定有限自动机"></a>5.2 确定有限自动机</h2><blockquote>
-<p>对状态图进行形式化，给出数学定义</p>
-</blockquote>
-<p><code>确定有限自动机(Deterministic Finite Automata， DFA)</code> M是一个五元式 M=(S, Σ, f, S<del>0</del>, F)，其中：</p>
-<ul>
-<li>S: 有穷<code>状态集</code></li>
-<li>Σ：输入<code>字母表</code>(有穷)</li>
-<li>f: <code>状态转换函数</code>，为S×Σ→S的单值部分映射，f(s， a)=s’表示：当现行状态为s，输入字符为a时，将状态转换到下一状态s’，s’称为s的一个后继状态</li>
-<li>S<del>0</del> ∈S是唯一的一个<code>初态</code></li>
-<li>F⊆S ：<code>终态集</code>(可空)</li>
-</ul>
-<p><img src="%E7%AC%AC5%E8%AE%B2.assets%5Cimage-20200307133849646.png" alt="image-20200307133849646"></p>
-<h4 id="DFA表示为状态转换图"><a href="#DFA表示为状态转换图" class="headerlink" title="DFA表示为状态转换图"></a>DFA表示为状态转换图</h4><ul>
-<li>假定DFA M含有 <code>m个状态</code> 和 <code>n个输入字符</code></li>
-<li>对应的状态转换图含有m个状态结点，每个结点最多含有n条箭弧射出，且每条箭弧用Σ上的不同的输入字符来作标记</li>
-</ul>
-<ul>
-<li>对于 Σ*中的任何字 α，若存在一条从初态到某一终态的道路，且这条路上所有弧上的标记符连接成的字等于 α，则称α为DFA M所识别 (接收 )</li>
-<li>DFA M所识别的字的全体记为L(M)</li>
-</ul>
-<p><img src="%E7%AC%AC5%E8%AE%B2.assets%5Cimage-20200307135451228.png" alt="image-20200307135451228"></p>
-<h2 id="5-3-非确定有限自动机"><a href="#5-3-非确定有限自动机" class="headerlink" title="5.3 非确定有限自动机"></a>5.3 非确定有限自动机</h2><p><code>非确定有限自动机 (Nondeterministic Finite Automata，NFA)</code> M是一个五元式 M=(S, Σ, f, S<del>0</del>, F)，其中：</p>
-<ul>
-<li>S: 有穷<code>状态集</code></li>
-<li>Σ：输入<code>字母表</code>(有穷)</li>
-<li>f: <code>状态转换函数</code>，为 S×Σ*（Σ*指Σ上的字） → 2^S^(S状态集的幂集，也就是有S的所有子集构成的集合)的部分映射，f(s,a)=s’（a指一个字而不是字符，s’则为一个状态集合中的某一个状态（可能的状态有多个，也可能是空集））</li>
-<li>S<del>0</del> ⊆S是非空的<code>初态集</code></li>
-<li>F⊆S ：<code>终态集</code>(可空) </li>
-</ul>
-<h4 id="NFA与DFA的区别"><a href="#NFA与DFA的区别" class="headerlink" title="NFA与DFA的区别"></a>NFA与DFA的区别</h4><ul>
-<li>NFA可以有<code>多个初态</code></li>
-<li>弧上的标记可以是 Σ*中的一个字 (甚至可以是一个<code>正规式</code> )，而不一定是单个字符</li>
-<li><code>同一个字</code>可能出现在同状态射出的多条弧上</li>
-</ul>
-<p><strong>DFA是NFA的特例</strong></p>
-<h4 id="NFA的性质"><a href="#NFA的性质" class="headerlink" title="NFA的性质"></a>NFA的性质</h4><ul>
-<li>对于 Σ*中的任何字 α，若存在一条从初态到某一终态的道路，且这条路上所有弧上的标记字连接成的字等于 α (忽略那些标记为 ε的弧 )，则称 α 为NFA M所识别 (接收 )</li>
-<li>NFA M所识别的字的全体记为L(M)</li>
-</ul>
-<p><img src="%E7%AC%AC5%E8%AE%B2.assets%5Cimage-20200307151706864.png" alt="image-20200307151706864"></p>
-<p><strong>NFA更直观，更容易表达设计者的思想</strong></p>
-<h4 id="DFA和NFA"><a href="#DFA和NFA" class="headerlink" title="DFA和NFA"></a>DFA和NFA</h4><ul>
-<li>定义：对于任何两个有限自动机M和M’，如果 L(M)=L(M’)，则称M与M’等价</li>
-<li>自动机理论中一个重要的结论：<code>判定两个自动机等价性的算法是存在的</code></li>
-<li>对于每个NFA M存在一个DFA M’，使得 L(M)=L(M’)</li>
-</ul>
-<p><strong>DFA与NFA识别能力相同!</strong></p>
+<p><img src="%E7%AC%AC9%E8%AE%B2.assets%5Cimage-20200319143358188.png" alt="image-20200319143358188"></p>
 
             </div>
             <hr/>
@@ -540,7 +499,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://yoursite.com/2020/04/08/compiler-principles/di-5-jiang/">http://yoursite.com/2020/04/08/compiler-principles/di-5-jiang/</a>
+                    <a href="http://yoursite.com/2020/04/13/compiler-principles/di-9-jiang/">http://yoursite.com/2020/04/13/compiler-principles/di-9-jiang/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -616,54 +575,36 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2020/04/08/compiler-principles/di-6-jiang/">
+                <a href="/2020/04/13/compiler-principles/di-9-jiang/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="compiler_principles/第6讲">
+                        <img src="/medias/featureimages/3.jpg" class="responsive-img" alt="compiler_principles/第9讲">
                         
-                        <span class="card-title">compiler_principles/第6讲</span>
+                        <span class="card-title">compiler_principles/第9讲</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            6.1 有限自动机的等价性DFA与NFA的等价性证明思路二者差别：
+                            语法分析-自上而下分析3预测分析程序构成
+总控程序：根据现行栈顶符号和当前输入符号， 执行动作
+分析表 M[A， a]矩阵：A ∈ V N ，a ∈ VT 是终 结符或‘＃’
+分析栈 STACK 用于存放文法符号
 
 
-
-
-NFA
-DFA
-
-
-
-初始状态
-不唯一
-唯一
-
-
-弧上的标记
-字（单字字符、ε）
-字符
-
-
-转换关系
-非确定
-确定
-
-
-如果能够消除二者在初始状态，在弧上的标记以及
+总控程序总是根据现行栈
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-04-08
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-04-13
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-user fa-fw"></i>
@@ -672,6 +613,7 @@ DFA
                         </span>
                     </div>
                 </div>
+
                 
             </div>
         </div>
@@ -682,37 +624,31 @@ DFA
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/04/08/compiler-principles/di-4-jiang/">
+                <a href="/2020/04/13/compiler-principles/di-7-jiang/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="compiler_principles/第4讲">
+                        <img src="/medias/featureimages/17.jpg" class="responsive-img" alt="compiler_principles/第7讲">
                         
-                        <span class="card-title">compiler_principles/第4讲</span>
+                        <span class="card-title">compiler_principles/第7讲</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            4.1 词法分析概述词法分析
-词法分析器的设计
+                            语法分析-自上而下分析1自上而下分析的基本问题语法分析的任务
+分析一个文法的句子结构
 
-正规表达式与有限自动机
+语法分析器的功能
+按照文法的产生式（语言的语法规则），识别输入符号串是否为一个句子（合式程序）
 
-词法分析器的自动产生–LEX
-
-
-词法分析的任务
-从左至右逐个字符地对源程序进行扫描，产生一个个单词符号
-
-
-词法分析器(Lexical Analyzer)
-扫描器
+语法分析器在编译器中的地位
+语法分析的方法自下而上（B
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-04-08
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-04-13
                             </span>
                         <span class="publish-author">
                             

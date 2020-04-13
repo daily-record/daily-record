@@ -4,11 +4,13 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="compiler_principles/第8讲, null">
-    <meta name="description" content="语法分析-自上而下分析2构造递归下降分析器递归下降分析器
-分析程序由一组子程序组成， 对每一语法单位(非终结符)构造一个相应的子程序，识别对应的语法单位
-通过子程序间的相互调用实现对输入串的识别，如 A → BcD
-子程序A调用子程序B识别">
+    <meta name="keywords" content="compiler_principles/第12讲, null">
+    <meta name="description" content="语法分析-自下而上分析3活前缀
+字的前缀：是指字的任意首部，如字abc的前缀有 ε，a，ab，abc
+
+活前缀：是指规范句型的一个前缀，这种前缀不含句柄之后的任何符号
+
+对于规范句型 αβδ，β为句柄，如果 αβ = u1 u2…ur，则符">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -16,7 +18,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>compiler_principles/第8讲 | null</title>
+    <title>compiler_principles/第12讲 | null</title>
     <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -258,12 +260,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/10.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/19.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">compiler_principles/第8讲</h1>
+                    <h1 class="description center-align post-title">compiler_principles/第12讲</h1>
                 </div>
             </div>
         </div>
@@ -392,7 +394,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-04-08
+                    2020-04-13
                 </div>
                 
 
@@ -401,14 +403,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    422
+                    1.1k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    1 分
+                    4 分
                 </div>
                 
 				
@@ -419,42 +421,86 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="语法分析-自上而下分析2"><a href="#语法分析-自上而下分析2" class="headerlink" title="语法分析-自上而下分析2"></a>语法分析-自上而下分析2</h1><h2 id="构造递归下降分析器"><a href="#构造递归下降分析器" class="headerlink" title="构造递归下降分析器"></a>构造递归下降分析器</h2><h4 id="递归下降分析器"><a href="#递归下降分析器" class="headerlink" title="递归下降分析器"></a>递归下降分析器</h4><ul>
-<li>分析程序由一组子程序组成， 对每一<strong>语法单位(非终结符)</strong>构造一个相应的子程序，识别对应的语法单位</li>
-<li>通过子程序间的相互调用实现对输入串的识别，如 A → BcD<ul>
-<li>子程序A调用子程序B识别B，若碰到D则调用子程序D进行识别</li>
-</ul>
+                <h1 id="语法分析-自下而上分析3"><a href="#语法分析-自下而上分析3" class="headerlink" title="语法分析-自下而上分析3"></a>语法分析-自下而上分析3</h1><h2 id="活前缀"><a href="#活前缀" class="headerlink" title="活前缀"></a>活前缀</h2><ul>
+<li><p>字的前缀：是指字的任意首部，如字abc的前缀有 ε，a，ab，abc</p>
 </li>
-<li>文法的定义通常是递归的，通常具有递归结构</li>
-</ul>
-<h4 id="递归下降子程序设计"><a href="#递归下降子程序设计" class="headerlink" title="递归下降子程序设计"></a>递归下降子程序设计</h4><ul>
-<li>定义全局过程和变量<ul>
-<li>ADVANCE，把输入串指示器IP指向下一个输入符号，即读入一个单词符号</li>
-<li>SYM，IP当前所指的输入符号</li>
-<li>ERROR，出错处理子程序</li>
+<li><p>活前缀：是指<strong>规范句型</strong>的一个前缀，这种前缀不含句柄之后的任何符号</p>
+<ul>
+<li>对于规范句型 αβδ，β为句柄，如果 <strong>αβ = u<del>1</del> u<del>2</del>…u<del>r</del></strong>，则符号串 u<del>1</del>u<del>2</del>…u<del>i</del>(1 ≤i≤r)是αβδ 的活前缀。( δ必为终结符串)</li>
 </ul>
 </li>
 </ul>
-<p><img src="%E7%AC%AC8%E8%AE%B2.assets%5Cimage-20200318184900365.png" alt="image-20200318184900365"></p>
-<p><img src="%E7%AC%AC8%E8%AE%B2.assets%5Cimage-20200318190438647.png" alt="image-20200318190438647"></p>
-<p>上述两种E’的实现方式是等价的，什么都不做E’返回了，相当于E’得到正确的执行，即E’扩展成了ε</p>
-<p><strong>不考虑Follow集合没有问题</strong>：会被后续执行的子程序检查出来并报错（在检查候选的FIRST集合时发现这类遗留的错误）</p>
-<p><img src="%E7%AC%AC8%E8%AE%B2.assets%5Cimage-20200318192826102.png" alt="image-20200318192826102"></p>
-<h2 id="扩充的巴科斯范式"><a href="#扩充的巴科斯范式" class="headerlink" title="扩充的巴科斯范式"></a>扩充的巴科斯范式</h2><p>在元符号“→”或“::=”和“|”的基础上，扩 充几个元语言符号：</p>
-<ul>
-<li>用花括号{ α}表示闭包运算 α*</li>
-<li>用表示{ α } 0 n可任意重复0次至n次</li>
-<li>用方括号[ α]表示{ α } 0 1，即表示 α的出现可有可无(等 价于 α|ε)</li>
+<p><strong>句柄只能在分析栈的顶部，不能在栈内部。</strong></p>
+<p><strong>规范归约过程中，保证分析栈中总是活前缀，就说明分析采取的移进/归约动作是正确的。</strong></p>
+<h2 id="构造识别活前缀的DFA"><a href="#构造识别活前缀的DFA" class="headerlink" title="构造识别活前缀的DFA"></a>构造识别活前缀的DFA</h2><h4 id="文法的拓广"><a href="#文法的拓广" class="headerlink" title="文法的拓广"></a>文法的拓广</h4><ul>
+<li>将文法G(S)拓广为G′(S′)<ul>
+<li>构造文法G′，它包含了整个G，并引进不出现在G中的非终结符S′、以及产生式S′→S，S′是G′的开始符号</li>
+<li>称G′是G的拓广文法</li>
 </ul>
-<p>例如，通常的“实数”可定义为：</p>
-<ul>
-<li>Decimal→[Sign]Integer.{digit}[Exponent]</li>
-<li>Exponent→E[Sign]Integer</li>
-<li>Integer→digit{digit}</li>
-<li>Sign→ + | -</li>
+</li>
 </ul>
-<p><strong>用扩充的巴科斯范式来描述语法，直观易懂， 便于表示左递归消去和因子提取</strong></p>
-<p><img src="%E7%AC%AC8%E8%AE%B2.assets%5Cimage-20200318193810545.png" alt="image-20200318193810545"></p>
+<h4 id="LR-0-项目"><a href="#LR-0-项目" class="headerlink" title="LR(0)项目"></a>LR(0)项目</h4><ul>
+<li>在每个产生式的右部添加一个圆点，表示我们在分析过程中看到了产生式多大部分</li>
+<li><code>A→XYZ</code>有四个项目<ul>
+<li>A→ •XYZ</li>
+<li>A→X•YZ</li>
+<li>A→XY•Z</li>
+<li>A→XYZ•</li>
+</ul>
+</li>
+<li>A→α• 称为”归约项目”</li>
+<li>归约项目 S′→α• 称为”<strong>接受项目</strong>“（整个句子都识别完毕）</li>
+<li>A→α•aβ (a∈V<del>T</del>) 称为”<strong>移进项目</strong>“（下一个读入字符a）</li>
+<li>A→α•Bβ (B∈V<del>N</del>) 称为”<strong>待约项目</strong>“（等待B归约完毕）</li>
+</ul>
+<h4 id="构造识别文法所有活前缀的DFA"><a href="#构造识别文法所有活前缀的DFA" class="headerlink" title="构造识别文法所有活前缀的DFA"></a>构造识别文法所有活前缀的DFA</h4><p><img src="%E7%AC%AC12%E8%AE%B2.assets/image-20200409135513464.png" alt="image-20200409135513464"></p>
+<ul>
+<li>对于上面的NFA，j相比于i多识别了一个X<del>i</del>，因此从状态i画一条标志为X<del>i</del>的有向边到状态j</li>
+<li>对于下面的NFA，如果状态i对应一个<strong>待约项目</strong>，画一个ε边到所有状态A → • γ，当A归约完后，从i射出A弧至状态k</li>
+</ul>
+<h4 id="识别活前缀的NFA"><a href="#识别活前缀的NFA" class="headerlink" title="识别活前缀的NFA"></a>识别活前缀的NFA</h4><p><img src="%E7%AC%AC12%E8%AE%B2.assets/image-20200409162237238.png" alt="image-20200409162237238"></p>
+<h2 id="通过计算项目集规范族构造识别活-前缀的DFA"><a href="#通过计算项目集规范族构造识别活-前缀的DFA" class="headerlink" title="通过计算项目集规范族构造识别活 前缀的DFA"></a>通过计算项目集规范族构造识别活 前缀的DFA</h2><p>构成识别一个文法活前缀的DFA的项目集(状态)的全体称为文法的<strong>LR(0)项目集规范族</strong>。</p>
+<h4 id="有效项目"><a href="#有效项目" class="headerlink" title="有效项目"></a>有效项目</h4><ul>
+<li><p>项目 A → β<del>1</del> • β<del>2</del>对活前缀αβ<del>1</del>是有效的，其条件是存在规范推导<br>  $$<br>  S’ \Rightarrow _R \alpha A \omega \Rightarrow _R \alpha \beta_1 \beta_2 \omega<br>  $$</p>
+</li>
+<li><p>在任何时候，分析栈中的活前缀 X<del>1</del>X<del>2</del> … X<del>m</del> 的有效项目集正是从识别活前缀的DFA的初态出发，读出 X<del>1</del>X<del>2</del> … X<del>m</del> 后到达的那个项目集(状态)</p>
+</li>
+</ul>
+<p><img src="%E7%AC%AC12%E8%AE%B2.assets/image-20200409163257635.png" alt="image-20200409163257635"></p>
+<p><strong>状态5中的产生式对于活前缀bc是有效的（从初态读入bc到达状态5）</strong></p>
+<h4 id="有效项目的性质"><a href="#有效项目的性质" class="headerlink" title="有效项目的性质"></a>有效项目的性质</h4><p><img src="%E7%AC%AC12%E8%AE%B2.assets/image-20200409181732485.png" alt="image-20200409181732485"></p>
+<h2 id="LR-0-项目集规范族的构造"><a href="#LR-0-项目集规范族的构造" class="headerlink" title="LR(0)项目集规范族的构造"></a>LR(0)项目集规范族的构造</h2><ul>
+<li>将文法G(S)拓广为G ′(S ′ )<ul>
+<li>构造文法G ′，它包含了整个G，并引进不出现在G中的非终结符S ′、以及产生式S ′→S，S ′是G ′的开始符号</li>
+<li>G ′唯一的“接受”态：仅含项目S ′ → S•的状态</li>
+</ul>
+</li>
+</ul>
+<h4 id="项目集的闭包CLOSURE"><a href="#项目集的闭包CLOSURE" class="headerlink" title="项目集的闭包CLOSURE"></a>项目集的闭包CLOSURE</h4><p>假定I是文法G’的任一项目集，定义和构造I的包CLOSURE(I)如下： </p>
+<ol>
+<li>I的任何项目都属于CLOSURE(I)； </li>
+<li>若A → α•Bβ属于CLOSURE(I)，那么，对任 何关于A的产生式B → γ，项目B → •γ也属于 CLOSURE(I)；</li>
+<li>重复执行上述两步骤直至CLOSURE(I) 不再增大为止</li>
+</ol>
+<ul>
+<li><p><strong>简单来说第2步就是找等价的产生式，如A → α•Bβ，未读入B，此时可以查找B的产生式右部最左端为•的项目(B → •任意符号)</strong></p>
+</li>
+<li><p><strong>项目的•之后若为终结符或•处于末尾则不用找等价项目</strong></p>
+</li>
+</ul>
+<h4 id="状态转换函数"><a href="#状态转换函数" class="headerlink" title="状态转换函数"></a>状态转换函数</h4><p>为了识别活前缀，我们定义一个状态转换函数 GO。I是一个项目集，X是一个文法符号。</p>
+<p>函数值GO(I，X)定义为： <strong>GO(I，X)＝CLOSURE(J)</strong> </p>
+<p>其中 J＝{任何形如A → αX•β的项目| A → α•Xβ属于I}。</p>
+<p>直观上说，若I是对某个活前缀 γ 有效的项目集， 那么，GO(I，X)便是对 γX 有效的项目集。</p>
+<p><strong>直白点，从I到GO（I,X)这个结果的状态集就是相当于识别了一个X，及I识别X后到达的状态集</strong></p>
+<p><img src="%E7%AC%AC12%E8%AE%B2.assets/image-20200409233500606.png" alt="image-20200409233500606"></p>
+<h2 id="构造LR-0-分析表"><a href="#构造LR-0-分析表" class="headerlink" title="构造LR(0)分析表"></a>构造LR(0)分析表</h2><p>假若一个文法G的拓广文法G ′的活前缀识别自动机中的每个状态(项目集)不存在下述情况：</p>
+<ul>
+<li>既含移进项目又含归约项目</li>
+<li>含有多个归约项目</li>
+</ul>
+<p>则称G是一个<strong>LR(0)文法</strong>。</p>
+<p><img src="%E7%AC%AC12%E8%AE%B2.assets/image-20200409235139113.png" alt="image-20200409235139113"></p>
 
             </div>
             <hr/>
@@ -480,7 +526,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://yoursite.com/2020/04/08/compiler-principles/di-8-jiang/">http://yoursite.com/2020/04/08/compiler-principles/di-8-jiang/</a>
+                    <a href="http://yoursite.com/2020/04/13/compiler-principles/di-12-jiang/">http://yoursite.com/2020/04/13/compiler-principles/di-12-jiang/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -560,31 +606,26 @@
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2020/04/08/compiler-principles/di-7-jiang/">
+                <a href="/2020/04/13/compiler-principles/di-13-jiang/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/17.jpg" class="responsive-img" alt="compiler_principles/第7讲">
+                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="compiler_principles/第13讲">
                         
-                        <span class="card-title">compiler_principles/第7讲</span>
+                        <span class="card-title">compiler_principles/第13讲</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            语法分析-自上而下分析1自上而下分析的基本问题语法分析的任务
-分析一个文法的句子结构
-
-语法分析器的功能
-按照文法的产生式（语言的语法规则），识别输入符号串是否为一个句子（合式程序）
-
-语法分析器在编译器中的地位
-语法分析的方法自下而上（B
+                            语法分析-自下而上分析4更强的LR分析
+根据当前符号来判断，若当前符号为#，则按第一个项目进行归约，若当前符号为+，则按照第二个项目移进
+SLR(1)分析SLR(1)冲突解决办法假定LR(0)规范族的一个项目集$$I={\textcolor
                         
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-04-08
+                            <i class="far fa-clock fa-fw icon-date"></i>2020-04-13
                         </span>
                         <span class="publish-author">
                             
@@ -604,49 +645,33 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/04/08/compiler-principles/di-6-jiang/">
+                <a href="/2020/04/13/compiler-principles/di-10-jiang/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="compiler_principles/第6讲">
+                        <img src="/medias/featureimages/9.jpg" class="responsive-img" alt="compiler_principles/第10讲">
                         
-                        <span class="card-title">compiler_principles/第6讲</span>
+                        <span class="card-title">compiler_principles/第10讲</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            6.1 有限自动机的等价性DFA与NFA的等价性证明思路二者差别：
+                            语法分析-自下而上分析1自下而上分析定义：
+
+从输入串开始，逐步进行归约，直到文法的开始符号
+归约：根据文法的产生式规则，把串中出现的产生式的右部替换成左部符号
+从树叶节点开始，构造语法树
+算符优先分析法、LR分析法
 
 
-
-
-NFA
-DFA
-
-
-
-初始状态
-不唯一
-唯一
-
-
-弧上的标记
-字（单字字符、ε）
-字符
-
-
-转换关系
-非确定
-确定
-
-
-如果能够消除二者在初始状态，在弧上的标记以及
+移进－归约思想
+用
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-04-08
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-04-13
                             </span>
                         <span class="publish-author">
                             
