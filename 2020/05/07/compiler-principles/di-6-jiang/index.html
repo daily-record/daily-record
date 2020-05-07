@@ -4,8 +4,33 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="DevOps与CI/CD, null">
-    <meta name="description" content="简单了解了DevOps与CI/CD的概念">
+    <meta name="keywords" content="compiler_principles/第6讲, null">
+    <meta name="description" content="6.1 有限自动机的等价性DFA与NFA的等价性证明思路二者差别：
+
+
+
+
+NFA
+DFA
+
+
+
+初始状态
+不唯一
+唯一
+
+
+弧上的标记
+字（单字字符、ε）
+字符
+
+
+转换关系
+非确定
+确定
+
+
+如果能够消除二者在初始状态，在弧上的标记以及">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -13,7 +38,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>DevOps与CI/CD | null</title>
+    <title>compiler_principles/第6讲 | null</title>
     <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -255,12 +280,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/15.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/0.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">DevOps与CI/CD</h1>
+                    <h1 class="description center-align post-title">compiler_principles/第6讲</h1>
                 </div>
             </div>
         </div>
@@ -375,21 +400,9 @@
             <div class="row tag-cate">
                 <div class="col s7">
                     
-                    <div class="article-tag">
-                        
-                            <a href="/tags/DevOps/">
-                                <span class="chip bg-color">DevOps</span>
-                            </a>
-                        
-                            <a href="/tags/CI/">
-                                <span class="chip bg-color">CI</span>
-                            </a>
-                        
-                            <a href="/tags/CD/">
-                                <span class="chip bg-color">CD</span>
-                            </a>
-                        
-                    </div>
+                          <div class="article-tag">
+                            <span class="chip bg-color">无标签</span>
+                          </div>
                     
                 </div>
                 <div class="col s5 right-align">
@@ -401,7 +414,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-03-31
+                    2020-05-07
                 </div>
                 
 
@@ -410,14 +423,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.9k
+                    1.5k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    6 分
+                    5 分
                 </div>
                 
 				
@@ -428,121 +441,148 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="DevOps"><a href="#DevOps" class="headerlink" title="DevOps"></a>DevOps</h2><h4 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h4><blockquote>
-<p>DevOps 一词的来自于 Development 和 Operations 的组合，突出重视软件开发人员和运维人员的沟通合作，通过自动化流程来使得软件构建、测试、发布更加快捷、频繁和可靠</p>
-</blockquote>
-<p>DevOps 其实包含了三个部分:</p>
-<ul>
-<li>开发</li>
-<li>测试</li>
-<li>运维</li>
+                <h2 id="6-1-有限自动机的等价性"><a href="#6-1-有限自动机的等价性" class="headerlink" title="6.1 有限自动机的等价性"></a>6.1 有限自动机的等价性</h2><h4 id="DFA与NFA的等价性证明思路"><a href="#DFA与NFA的等价性证明思路" class="headerlink" title="DFA与NFA的等价性证明思路"></a>DFA与NFA的等价性证明思路</h4><p>二者差别：</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>NFA</th>
+<th>DFA</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>初始状态</td>
+<td>不唯一</td>
+<td>唯一</td>
+</tr>
+<tr>
+<td>弧上的标记</td>
+<td>字（单字字符、ε）</td>
+<td>字符</td>
+</tr>
+<tr>
+<td>转换关系</td>
+<td>非确定</td>
+<td>确定</td>
+</tr>
+</tbody></table>
+<p><strong>如果能够消除二者在初始状态，在弧上的标记以及在转换关系上这三方面的差别，就能够把NFA变换成DFA</strong></p>
+<h4 id="DFA与NFA的等价性证明"><a href="#DFA与NFA的等价性证明" class="headerlink" title="DFA与NFA的等价性证明"></a>DFA与NFA的等价性证明</h4><p>假定NFA M=&lt;S,Σ,δ, S<del>0</del>, F&gt;，我们对M的状 态转换图进行以下改造：</p>
+<h5 id="解决初始状态唯一性"><a href="#解决初始状态唯一性" class="headerlink" title="解决初始状态唯一性"></a>解决初始状态唯一性</h5><ul>
+<li>引进新的初态结点X和终态结点Y，X,Y ∉S，从X到S<del>0</del>中任意状态结点连一条ε箭弧， 从F中任意状态结点连一条 ε箭弧到Y</li>
 </ul>
-<p>一个团队中各个角色存在天然上的工作矛盾：<br><img src="https://raw.githubusercontent.com/daily-record/daily-record-img/master/20200331144227.png" alt=""></p>
-<p>对于运维来说，稳定性压到一切，新feature越少越好；而对于研发来说，能够开发的新功能越多越好，这种矛盾会导致大量资源的浪费。</p>
-<p>DevOps 希望将产品交付过程中各种壁垒打破，让Dev和Ops一体化，通过自动化工具辅助开发完成运维的部分工作，减少成本。</p>
-</br>
-
-<h4 id="概述工作流"><a href="#概述工作流" class="headerlink" title="概述工作流"></a>概述工作流</h4><h5 id="传统工作流"><a href="#传统工作流" class="headerlink" title="传统工作流"></a>传统工作流</h5><p>PD(Demond) -&gt; [DEV(Coding) -&gt; SCM(Build) -&gt; QA(Test) -&gt; OPS(Deploy)]-&gt; Release<br>PD 提出需求 -&gt; [开发者根据需求写代码 -&gt; SCM 拿着代码去打包 -&gt; QA 测试 -&gt; 运维进行上线部署]</p>
-</br>
-
-<h4 id="DevOps工作流"><a href="#DevOps工作流" class="headerlink" title="DevOps工作流"></a>DevOps工作流</h4><p>通过高度自动化工具与流程来使得软件构建、测试、发布更加快捷、频繁和可靠；</p>
-<p>同时，<code>CI/CD</code>（持续集成/持续部署）可看作传统工作流的增强版；<code>DevOps</code> 可看作是 <code>CI/CD</code> 的增强版。</p>
-<p><img src="https://raw.githubusercontent.com/daily-record/daily-record-img/master/20200331150116.png" alt=""></p>
-<p><img src="https://raw.githubusercontent.com/daily-record/daily-record-img/master/20200331150144.png" alt=""></p>
-</br>
-
-<h2 id="CI与CD"><a href="#CI与CD" class="headerlink" title="CI与CD"></a>CI与CD</h2><p>CI/CD 是一种通过在应用开发阶段引入自动化来频繁向客户交付应用的方法。CI/CD 的核心概念是持续集成、持续交付和持续部署。</p>
-<p>不过，由于还需要编写自动化测试以适应 CI/CD 管道中的各种测试和发布阶段，因此前期投资还是会很大。</p>
+<p><img src="%E7%AC%AC6%E8%AE%B2.assets%5Cimage-20200307183141018.png" alt="image-20200307183141018"></p>
+<h5 id="简化弧上的标记"><a href="#简化弧上的标记" class="headerlink" title="简化弧上的标记"></a>简化弧上的标记</h5><ul>
+<li>对M的状态转换图进一步施行替换，其中k是新引入的状态</li>
+</ul>
+<p><img src="%E7%AC%AC6%E8%AE%B2.assets%5Cimage-20200307183303977.png" alt="image-20200307183303977"></p>
 <ul>
-<li>CI:持续集成(Continuous Integration)</li>
-<li>CD:<ul>
-<li>持续交付(Continuous Delivery)</li>
-<li>持续部署(Continuous Deployment)</li>
+<li>逐步把图转变为每条弧只标记为 Σ上的一个字符或 ε，最后得到一个NFA M’，显然 L(M’)=L(M)</li>
+</ul>
+<p><img src="%E7%AC%AC6%E8%AE%B2.assets%5Cimage-20200307183610945.png" alt="image-20200307183610945"></p>
+<h5 id="解决ε弧和转换关系"><a href="#解决ε弧和转换关系" class="headerlink" title="解决ε弧和转换关系"></a>解决ε弧和转换关系</h5><p><strong>NFA确定化–子集法</strong></p>
+<h6 id="解决ε弧"><a href="#解决ε弧" class="headerlink" title="解决ε弧"></a>解决ε弧</h6><p>设I是的状态集的一个子集，定义I的 ε-闭包 <code>ε-closure(I)</code>为:</p>
+<ul>
+<li>若s ∈I，则<code>s∈ε-closure(I)</code>；</li>
+<li>若s ∈I，则从s出发经过<strong>任意</strong>条ε弧而能到达的任何状态s’都属于 <code>ε-closure(I)</code></li>
+</ul>
+<p>即<br>$$<br>ε-closure(I)=I ∪{s’|从某个s ∈I出发经过任意条 ε 弧能到达s’}<br>$$</p>
+<p>设a是 Σ中的一个字符，定义<br>$$<br>I_a = ε-closure(J)<br>$$<br>其中，J为I中的某个状态出发经过一条a弧而到达的状态集合</p>
+<p><img src="%E7%AC%AC6%E8%AE%B2.assets%5Cimage-20200307210803068.png" alt="image-20200307210803068"></p>
+<p>例：</p>
+<p><img src="%E7%AC%AC6%E8%AE%B2.assets%5Cimage-20200307215358059.png" alt="image-20200307215358059"></p>
+<h6 id="确定化"><a href="#确定化" class="headerlink" title="确定化"></a>确定化</h6><p>不失一般性，设字母表只包含两个a 和 b，构造一张计算状态集的转换表：</p>
+<ol>
+<li>首先，置第 1行第 1列为 ε - closure({X})求出这一列的I<del>a</del>，I<del>b</del></li>
+<li>检查这两个I<del>a</del>，I<del>b</del>，看它们是否已在表中的第一列中出现，把未曾出现的填入后面的空行的第 1列上，求出每行第 2， 3列上的集合…</li>
+<li>重复上述过程，直到所有第 2，3列子集全部出现在第一列为止</li>
+</ol>
+<p><img src="%E7%AC%AC6%E8%AE%B2.assets%5Cimage-20200307232209075.png" alt="image-20200307232209075"></p>
+<h5 id="状态转换关系表推算样例"><a href="#状态转换关系表推算样例" class="headerlink" title="状态转换关系表推算样例"></a>状态转换关系表推算样例</h5><p><img src="%E7%AC%AC6%E8%AE%B2.assets%5Cimage-20200307233656083.png" alt="image-20200307233656083"></p>
+<ul>
+<li>把表看成状态转换矩阵，子集视为状态</li>
+<li>转换表唯一刻划了一个确定 的有限自动机M<ul>
+<li><code>初态</code> 是 ε-closure({X})</li>
+<li><code>终态</code>是含有原终态Y的子集</li>
+</ul>
+</li>
+<li>对于每个NFA M存在一个 DFA M ’ ，使得 L(M)=L(M’)</li>
+</ul>
+<p>最终结果：</p>
+<p><img src="%E7%AC%AC6%E8%AE%B2.assets%5Cimage-20200307234407769.png" alt="image-20200307234407769"></p>
+<h4 id="DFA的化简"><a href="#DFA的化简" class="headerlink" title="DFA的化简"></a>DFA的化简</h4><blockquote>
+<p>对于给定的DFA M，寻找一个状态数比M少的DFA M’，使得L(M)=L(M’)</p>
+</blockquote>
+<ul>
+<li>状态的等价性<ul>
+<li>假设s和t为M的两个状态，称s和t<strong>等价</strong>：如果从状态 s出发能读出某个字 α而停止于<strong>终态</strong>，那么同样，从t 出发也能读出 α而停止于<strong>终态</strong>；反之亦然（s和t到达的终态可以不一样但必须得是终态）</li>
+<li>两个状态不等价，则称它们是可区别的</li>
 </ul>
 </li>
 </ul>
-</br>
-
-<h4 id="持续集成"><a href="#持续集成" class="headerlink" title="持续集成"></a>持续集成</h4><p><strong>持续集成指的是，频繁地（一天多次）将代码集成到主干。</strong></p>
-<p>持续集成可以帮助开发人员更加频繁地（有时甚至每天）将代码更改合并到共享分支或“主干”中。一旦开发人员对应用所做的更改被合并，系统就会通过自动构建应用并运行不同级别的自动化测试（通常是单元测试和集成测试）来验证这些更改，确保这些更改没有对应用造成破坏。这意味着测试内容涵盖了从类和函数到构成整个应用的不同模块。如果自动化测试发现新代码和现有代码之间存在冲突，CI 可以更加轻松地快速修复这些错误。</p>
-</br>
-
-<h5 id="目的"><a href="#目的" class="headerlink" title="目的"></a>目的</h5><p><strong>让产品可以快速迭代，同时还能保持高质量。</strong>它的核心措施是，代码集成到主干之前，<strong>必须通过自动化测试</strong>。只要有一个测试用例失败，就不能集成。</p>
-</br>
-
-<h5 id="好处"><a href="#好处" class="headerlink" title="好处"></a>好处</h5><ol>
-<li><strong>快速发现错误。</strong>每完成一点更新，就集成到主干，可以快速发现错误，定位错误也比较容易。</li>
-<li><strong>防止分支大幅偏离主干。</strong>如果不是经常集成，主干又在不断更新，会导致以后集成的难度会非常的大，甚至难以集成。</li>
-</ol>
+<p>两个状态s和t是可区分的，是指：</p>
+<p><strong><code>存在</code>一个字 α，要么s读出 α停止于终态而t读出 α停止于非终态，要么t读出 α停止于终态而s读 出 α停止于非终态</strong></p>
+<h5 id="化简的基本思想"><a href="#化简的基本思想" class="headerlink" title="化简的基本思想"></a>化简的基本思想</h5><ul>
+<li>把M的状态集划分为一些不相交的子集，使得任何两个不同子集的状态是可区别的，而同一子集的任何两个状态是等价的</li>
+<li>最后，让每个子集选出一个代表，同时消去其他状态</li>
+</ul>
+<p><strong>按照上述原则对DFA的状态集合S进行第一次划分，正确的分法是：<code>终态和非终态</code></strong></p>
 <blockquote>
-<p>持续集成并不能消除Bug，而是让它们非常容易发现和改正。</p>
+<p>可区别：存在一个字 α，要么 s读出 α停止于终态而 t读出 α 停 止于非终态，要么 t读出 α停止于终态而 s读出 α停止于非终态</p>
 </blockquote>
-</br>
-
-<h4 id="持续交付"><a href="#持续交付" class="headerlink" title="持续交付"></a>持续交付</h4><p><strong>持续交付指的是，频繁地将软件的新版本，交付给质量团队或者用户，以供评审。</strong>如果评审通过，代码就进入生产阶段。</p>
-<p>在持续交付中，每个阶段（从代码更改的合并，到生产就绪型构建版本的交付）都涉及测试自动化和代码发布自动化。在流程结束时，运维团队可以快速、轻松地将应用部署到生产环境中。</p>
-<p>持续交付可以看作持续集成的下一步。它强调的是，不管怎么更新，软件是随时随地可以交付的。</p>
-</br>
-
-<h4 id="持续部署"><a href="#持续部署" class="headerlink" title="持续部署"></a>持续部署</h4><p><strong>持续部署是持续交付的下一步，指的是代码通过评审以后，自动部署到生产环境。</strong></p>
-<p>持续部署的目标是，代码在任何时刻都是可部署的，可以进入生产阶段。</p>
-<p>持续部署的前提是能自动化完成测试、构建、部署等步骤。</p>
-<p>持续部署意味着开发人员对应用的更改在编写后的几分钟内就能生效（假设它通过了自动化测试）。这更加便于持续接收和整合用户反馈。总而言之，所有这些 CI/CD 的关联步骤都有助于降低应用的部署风险，因此更便于以小件的方式（而非一次性）发布对应用的更改。</p>
-</br>
-
-<h2 id="工作流程"><a href="#工作流程" class="headerlink" title="工作流程"></a>工作流程</h2><h4 id="DevOps工具链"><a href="#DevOps工具链" class="headerlink" title="DevOps工具链"></a>DevOps工具链</h4><p><img src="https://raw.githubusercontent.com/daily-record/daily-record-img/master/20200331175003.png" alt=""></p>
-<ul>
-<li>版本控制&amp;协作开发：GitHub、GitLab、BitBucket、SubVersion、Coding、Bazaar</li>
-<li>自动化构建和测试: Apache Ant、Maven 、Selenium、PyUnit、QUnit、JMeter、Gradle、PHPUnit</li>
-<li>持续集成&amp;交付:Jenkins、Capistrano、BuildBot、Fabric、Tinderbox、Travis CI、flow.ci Continuum、LuntBuild、CruiseControl、Integrity、Gump、Go</li>
-<li>容器平台: Docker、Rocket、Ubuntu（LXC）、第三方厂商如（AWS/阿里云）</li>
-<li>配置管理：Chef、Puppet、CFengine、Bash、Rudder、Powershell、RunDeck、Saltstack、Ansible</li>
-<li>微服务平台：OpenShift、Cloud Foundry、Kubernetes、Mesosphere</li>
-<li>服务开通：Puppet、Docker Swarm、Vagrant、Powershell、OpenStack Heat</li>
-<li>日志管理：Logstash、CollectD、StatsD</li>
-<li>监控，警告&amp;分析：Nagios、Ganglia、Sensu、zabbix、ICINGA、Graphite、Kibana</li>
+<p><strong>归根结底，需要找到一个字，把状态集区分开来，而 <code>ε</code> 可以把终态与非终态区分开来（终态经过ε依然在终态，而非终态经过ε依然处于非终态）</strong></p>
+<h4 id="DFA化简算法"><a href="#DFA化简算法" class="headerlink" title="DFA化简算法"></a>DFA化简算法</h4><p> <img src="%E7%AC%AC6%E8%AE%B2.assets%5Cimage-20200308155035199.png" alt="image-20200308155035199"></p>
+<h2 id="6-2-正规式与有限自动机的等价性"><a href="#6-2-正规式与有限自动机的等价性" class="headerlink" title="6.2 正规式与有限自动机的等价性"></a>6.2 正规式与有限自动机的等价性</h2><h4 id="正规式与有限自动机的等价性"><a href="#正规式与有限自动机的等价性" class="headerlink" title="正规式与有限自动机的等价性"></a>正规式与有限自动机的等价性</h4><ul>
+<li>一个正规式r与一个有限自动机M等价<ul>
+<li>L(r)=L(M)</li>
 </ul>
-</br>
-
-<h4 id="1-提交"><a href="#1-提交" class="headerlink" title="1. 提交"></a>1. 提交</h4><p>开发者向代码仓库提交代码。所有后面的步骤都始于本地代码的一次提交（commit）。</p>
-</br>
-
-<h4 id="2-测试（第一轮）"><a href="#2-测试（第一轮）" class="headerlink" title="2. 测试（第一轮）"></a>2. 测试（第一轮）</h4><p>代码仓库对commit操作配置了钩子（hook），只要提交代码或者合并进主干，就会跑自动化测试。</p>
-<p>测试分为多钟：</p>
-<ul>
-<li>单元测试：针对函数或模块的测试</li>
-<li>集成测试：针对整体产品的某个功能的测试，又称功能测试</li>
-<li>端对端测试：从用户界面直达数据库的全链路测试</li>
+</li>
+<li>FA -&gt;正规式<ul>
+<li>对任何FA M，都存在一个正规式r，使得L(r)=L(M)</li>
 </ul>
-<p>第一轮至少要跑单元测试。</p>
-</br>
-
-<h4 id="3-构建"><a href="#3-构建" class="headerlink" title="3. 构建"></a>3. 构建</h4><p>通过第一轮测试，代码就可以合并进主干，就算可以交付了。</p>
-<p>交付后，就先进行构建（build），再进入第二轮测试。所谓构建，指的是将源码转换为可以运行的实际代码，比如安装依赖，配置各种资源（样式表、JS脚本、图片）等等。</p>
-<p>常用的构建工具如下：</p>
-<ul>
-<li>Jenkins</li>
-<li>Travis</li>
-<li>Codeship</li>
-<li>Strider</li>
+</li>
+<li>正规式 -&gt; FA<ul>
+<li>对任何正规式r，都存在一个FA M，使得L(M)=L(r)</li>
 </ul>
-</br>
-
-<h4 id="4-测试（第二轮）"><a href="#4-测试（第二轮）" class="headerlink" title="4. 测试（第二轮）"></a>4. 测试（第二轮）</h4><p>构建完成，就要进行第二轮测试。如果第一轮已经涵盖了所有测试内容，第二轮可以省略，当然，这时构建步骤也要移到第一轮测试前面。</p>
-<p>第二轮是全面测试，单元测试和集成测试都会跑，有条件的话，也要做端对端测试。所有测试以自动化为主，少数无法自动化的测试用例，就要人工跑。</p>
-<p>需要强调的是，新版本的每一个更新点都必须测试到。如果测试的覆盖率不高，进入后面的部署阶段后，很可能会出现严重的问题。</p>
-</br>
-
-<h4 id="5-部署"><a href="#5-部署" class="headerlink" title="5. 部署"></a>5. 部署</h4><p>通过了第二轮测试，当前代码就是一个可以直接部署的版本（artifact）。将这个版本的所有文件打包（ tar filename.tar * ）存档，发到生产服务器。</p>
-<p>生产服务器将打包文件，解包成本地的一个目录，再将运行路径的符号链接（symlink）指向这个目录，然后重新启动应用。这方面的部署工具有Ansible，Chef，Puppet等。</p>
-</br>
-
-<h4 id="6-回滚"><a href="#6-回滚" class="headerlink" title="6. 回滚"></a>6. 回滚</h4><p>一旦当前版本发生问题，就要回滚到上一个版本的构建结果。最简单的做法就是修改一下符号链接，指向上一个版本的目录。</p>
-</br>
-
-<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><p><a href="http://www.ruanyifeng.com/blog/2015/09/continuous-integration.html" target="_blank" rel="noopener">阮一峰：持续集成是什么</a></p>
-<p><a href="https://marlous.github.io/2018/10/31/DevOps%20%E4%B8%8E%20CICD%20%E7%9A%84%E6%A6%82%E5%BF%B5/#%E4%B8%89-DevOps-%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1" target="_blank" rel="noopener">DevOps工作流</a></p>
-<p><a href="https://www.redhat.com/zh/topics/devops/what-is-ci-cd" target="_blank" rel="noopener">RedHat：什么是CI/CD</a></p>
+</li>
+</ul>
+<h4 id="为NFA构造正规式"><a href="#为NFA构造正规式" class="headerlink" title="为NFA构造正规式"></a>为NFA构造正规式</h4><p>假定NFA M=&lt;S,Σ,δ, S<del>0</del>, F&gt;，我们对M的状态转换图进行以下改造：</p>
+<ul>
+<li>在M的转换图上加进两个状态X和Y，从X用 ε弧连接到M的所有初态结点，从M的所有终态结点用 ε弧连接到Y</li>
+<li>然后，反复使用下面的三条规则，逐步消去结点， 直到只剩下X和Y为止</li>
+</ul>
+<p><img src="%E7%AC%AC6%E8%AE%B2.assets%5Cimage-20200308171844080.png" alt="image-20200308171844080"></p>
+<p><img src="%E7%AC%AC6%E8%AE%B2.assets%5Cimage-20200308205920564.png" alt="image-20200308205920564"></p>
+<ul>
+<li><strong>对任何FA M，都存在一个正规式r，使得L(r)=L(M)</strong></li>
+</ul>
+<h4 id="为正规式构造NFA"><a href="#为正规式构造NFA" class="headerlink" title="为正规式构造NFA"></a>为正规式构造NFA</h4><p>对给定正规式r中的运算符数目进行归纳（归纳法）：</p>
+<ul>
+<li>验证r中的运算符数目为0时，结论成立</li>
+<li>假设结论对于运算符数目少于k(k ≥1)的正规式成立</li>
+<li>基于该假设，证明结论对于运算符数目为k的正规式成立</li>
+</ul>
+<ol>
+<li>若r具有零个运算符，则r= ε 或r= φ 或r=a，其中 a∈Σ，针对上述3类正规式r，分别按照下图构造NFA M，M只有一个初态和一个终态，而且没有从终态出发的箭弧，而且使L(M)和对应的L(r)相等</li>
+</ol>
+<p><img src="%E7%AC%AC6%E8%AE%B2.assets%5Cimage-20200308214257087.png" alt="image-20200308214257087"></p>
+<ol start="2">
+<li>假设对于运算符数目少于k(k ≥1) 的正规式成立</li>
+</ol>
+<p><img src="%E7%AC%AC6%E8%AE%B2.assets%5Cimage-20200308234846121.png" alt="image-20200308234846121"></p>
+<p><img src="%E7%AC%AC6%E8%AE%B2.assets%5Cimage-20200308234856521.png" alt="image-20200308234856521"></p>
+<p><img src="%E7%AC%AC6%E8%AE%B2.assets%5Cimage-20200308234907737.png" alt="image-20200308234907737"></p>
+<h4 id="由正规式构造DFA示例"><a href="#由正规式构造DFA示例" class="headerlink" title="由正规式构造DFA示例"></a>由正规式构造DFA示例</h4><p><img src="%E7%AC%AC6%E8%AE%B2.assets%5Cimage-20200309000326351.png" alt="image-20200309000326351"></p>
+<h2 id="6-3-词法分析程序自动生成"><a href="#6-3-词法分析程序自动生成" class="headerlink" title="6.3 词法分析程序自动生成"></a>6.3 词法分析程序自动生成</h2><h4 id="词法分析器的自动产生–LEX"><a href="#词法分析器的自动产生–LEX" class="headerlink" title="词法分析器的自动产生–LEX"></a>词法分析器的自动产生–LEX</h4><p><img src="%E7%AC%AC6%E8%AE%B2.assets%5Cimage-20200309002138905.png" alt="image-20200309002138905"></p>
+<p><img src="%E7%AC%AC6%E8%AE%B2.assets%5Cimage-20200309003237097.png" alt="image-20200309003237097"></p>
+<p><img src="%E7%AC%AC6%E8%AE%B2.assets%5Cimage-20200309003514036.png" alt="image-20200309003514036"></p>
+<ul>
+<li><p><code>辅助定义</code>：以文法形式，给一些常用的正规式进行命名</p>
+</li>
+<li><p><code>识别规则</code>：多条词法分析规则，每一个规则都要返回单词对应的种类编码及对应的值</p>
+</li>
+</ul>
+<h5 id="LEX工作过程"><a href="#LEX工作过程" class="headerlink" title="LEX工作过程"></a>LEX工作过程</h5><p><img src="%E7%AC%AC6%E8%AE%B2.assets%5Cimage-20200309004110313.png" alt="image-20200309004110313"></p>
 
             </div>
             <hr/>
@@ -568,7 +608,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://yoursite.com/2020/03/31/devops-yu-ci-cd/">http://yoursite.com/2020/03/31/devops-yu-ci-cd/</a>
+                    <a href="http://yoursite.com/2020/05/07/compiler-principles/di-6-jiang/">http://yoursite.com/2020/05/07/compiler-principles/di-6-jiang/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -605,19 +645,7 @@
                 <div class="post-meta__tag-list" style="display: inline-block;">
                     
                         <div class="article-tag">
-                            
-                                <a href="/tags/DevOps/">
-                                    <span class="chip bg-color">DevOps</span>
-                                </a>
-                            
-                                <a href="/tags/CI/">
-                                    <span class="chip bg-color">CI</span>
-                                </a>
-                            
-                                <a href="/tags/CD/">
-                                    <span class="chip bg-color">CD</span>
-                                </a>
-                            
+                            <span class="chip bg-color">无标签</span>
                         </div>
                     
                 </div>
@@ -660,28 +688,26 @@
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2020/05/07/compiler-principles/di-10-jiang/">
+                <a href="/2020/05/07/compiler-principles/di-7-jiang/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/9.jpg" class="responsive-img" alt="compiler_principles/第10讲">
+                        <img src="/medias/featureimages/17.jpg" class="responsive-img" alt="compiler_principles/第7讲">
                         
-                        <span class="card-title">compiler_principles/第10讲</span>
+                        <span class="card-title">compiler_principles/第7讲</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            语法分析-自下而上分析1自下而上分析定义：
+                            语法分析-自上而下分析1自上而下分析的基本问题语法分析的任务
+分析一个文法的句子结构
 
-从输入串开始，逐步进行归约，直到文法的开始符号
-归约：根据文法的产生式规则，把串中出现的产生式的右部替换成左部符号
-从树叶节点开始，构造语法树
-算符优先分析法、LR分析法
+语法分析器的功能
+按照文法的产生式（语言的语法规则），识别输入符号串是否为一个句子（合式程序）
 
-
-移进－归约思想
-用
+语法分析器在编译器中的地位
+语法分析的方法自下而上（B
                         
                     </div>
                     <div class="publish-info">
@@ -703,27 +729,40 @@
         
         <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge right-badge text-color">
-                本篇&nbsp;<i class="far fa-dot-circle"></i>
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/03/31/devops-yu-ci-cd/">
+                <a href="/2020/05/07/compiler-principles/di-4-jiang/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/15.jpg" class="responsive-img" alt="DevOps与CI/CD">
+                        <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="compiler_principles/第4讲">
                         
-                        <span class="card-title">DevOps与CI/CD</span>
+                        <span class="card-title">compiler_principles/第4讲</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            简单了解了DevOps与CI/CD的概念
+                            4.1 词法分析概述词法分析
+词法分析器的设计
+
+正规表达式与有限自动机
+
+词法分析器的自动产生–LEX
+
+
+词法分析的任务
+从左至右逐个字符地对源程序进行扫描，产生一个个单词符号
+
+
+词法分析器(Lexical Analyzer)
+扫描器
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-03-31
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-05-07
                             </span>
                         <span class="publish-author">
                             
@@ -732,23 +771,6 @@
                             
                         </span>
                     </div>
-                </div>
-
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/DevOps/">
-                        <span class="chip bg-color">DevOps</span>
-                    </a>
-                    
-                    <a href="/tags/CI/">
-                        <span class="chip bg-color">CI</span>
-                    </a>
-                    
-                    <a href="/tags/CD/">
-                        <span class="chip bg-color">CD</span>
-                    </a>
-                    
                 </div>
                 
             </div>
