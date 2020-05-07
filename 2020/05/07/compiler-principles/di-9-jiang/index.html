@@ -575,29 +575,36 @@ END<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span>
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2020/05/07/test/">
+                <a href="/2020/05/07/compiler-principles/di-9-jiang/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/10.jpg" class="responsive-img" alt="test">
+                        <img src="/medias/featureimages/3.jpg" class="responsive-img" alt="compiler_principles/第9讲">
                         
-                        <span class="card-title">test</span>
+                        <span class="card-title">compiler_principles/第9讲</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            shiyixai
+                            语法分析-自上而下分析3预测分析程序构成
+总控程序：根据现行栈顶符号和当前输入符号， 执行动作
+分析表 M[A， a]矩阵：A ∈ V N ，a ∈ VT 是终 结符或‘＃’
+分析栈 STACK 用于存放文法符号
+
+
+总控程序总是根据现行栈
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-05-07
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-05-07
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-user fa-fw"></i>
@@ -606,6 +613,7 @@ END<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span>
                         </span>
                     </div>
                 </div>
+
                 
             </div>
         </div>
@@ -616,22 +624,26 @@ END<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span>
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/05/07/compiler-principles/di-8-jiang/">
+                <a href="/2020/05/07/compiler-principles/di-7-jiang/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/10.jpg" class="responsive-img" alt="compiler_principles/第8讲">
+                        <img src="/medias/featureimages/17.jpg" class="responsive-img" alt="compiler_principles/第7讲">
                         
-                        <span class="card-title">compiler_principles/第8讲</span>
+                        <span class="card-title">compiler_principles/第7讲</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            语法分析-自上而下分析2构造递归下降分析器递归下降分析器
-分析程序由一组子程序组成， 对每一语法单位(非终结符)构造一个相应的子程序，识别对应的语法单位
-通过子程序间的相互调用实现对输入串的识别，如 A → BcD
-子程序A调用子程序B识别
+                            语法分析-自上而下分析1自上而下分析的基本问题语法分析的任务
+分析一个文法的句子结构
+
+语法分析器的功能
+按照文法的产生式（语言的语法规则），识别输入符号串是否为一个句子（合式程序）
+
+语法分析器在编译器中的地位
+语法分析的方法自下而上（B
                         
                     </div>
                     <div class="publish-info">
