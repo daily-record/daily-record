@@ -89,7 +89,7 @@ script: command1 && command2
 
 `script` 阶段结束后，可以设置[通知步骤](https://docs.travis-ci.com/user/notifications/)和[部署](https://docs.travis-ci.com/user/deployment/)，但并不是必须的。
 
-部署的脚本可以在 `script` 阶段执行，也可以使用 `Travis` 为几十种常见服务提供的快捷部署功能。比如部署到 `github pages`，可以使用 `provider: pages` 字段：
+部署的脚本可以在 `script` 阶段执行，也可以使用 Travis 为几十种常见服务提供的快捷部署功能。比如部署到 `github pages`，可以使用 `provider: pages` 字段：
 
 ```yml
 deploy:
@@ -104,7 +104,7 @@ deploy:
 
 ##### 钩子方法 
 
-`Travis` 为上面这些阶段提供了7个钩子：
+Travis 为上面这些阶段提供了7个钩子：
 
 - `before_install`: install 阶段之前执行
 - `before_script`: script 阶段之前执行
@@ -129,7 +129,7 @@ deploy:
 
 ##### 运行状态
 
-`Travis` 每次运行，可能会返回四种状态：
+Travis 每次运行，可能会返回四种状态：
 
 - `passed`: 运行成功，所有步骤的退出码都是0
 - `canceled`: 用户取消执行
@@ -147,14 +147,14 @@ deploy:
 
 ![](https://raw.githubusercontent.com/daily-record/daily-record-img/master/20200507222120.png)
 
-这是 `Travis CI` 当中就可以访问所有的仓库了，不过这时它只能访问仓库，还需要进一步配置才能完成自动化部署。
+这时 Travis 当中就可以访问所有的仓库了，不过这时它只能访问仓库，还需要进一步配置才能完成自动化部署。
 
 
 #### `Travis CI` 环境变量
 
-在 `Travis CI` 中可以通过设置环境变量来传递一些不便于写在配置文件中的值（如密码、密钥之类的）。
+在 `Travis` 中可以通过设置环境变量来传递一些不便于写在配置文件中的值（如密码、密钥之类的）。
 
-由于构建环境需要对应仓库的权限，所以要使用 `GitHub Personal Access Token`，在命令行中执行git操作用其代替密码（当然，也可以使用密码，只不过更改密码后 `Travis CI` 无法完成自动构建任务），可以在github中获取 `token` 并将其作为变量存入 `Travis CI` 中，这样就可以直接在配置文件中调用此变量进行使用，由于只有 `Travis Ci` 有变量的值，所以安全性还是有保障的。
+由于构建环境需要对应仓库的权限，所以要使用 `GitHub Personal Access Token`，在命令行中执行git操作用其代替密码（当然，也可以使用密码，只不过更改密码后 `Travis CI` 无法完成自动构建任务），可以在github中获取 `token` 并将其作为变量存入 `Travis CI` 中，这样就可以直接在配置文件中调用此变量进行使用，由于只有 `Travis CI` 有变量的值，所以安全性还是有保障的。
 
 
 ##### 获取 `GitHub Personal Access Token`
@@ -175,7 +175,7 @@ deploy:
 
 #### 配置 `.travis.yml` 文件
 
-在上面所有操作过后，最后剩下的就是利用配置文件指定 `Travis CI` 的行为。
+在上面所有操作过后，最后剩下的就是利用配置文件指定 Travis 的行为。
 
 ##### 写入部署环境
 
@@ -200,7 +200,7 @@ cache:
 
 ##### 指定操作的分支
 
-由于repo的 `master` 分支只能放hexo生成的静态文件(public文件夹)，所以需要将hexo的源目录丢在其它分支上，我使用 `hexo` 分支存储这些文件，所以只需要让 `Travis` 检测 `hexo` 分支的变动就行。
+由于repo的 `master` 分支只能放hexo生成的静态文件(public文件夹)，所以需要将hexo的源目录丢在其它分支上，我使用 `hexo` 分支存储这些文件，所以只需要让 Traviss 检测 `hexo` 分支的变动就行。
 
 ```yml
 # assign build branches
@@ -211,7 +211,7 @@ branches:
 
 ##### 构建
 
-这个按照hexo生成的顺序写入命令即可，可以在 `Travis` 的虚拟环境中正常生成所有静态文件
+这个按照hexo生成的顺序写入命令即可，可以在 Travis 的虚拟环境中正常生成所有静态文件
 
 ```yml
 before_install:
@@ -230,7 +230,7 @@ script:
 
 ##### 部署
 
-使用 `Travis` 提供的快捷部署，这样就不需要自己写入各种git命令push到仓库中。
+使用 Travis 提供的快捷部署，这样就不需要自己写入各种git命令push到仓库中。
 
 详细配置参考官方[GitHub Pages Deployment](https://docs.travis-ci.com/user/deployment/pages/)。
 
@@ -272,7 +272,7 @@ before_install:
   - npm install hexo-deployer-git --save
 
 install:
-  - npm install 
+  - npm install
 
 script:
   - hexo generate # generate static files
