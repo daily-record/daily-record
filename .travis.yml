@@ -1,7 +1,7 @@
 sudo: false
 language: node_js
 node_js:
-  - 12 # use nodejs v10 LTS
+  - 12 # use nodejs v12 LTS
 cache:
   directories:
     - node_modules
@@ -12,7 +12,7 @@ branches:
 
 before_install:
   - npm install -g hexo-server
-  - npm install -g hexo-cli # 安装 hexo
+  - npm install -g hexo-cli # install hexo
   - npm install -g hexo
   - npm install hexo-deployer-git --save
 
@@ -33,4 +33,3 @@ deploy:
   target_branch: master
   local-dir: public # Directory to push to GitHub Pages, defaults to current directory.
                     # Can be specified as an absolute path or a relative path from the current directory.
-
