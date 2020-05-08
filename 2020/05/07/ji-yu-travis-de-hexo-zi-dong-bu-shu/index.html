@@ -461,7 +461,7 @@ install:
 <p>如果想让命令顺序执行，则要写成如下形式：</p>
 <pre class="line-numbers language-yml"><code class="language-yml">script: command1 && command2<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <h5 id="deploy-字段"><a href="#deploy-字段" class="headerlink" title="deploy 字段"></a><code>deploy</code> 字段</h5><p><code>script</code> 阶段结束后，可以设置<a href="https://docs.travis-ci.com/user/notifications/" target="_blank" rel="noopener">通知步骤</a>和<a href="https://docs.travis-ci.com/user/deployment/" target="_blank" rel="noopener">部署</a>，但并不是必须的。</p>
-<p>部署的脚本可以在 <code>script</code> 阶段执行，也可以使用 <code>Travis</code> 为几十种常见服务提供的快捷部署功能。比如部署到 <code>github pages</code>，可以使用 <code>provider: pages</code> 字段：</p>
+<p>部署的脚本可以在 <code>script</code> 阶段执行，也可以使用 Travis 为几十种常见服务提供的快捷部署功能。比如部署到 <code>github pages</code>，可以使用 <code>provider: pages</code> 字段：</p>
 <pre class="line-numbers language-yml"><code class="language-yml">deploy:
   provider: pages
   skip_cleanup: true
@@ -469,7 +469,7 @@ install:
   on:
     branch: master<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>更多的部署方式，可以查看<a href="https://docs.travis-ci.com/user/deployment/" target="_blank" rel="noopener">官方Deplyment文档</a>。</p>
-<h5 id="钩子方法"><a href="#钩子方法" class="headerlink" title="钩子方法"></a>钩子方法</h5><p><code>Travis</code> 为上面这些阶段提供了7个钩子：</p>
+<h5 id="钩子方法"><a href="#钩子方法" class="headerlink" title="钩子方法"></a>钩子方法</h5><p>Travis 为上面这些阶段提供了7个钩子：</p>
 <ul>
 <li><code>before_install</code>: install 阶段之前执行</li>
 <li><code>before_script</code>: script 阶段之前执行</li>
@@ -491,7 +491,7 @@ install:
 <li><code>[OPTIONAL] after_deploy</code></li>
 <li><code>after_script</code></li>
 </ol>
-<h5 id="运行状态"><a href="#运行状态" class="headerlink" title="运行状态"></a>运行状态</h5><p><code>Travis</code> 每次运行，可能会返回四种状态：</p>
+<h5 id="运行状态"><a href="#运行状态" class="headerlink" title="运行状态"></a>运行状态</h5><p>Travis 每次运行，可能会返回四种状态：</p>
 <ul>
 <li><code>passed</code>: 运行成功，所有步骤的退出码都是0</li>
 <li><code>canceled</code>: 用户取消执行</li>
@@ -501,15 +501,15 @@ install:
 <h2 id="操作流程"><a href="#操作流程" class="headerlink" title="操作流程"></a>操作流程</h2><h4 id="设置-Travis-CI-的仓库访问权限"><a href="#设置-Travis-CI-的仓库访问权限" class="headerlink" title="设置 Travis CI 的仓库访问权限"></a>设置 <code>Travis CI</code> 的仓库访问权限</h4><p>使用github账号登录 <code>Travis CI</code>，此时会让你在github中安装 <code>Travis CI</code>， 进入github，一步步打开 <code>profile_image -&gt; settings -&gt; Applications</code>，在此处可以看到应用，安装并配置仓库的权限，我给的权限是 <code>All repositories</code>，使其可以访问所有的仓库。</p>
 <p><img src="https://raw.githubusercontent.com/daily-record/daily-record-img/master/20200507222016.png" alt=""></p>
 <p><img src="https://raw.githubusercontent.com/daily-record/daily-record-img/master/20200507222120.png" alt=""></p>
-<p>这是 <code>Travis CI</code> 当中就可以访问所有的仓库了，不过这时它只能访问仓库，还需要进一步配置才能完成自动化部署。</p>
-<h4 id="Travis-CI-环境变量"><a href="#Travis-CI-环境变量" class="headerlink" title="Travis CI 环境变量"></a><code>Travis CI</code> 环境变量</h4><p>在 <code>Travis CI</code> 中可以通过设置环境变量来传递一些不便于写在配置文件中的值（如密码、密钥之类的）。</p>
-<p>由于构建环境需要对应仓库的权限，所以要使用 <code>GitHub Personal Access Token</code>，在命令行中执行git操作用其代替密码（当然，也可以使用密码，只不过更改密码后 <code>Travis CI</code> 无法完成自动构建任务），可以在github中获取 <code>token</code> 并将其作为变量存入 <code>Travis CI</code> 中，这样就可以直接在配置文件中调用此变量进行使用，由于只有 <code>Travis Ci</code> 有变量的值，所以安全性还是有保障的。</p>
+<p>这时 Travis 当中就可以访问所有的仓库了，不过这时它只能访问仓库，还需要进一步配置才能完成自动化部署。</p>
+<h4 id="Travis-CI-环境变量"><a href="#Travis-CI-环境变量" class="headerlink" title="Travis CI 环境变量"></a><code>Travis CI</code> 环境变量</h4><p>在 <code>Travis</code> 中可以通过设置环境变量来传递一些不便于写在配置文件中的值（如密码、密钥之类的）。</p>
+<p>由于构建环境需要对应仓库的权限，所以要使用 <code>GitHub Personal Access Token</code>，在命令行中执行git操作用其代替密码（当然，也可以使用密码，只不过更改密码后 <code>Travis CI</code> 无法完成自动构建任务），可以在github中获取 <code>token</code> 并将其作为变量存入 <code>Travis CI</code> 中，这样就可以直接在配置文件中调用此变量进行使用，由于只有 <code>Travis CI</code> 有变量的值，所以安全性还是有保障的。</p>
 <h5 id="获取-GitHub-Personal-Access-Token"><a href="#获取-GitHub-Personal-Access-Token" class="headerlink" title="获取 GitHub Personal Access Token"></a>获取 <code>GitHub Personal Access Token</code></h5><p>一步步打开 <code>profile_image -&gt; settings -&gt; Developer -&gt; Personal Access Token</code>，生成一个新的 <code>token</code>。由于只需对仓库进行push操作，所以仅把勾上 <code>repo</code> 部分勾上。</p>
 <p><img src="https://raw.githubusercontent.com/daily-record/daily-record-img/master/20200508004800.png" alt=""></p>
 <p>生成的 <code>token</code> 只显示一次，所以要及时保存下来。</p>
 <h5 id="设置-Travis-CI-环境变量"><a href="#设置-Travis-CI-环境变量" class="headerlink" title="设置 Travis CI 环境变量"></a>设置 <code>Travis CI</code> 环境变量</h5><p>打开 <code>Travis CI</code>，进入需要操作的 <code>repo</code> 的settings，添加一个环境变量 <code>GITHUB_TOKEN</code>，将上一步骤中的 <code>token</code> 填入，<code>Branch</code> 选择需要进行构建的源代码分支（All branches也可）。</p>
 <p><img src="https://raw.githubusercontent.com/daily-record/daily-record-img/master/20200508005556.png" alt=""></p>
-<h4 id="配置-travis-yml-文件"><a href="#配置-travis-yml-文件" class="headerlink" title="配置 .travis.yml 文件"></a>配置 <code>.travis.yml</code> 文件</h4><p>在上面所有操作过后，最后剩下的就是利用配置文件指定 <code>Travis CI</code> 的行为。</p>
+<h4 id="配置-travis-yml-文件"><a href="#配置-travis-yml-文件" class="headerlink" title="配置 .travis.yml 文件"></a>配置 <code>.travis.yml</code> 文件</h4><p>在上面所有操作过后，最后剩下的就是利用配置文件指定 Travis 的行为。</p>
 <h5 id="写入部署环境"><a href="#写入部署环境" class="headerlink" title="写入部署环境"></a>写入部署环境</h5><p>指定需要使用的语言及对应的版本。</p>
 <pre class="line-numbers language-yml"><code class="language-yml">sudo: false
 language: node_js
@@ -519,12 +519,12 @@ node_js:
 <pre class="line-numbers language-yml"><code class="language-yml">cache:
   directories:
     - node_modules<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-<h5 id="指定操作的分支"><a href="#指定操作的分支" class="headerlink" title="指定操作的分支"></a>指定操作的分支</h5><p>由于repo的 <code>master</code> 分支只能放hexo生成的静态文件(public文件夹)，所以需要将hexo的源目录丢在其它分支上，我使用 <code>hexo</code> 分支存储这些文件，所以只需要让 <code>Travis</code> 检测 <code>hexo</code> 分支的变动就行。</p>
+<h5 id="指定操作的分支"><a href="#指定操作的分支" class="headerlink" title="指定操作的分支"></a>指定操作的分支</h5><p>由于repo的 <code>master</code> 分支只能放hexo生成的静态文件(public文件夹)，所以需要将hexo的源目录丢在其它分支上，我使用 <code>hexo</code> 分支存储这些文件，所以只需要让 Traviss 检测 <code>hexo</code> 分支的变动就行。</p>
 <pre class="line-numbers language-yml"><code class="language-yml"># assign build branches
 branches:
   only:
     - hexo<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-<h5 id="构建"><a href="#构建" class="headerlink" title="构建"></a>构建</h5><p>这个按照hexo生成的顺序写入命令即可，可以在 <code>Travis</code> 的虚拟环境中正常生成所有静态文件</p>
+<h5 id="构建"><a href="#构建" class="headerlink" title="构建"></a>构建</h5><p>这个按照hexo生成的顺序写入命令即可，可以在 Travis 的虚拟环境中正常生成所有静态文件</p>
 <pre class="line-numbers language-yml"><code class="language-yml">before_install:
   - npm install -g hexo-server
   - npm install -g hexo-cli # install hexo
@@ -536,7 +536,7 @@ install:
 
 script:
   - hexo generate # generate static files<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h5 id="部署"><a href="#部署" class="headerlink" title="部署"></a>部署</h5><p>使用 <code>Travis</code> 提供的快捷部署，这样就不需要自己写入各种git命令push到仓库中。</p>
+<h5 id="部署"><a href="#部署" class="headerlink" title="部署"></a>部署</h5><p>使用 Travis 提供的快捷部署，这样就不需要自己写入各种git命令push到仓库中。</p>
 <p>详细配置参考官方<a href="https://docs.travis-ci.com/user/deployment/pages/" target="_blank" rel="noopener">GitHub Pages Deployment</a>。</p>
 <p>以下参数大概的意思就是使用github的快捷部署，将生成的文件夹 <code>local-dir: public</code> push到github的 <code>target_branch: master</code> 分支。</p>
 <pre class="line-numbers language-yml"><code class="language-yml">deploy:
@@ -569,7 +569,7 @@ before_install:
   - npm install hexo-deployer-git --save
 
 install:
-  - npm install 
+  - npm install
 
 script:
   - hexo generate # generate static files

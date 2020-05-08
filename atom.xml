@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2020-05-08T08:40:11.500Z</updated>
+  <updated>2020-05-08T10:24:59.488Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -20,8 +20,8 @@
     <title>compiler_principles/第9讲</title>
     <link href="http://yoursite.com/2020/05/08/compiler-principles/di-9-jiang/"/>
     <id>http://yoursite.com/2020/05/08/compiler-principles/di-9-jiang/</id>
-    <published>2020-05-08T08:40:11.500Z</published>
-    <updated>2020-05-08T08:40:11.500Z</updated>
+    <published>2020-05-08T10:24:59.488Z</published>
+    <updated>2020-05-08T10:24:59.488Z</updated>
     
     <summary type="html">
     
@@ -43,8 +43,8 @@
     <title>compiler_principles/第7讲</title>
     <link href="http://yoursite.com/2020/05/08/compiler-principles/di-7-jiang/"/>
     <id>http://yoursite.com/2020/05/08/compiler-principles/di-7-jiang/</id>
-    <published>2020-05-08T08:40:11.496Z</published>
-    <updated>2020-05-08T08:40:11.496Z</updated>
+    <published>2020-05-08T10:24:59.484Z</published>
+    <updated>2020-05-08T10:24:59.484Z</updated>
     
     <summary type="html">
     
@@ -66,8 +66,8 @@
     <title>compiler_principles/第8讲</title>
     <link href="http://yoursite.com/2020/05/08/compiler-principles/di-8-jiang/"/>
     <id>http://yoursite.com/2020/05/08/compiler-principles/di-8-jiang/</id>
-    <published>2020-05-08T08:40:11.496Z</published>
-    <updated>2020-05-08T08:40:11.496Z</updated>
+    <published>2020-05-08T10:24:59.484Z</published>
+    <updated>2020-05-08T10:24:59.484Z</updated>
     
     <summary type="html">
     
@@ -89,8 +89,8 @@
     <title>compiler_principles/第6讲</title>
     <link href="http://yoursite.com/2020/05/08/compiler-principles/di-6-jiang/"/>
     <id>http://yoursite.com/2020/05/08/compiler-principles/di-6-jiang/</id>
-    <published>2020-05-08T08:40:11.488Z</published>
-    <updated>2020-05-08T08:40:11.488Z</updated>
+    <published>2020-05-08T10:24:59.476Z</published>
+    <updated>2020-05-08T10:24:59.476Z</updated>
     
     <summary type="html">
     
@@ -112,8 +112,8 @@
     <title>compiler_principles/第4讲</title>
     <link href="http://yoursite.com/2020/05/08/compiler-principles/di-4-jiang/"/>
     <id>http://yoursite.com/2020/05/08/compiler-principles/di-4-jiang/</id>
-    <published>2020-05-08T08:40:11.480Z</published>
-    <updated>2020-05-08T08:40:11.480Z</updated>
+    <published>2020-05-08T10:24:59.468Z</published>
+    <updated>2020-05-08T10:24:59.468Z</updated>
     
     <summary type="html">
     
@@ -135,8 +135,8 @@
     <title>compiler_principles/第5讲</title>
     <link href="http://yoursite.com/2020/05/08/compiler-principles/di-5-jiang/"/>
     <id>http://yoursite.com/2020/05/08/compiler-principles/di-5-jiang/</id>
-    <published>2020-05-08T08:40:11.480Z</published>
-    <updated>2020-05-08T08:40:11.480Z</updated>
+    <published>2020-05-08T10:24:59.468Z</published>
+    <updated>2020-05-08T10:24:59.468Z</updated>
     
     <summary type="html">
     
@@ -155,34 +155,11 @@
   </entry>
   
   <entry>
-    <title>compiler_principles/第3讲</title>
-    <link href="http://yoursite.com/2020/05/08/compiler-principles/di-3-jiang/"/>
-    <id>http://yoursite.com/2020/05/08/compiler-principles/di-3-jiang/</id>
-    <published>2020-05-08T08:40:11.476Z</published>
-    <updated>2020-05-08T08:40:11.476Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;h2 id=&quot;3-1-上下文无关文法&quot;&gt;&lt;a href=&quot;#3-1-上下文无关文法&quot; class=&quot;headerlink&quot; title=&quot;3.1 上下文无关文法&quot;&gt;&lt;/a&gt;3.1 上下文无关文法&lt;/h2&gt;&lt;h4 id=&quot;文法&quot;&gt;&lt;a href=&quot;#文法&quot;
-        
-      
-    
-    </summary>
-    
-    
-    
-  </entry>
-  
-  <entry>
     <title>compiler_principles/第1讲</title>
     <link href="http://yoursite.com/2020/05/08/compiler-principles/di-1-jiang/"/>
     <id>http://yoursite.com/2020/05/08/compiler-principles/di-1-jiang/</id>
-    <published>2020-05-08T08:40:11.472Z</published>
-    <updated>2020-05-08T08:40:11.472Z</updated>
+    <published>2020-05-08T10:24:59.460Z</published>
+    <updated>2020-05-08T10:24:59.460Z</updated>
     
     <summary type="html">
     
@@ -204,8 +181,8 @@
     <title>compiler_principles/第2讲</title>
     <link href="http://yoursite.com/2020/05/08/compiler-principles/di-2-jiang/"/>
     <id>http://yoursite.com/2020/05/08/compiler-principles/di-2-jiang/</id>
-    <published>2020-05-08T08:40:11.472Z</published>
-    <updated>2020-05-08T08:40:11.472Z</updated>
+    <published>2020-05-08T10:24:59.460Z</published>
+    <updated>2020-05-08T10:24:59.460Z</updated>
     
     <summary type="html">
     
@@ -224,11 +201,34 @@
   </entry>
   
   <entry>
+    <title>compiler_principles/第3讲</title>
+    <link href="http://yoursite.com/2020/05/08/compiler-principles/di-3-jiang/"/>
+    <id>http://yoursite.com/2020/05/08/compiler-principles/di-3-jiang/</id>
+    <published>2020-05-08T10:24:59.460Z</published>
+    <updated>2020-05-08T10:24:59.460Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;3-1-上下文无关文法&quot;&gt;&lt;a href=&quot;#3-1-上下文无关文法&quot; class=&quot;headerlink&quot; title=&quot;3.1 上下文无关文法&quot;&gt;&lt;/a&gt;3.1 上下文无关文法&lt;/h2&gt;&lt;h4 id=&quot;文法&quot;&gt;&lt;a href=&quot;#文法&quot;
+        
+      
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
     <title>compiler_principles/第15讲</title>
     <link href="http://yoursite.com/2020/05/08/compiler-principles/di-15-jiang/"/>
     <id>http://yoursite.com/2020/05/08/compiler-principles/di-15-jiang/</id>
-    <published>2020-05-08T08:40:11.468Z</published>
-    <updated>2020-05-08T08:40:11.468Z</updated>
+    <published>2020-05-08T10:24:59.456Z</published>
+    <updated>2020-05-08T10:24:59.456Z</updated>
     
     <summary type="html">
     
@@ -250,8 +250,8 @@
     <title>compiler_principles/第14讲</title>
     <link href="http://yoursite.com/2020/05/08/compiler-principles/di-14-jiang/"/>
     <id>http://yoursite.com/2020/05/08/compiler-principles/di-14-jiang/</id>
-    <published>2020-05-08T08:40:11.460Z</published>
-    <updated>2020-05-08T08:40:11.460Z</updated>
+    <published>2020-05-08T10:24:59.448Z</published>
+    <updated>2020-05-08T10:24:59.448Z</updated>
     
     <summary type="html">
     
@@ -273,8 +273,8 @@
     <title>compiler_principles/第13讲</title>
     <link href="http://yoursite.com/2020/05/08/compiler-principles/di-13-jiang/"/>
     <id>http://yoursite.com/2020/05/08/compiler-principles/di-13-jiang/</id>
-    <published>2020-05-08T08:40:11.456Z</published>
-    <updated>2020-05-08T08:40:11.456Z</updated>
+    <published>2020-05-08T10:24:59.444Z</published>
+    <updated>2020-05-08T10:24:59.444Z</updated>
     
     <summary type="html">
     
@@ -296,8 +296,8 @@
     <title>compiler_principles/第12讲</title>
     <link href="http://yoursite.com/2020/05/08/compiler-principles/di-12-jiang/"/>
     <id>http://yoursite.com/2020/05/08/compiler-principles/di-12-jiang/</id>
-    <published>2020-05-08T08:40:11.452Z</published>
-    <updated>2020-05-08T08:40:11.452Z</updated>
+    <published>2020-05-08T10:24:59.440Z</published>
+    <updated>2020-05-08T10:24:59.440Z</updated>
     
     <summary type="html">
     
@@ -319,8 +319,8 @@
     <title>compiler_principles/第11讲</title>
     <link href="http://yoursite.com/2020/05/08/compiler-principles/di-11-jiang/"/>
     <id>http://yoursite.com/2020/05/08/compiler-principles/di-11-jiang/</id>
-    <published>2020-05-08T08:40:11.448Z</published>
-    <updated>2020-05-08T08:40:11.448Z</updated>
+    <published>2020-05-08T10:24:59.436Z</published>
+    <updated>2020-05-08T10:24:59.436Z</updated>
     
     <summary type="html">
     
@@ -342,8 +342,8 @@
     <title>compiler_principles/第10讲</title>
     <link href="http://yoursite.com/2020/05/08/compiler-principles/di-10-jiang/"/>
     <id>http://yoursite.com/2020/05/08/compiler-principles/di-10-jiang/</id>
-    <published>2020-05-08T08:40:11.444Z</published>
-    <updated>2020-05-08T08:40:11.444Z</updated>
+    <published>2020-05-08T10:24:59.432Z</published>
+    <updated>2020-05-08T10:24:59.432Z</updated>
     
     <summary type="html">
     
@@ -366,7 +366,7 @@
     <link href="http://yoursite.com/2020/05/07/ji-yu-travis-de-hexo-zi-dong-bu-shu/"/>
     <id>http://yoursite.com/2020/05/07/ji-yu-travis-de-hexo-zi-dong-bu-shu/</id>
     <published>2020-05-07T21:15:22.000Z</published>
-    <updated>2020-05-08T08:40:11.500Z</updated>
+    <updated>2020-05-08T10:24:59.488Z</updated>
     
     <summary type="html">
     
