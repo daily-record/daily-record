@@ -1,0 +1,1120 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="compiler_principles/第4讲, null">
+    <meta name="description" content="4.1 词法分析概述词法分析
+词法分析器的设计
+
+正规表达式与有限自动机
+
+词法分析器的自动产生–LEX
+
+
+词法分析的任务
+从左至右逐个字符地对源程序进行扫描，产生一个个单词符号
+
+
+词法分析器(Lexical Analyzer)
+扫描器">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>compiler_principles/第4讲 | null</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+    
+    <script src="/libs/jquery/jquery.min.js"></script>
+    
+<meta name="generator" content="Hexo 4.2.0"><link rel="alternate" href="/atom.xml" title="null" type="application/atom+xml">
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper head-container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.svg" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span"></span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>留言板</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>友情链接</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.svg" class="logo-img circle responsive-img">
+        
+        <div class="logo-name"></div>
+        <div class="logo-desc">
+            
+            Never really desperate, only the lost of the soul.
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			Contact
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			友情链接
+		</a>
+          
+        </li>
+        
+        
+    </ul>
+</div>
+
+        </div>
+
+        
+    </nav>
+
+</header>
+
+    
+<script src="/libs/cryptojs/crypto-js.min.js"></script>
+<script>
+    (function() {
+        let pwd = '';
+        if (pwd && pwd.length > 0) {
+            if (pwd !== CryptoJS.SHA256(prompt('请输入访问本文章的密码')).toString(CryptoJS.enc.Hex)) {
+                alert('密码错误，将返回主页！');
+                location.href = '/';
+            }
+        }
+    })();
+</script>
+
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/14.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">compiler_principles/第4讲</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        margin: 35px 0 15px 0;
+        padding-left: 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        height: calc(100vh - 250px);
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #toc-content .is-active-link::before {
+        background-color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                          <div class="article-tag">
+                            <span class="chip bg-color">无标签</span>
+                          </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2020-05-08
+                </div>
+                
+
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
+                    1.6k
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                    5 分
+                </div>
+                
+				
+                
+            </div>
+            
+        </div>
+        <hr class="clearfix">
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h2 id="4-1-词法分析概述"><a href="#4-1-词法分析概述" class="headerlink" title="4.1 词法分析概述"></a>4.1 词法分析概述</h2><h4 id="词法分析"><a href="#词法分析" class="headerlink" title="词法分析"></a>词法分析</h4><ul>
+<li><p>词法分析器的设计</p>
+</li>
+<li><p>正规表达式与有限自动机</p>
+</li>
+<li><p>词法分析器的自动产生–LEX</p>
+</li>
+</ul>
+<h5 id="词法分析的任务"><a href="#词法分析的任务" class="headerlink" title="词法分析的任务"></a>词法分析的任务</h5><blockquote>
+<p>从左至右逐个字符地对源程序进行扫描，产生一个个单词符号</p>
+</blockquote>
+<ul>
+<li>词法分析器(Lexical Analyzer)<ul>
+<li>扫描器(Scanner)</li>
+<li>执行词法分析的程序</li>
+</ul>
+</li>
+</ul>
+<h5 id="词法分析器的功能"><a href="#词法分析器的功能" class="headerlink" title="词法分析器的功能"></a>词法分析器的功能</h5><blockquote>
+<p>输入源程序，输出单词符号</p>
+</blockquote>
+<ul>
+<li>单词符号种类<ul>
+<li>基本字：如 begin，repeat，for， …</li>
+<li>标识符：用来表示各种名字，如变量名、数组名和过程名</li>
+<li>常数：各种类型的常数</li>
+<li>运算符：+，-，*，/， …</li>
+<li>界符：逗号、分号、括号和空白</li>
+</ul>
+</li>
+</ul>
+<h5 id="词法分析器的输出"><a href="#词法分析器的输出" class="headerlink" title="词法分析器的输出"></a>词法分析器的输出</h5><ul>
+<li>输出的单词符号的表示形式（一个二元组）：<strong>(单词种别，单词自身的值 )</strong></li>
+<li>单词种别通常用整数编码表示<ul>
+<li>若一个种别只有一个单词符号，则种别编码就代表该单词符号。假定基本字 、运算符和界符都是一符一种</li>
+<li>若一个种别有多个单词符号，则对于每个单词符号，给出种别编码和自身的值<ul>
+<li>标识符单列一种；标识符自身的值表示成按机器字节划分的内部码</li>
+<li>常数按类型分种；常数的值则表示成标准的二进制形式</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><img src="%E7%AC%AC4%E8%AE%B2.assets%5Cimage-20200305204957424.png" alt="image-20200305204957424"></p>
+<p><img src="%E7%AC%AC4%E8%AE%B2.assets%5Cimage-20200305205006022.png" alt="image-20200305205006022"></p>
+<h5 id="词法分析器在编译器中的地位"><a href="#词法分析器在编译器中的地位" class="headerlink" title="词法分析器在编译器中的地位"></a>词法分析器在编译器中的地位</h5><p><img src="%E7%AC%AC4%E8%AE%B2.assets%5Cimage-20200305213155855.png" alt="image-20200305213155855"></p>
+<ul>
+<li>词法分析器和语法分析器都会在符号表中记录访问，修改编译过程各类信息</li>
+<li>分模块相互调用提高了系统的利用率</li>
+</ul>
+<h2 id="4-2-词法分析器的设计"><a href="#4-2-词法分析器的设计" class="headerlink" title="4.2 词法分析器的设计"></a>4.2 词法分析器的设计</h2><h4 id="词法分析器的结构"><a href="#词法分析器的结构" class="headerlink" title="词法分析器的结构"></a>词法分析器的结构</h4><p><img src="%E7%AC%AC4%E8%AE%B2.assets%5Cimage-20200305214422322.png" alt="image-20200305214422322"></p>
+<ol>
+<li><p>预处理子程序在扫描器的调用下，将源程序输入到输入缓冲区中，读入输入缓冲区的字符，进行文本的预处理</p>
+</li>
+<li><p>进行预处理后，规范性更好的文本被送入扫描缓冲区中</p>
+</li>
+<li><p>预处理子程序返回扫描器，扫描器继续从缓冲区中读取预处理后的文本，根据词法规则识别出单词的符号</p>
+</li>
+</ol>
+<h5 id="扫描缓冲区"><a href="#扫描缓冲区" class="headerlink" title="扫描缓冲区"></a>扫描缓冲区</h5><blockquote>
+<p>两个半区互补使用，防止一个单词的扫描被打断</p>
+</blockquote>
+<p><img src="%E7%AC%AC4%E8%AE%B2.assets%5Cimage-20200305221130549.png" alt="image-20200305221130549"></p>
+<p><strong>半区的长度就是一个单词所允许的最大长度</strong></p>
+<p>某些语言规定标识符的长度不能超过某个t值，可以推断编译器的扫描缓冲区长度为2t</p>
+<h4 id="超前搜索"><a href="#超前搜索" class="headerlink" title="超前搜索"></a>超前搜索</h4><p><img src="%E7%AC%AC4%E8%AE%B2.assets%5Cimage-20200305233628880.png" alt="image-20200305233628880"></p>
+<ul>
+<li><p>标识符识别</p>
+<ul>
+<li>字母开头的字母数字串，后跟界符或算符</li>
+</ul>
+</li>
+<li><p>常数识别</p>
+<ul>
+<li><p>识别出算术常数并将其转变为二进制内码表示</p>
+<ul>
+<li>5.EQ.M（测试5和变量是否相等）</li>
+<li>5.E08（5*10^8^的科学计数表示）</li>
+</ul>
+</li>
+<li><p>算符和界符的识别</p>
+<ul>
+<li><p>把多字符组成的算符和界符拼合成一个单词符号</p>
+<p>  <code>:=， **， .EQ. ， ++，--，&gt;=</code></p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h5 id="几点限制——不必使用超前搜索"><a href="#几点限制——不必使用超前搜索" class="headerlink" title="几点限制——不必使用超前搜索"></a>几点限制——不必使用超前搜索</h5><ul>
+<li>所有基本字都是保留字;用户不能用它们作自己的标识符</li>
+<li>基本字作为特殊的标识符来处理，使用保留字表</li>
+<li>如果基本字、标识符和常数(或标号)之间没有确定的运算符或界符作间隔，则必须使用一个空白符作间隔<ul>
+<li>如 <code>DO99K=1，10</code> 要写成 <code>DO 99 K=1，10</code></li>
+</ul>
+</li>
+</ul>
+<h4 id="状态转换图"><a href="#状态转换图" class="headerlink" title="状态转换图"></a>状态转换图</h4><blockquote>
+<p>状态转换图是一张有限方向图</p>
+</blockquote>
+<ul>
+<li>结点代表<code>状态</code>，用圆圈表示</li>
+<li><code>状态</code>之间用箭弧连结，箭弧上的标记(字符)代表射出结状态下可能出现的输入<code>字符</code>或<code>字符类</code>（箭头上的标记表示输入此标记后状态转换）</li>
+<li>一张转换图只包含<code>有限个状态</code>，其中有一个为<code>初态</code>， 至少要有一个<code>终态</code>（用双圈表示）</li>
+</ul>
+<p><img src="%E7%AC%AC4%E8%AE%B2.assets%5Cimage-20200305235938616.png" alt="image-20200305235938616"></p>
+<blockquote>
+<p>状态转换图可用于识别(或接受)一定的字符串</p>
+</blockquote>
+<ul>
+<li>若存在一条从初态到某一终态的道路，且这条路上所有弧上的标记符连接成的字等于α，则称α被该状态转换图所识别(接受)（最后读入的字符不属于当前识别的字符串）</li>
+</ul>
+<p><img src="%E7%AC%AC4%E8%AE%B2.assets%5Cimage-20200306000755729.png" alt="image-20200306000755729"></p>
+<p><strong>*号表示最后面读入的字符不属于刚才读入的单词</strong></p>
+<p>以下则是识别标识符的状态转换图：</p>
+<p><img src="%E7%AC%AC4%E8%AE%B2.assets%5Cimage-20200306001126007.png" alt="image-20200306001126007"></p>
+<h5 id="词法分析器设计示例"><a href="#词法分析器设计示例" class="headerlink" title="词法分析器设计示例"></a>词法分析器设计示例</h5><p><img src="%E7%AC%AC4%E8%AE%B2.assets%5Cimage-20200306111428825.png" alt="image-20200306111428825"></p>
+<ul>
+<li>状态0识别单词前的空白符</li>
+<li>0 -&gt; 13 是出错处理</li>
+</ul>
+<h4 id="状态转换图的实现"><a href="#状态转换图的实现" class="headerlink" title="状态转换图的实现"></a>状态转换图的实现</h4><h5 id="不含回路的状态结点"><a href="#不含回路的状态结点" class="headerlink" title="不含回路的状态结点"></a>不含回路的状态结点</h5><ul>
+<li>可用一个<code>CASE</code>语句或一组<code>IF-THEN-ELSE</code>语句实现</li>
+</ul>
+<p><img src="%E7%AC%AC4%E8%AE%B2.assets%5Cimage-20200306113509712.png" alt="image-20200306113509712"></p>
+<h5 id="含回路的状态结点"><a href="#含回路的状态结点" class="headerlink" title="含回路的状态结点"></a>含回路的状态结点</h5><ul>
+<li>对应一段由<code>WHILE</code>结构和<code>IF</code>语句构成的程序</li>
+</ul>
+<p><img src="%E7%AC%AC4%E8%AE%B2.assets%5Cimage-20200306113537952.png" alt="image-20200306113537952"></p>
+<h5 id="终态结点"><a href="#终态结点" class="headerlink" title="终态结点"></a>终态结点</h5><ul>
+<li>表示识别出某种单词符号，对应返回语句</li>
+</ul>
+<p><img src="%E7%AC%AC4%E8%AE%B2.assets%5Cimage-20200306114751041.png" alt="image-20200306114751041"></p>
+<h5 id="全局变量与过程"><a href="#全局变量与过程" class="headerlink" title="全局变量与过程"></a>全局变量与过程</h5><h5 id="词法分析器的实现"><a href="#词法分析器的实现" class="headerlink" title="词法分析器的实现"></a>词法分析器的实现</h5><h6 id="识别标识符"><a href="#识别标识符" class="headerlink" title="识别标识符"></a>识别标识符</h6><p><img src="%E7%AC%AC4%E8%AE%B2.assets%5Cimage-20200306120105948.png" alt="image-20200306120105948"></p>
+<pre class="line-numbers language-c"><code class="language-c"><span class="token keyword">int</span> code<span class="token punctuation">,</span> value<span class="token punctuation">;</span> strToken <span class="token punctuation">:</span><span class="token operator">=</span> “ ”<span class="token punctuation">;</span> <span class="token comment" spellcheck="true">/*置strToken为空串*/</span>
+<span class="token function">GetChar</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">GetBC</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//跳过空白</span>
+<span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">IsLetter</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+begin 
+    <span class="token keyword">while</span> <span class="token punctuation">(</span><span class="token function">IsLetter</span><span class="token punctuation">(</span><span class="token punctuation">)</span> or <span class="token function">IsDigit</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> 
+    begin 
+        <span class="token function">Concat</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 如果为字母或数字则连接到strToken中</span>
+        <span class="token function">GetChar</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    end
+    <span class="token function">Retract</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 最后读入的字符回退回去</span>
+    code <span class="token punctuation">:</span><span class="token operator">=</span> <span class="token function">Reserve</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>    <span class="token comment" spellcheck="true">// 拿strToken中的字符串查询保留字表，如果是保留字，返回种别编码，否则就是用户自定义的标识符，返回0</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>code <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true">// 判断为用户自定义的标识符</span>
+    begin 
+        value <span class="token punctuation">:</span><span class="token operator">=</span> <span class="token function">InsertId</span><span class="token punctuation">(</span>strToken<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 将其插入到符号表中并返回入口值</span>
+        <span class="token keyword">return</span> <span class="token punctuation">(</span>$ID<span class="token punctuation">,</span> value<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 返回种别编码及对应的入口值</span>
+    end
+    <span class="token keyword">else</span>
+        <span class="token keyword">return</span> <span class="token punctuation">(</span>code<span class="token punctuation">,</span> <span class="token operator">-</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 直接返回保留字的种别编码，无值</span>
+end<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h6 id="识别整常数"><a href="#识别整常数" class="headerlink" title="识别整常数"></a>识别整常数</h6><p><img src="%E7%AC%AC4%E8%AE%B2.assets%5Cimage-20200306120145223.png" alt="image-20200306120145223"></p>
+<pre class="line-numbers language-c"><code class="language-c"><span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">IsDigit</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+begin
+    <span class="token keyword">while</span> <span class="token punctuation">(</span><span class="token function">IsDigit</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    begin
+        <span class="token function">Concat</span><span class="token punctuation">(</span> <span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment" spellcheck="true">// 如果为数字则连接到strToken中</span>
+        <span class="token function">GetChar</span><span class="token punctuation">(</span> <span class="token punctuation">)</span><span class="token punctuation">;</span>
+    end
+    <span class="token function">Retract</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>    <span class="token comment" spellcheck="true">// 最后读入的字符回退回去</span>
+    value <span class="token punctuation">:</span><span class="token operator">=</span> <span class="token function">InsertConst</span><span class="token punctuation">(</span>strToken<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span><span class="token punctuation">(</span>$INT<span class="token punctuation">,</span> value<span class="token punctuation">)</span><span class="token punctuation">;</span>
+end
+<span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>ch <span class="token operator">=</span>‘<span class="token operator">=</span>’<span class="token punctuation">)</span> <span class="token keyword">return</span> <span class="token punctuation">(</span>$ASSIGN<span class="token punctuation">,</span> <span class="token operator">-</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>ch <span class="token operator">=</span>‘<span class="token operator">+</span>’<span class="token punctuation">)</span> <span class="token keyword">return</span> <span class="token punctuation">(</span>$PLUS<span class="token punctuation">,</span> <span class="token operator">-</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h6 id="识别其它字符"><a href="#识别其它字符" class="headerlink" title="识别其它字符"></a>识别其它字符</h6><p><img src="%E7%AC%AC4%E8%AE%B2.assets%5Cimage-20200306120208499.png" alt="image-20200306120208499"></p>
+<pre class="line-numbers language-c"><code class="language-c"><span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>ch <span class="token operator">=</span>‘<span class="token operator">*</span>’<span class="token punctuation">)</span>
+begin
+    <span class="token function">GetChar</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>ch <span class="token operator">=</span>‘<span class="token operator">*</span>’<span class="token punctuation">)</span> <span class="token keyword">return</span> <span class="token punctuation">(</span>$POWER<span class="token punctuation">,</span> <span class="token operator">-</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 乘方符号判断</span>
+    <span class="token function">Retract</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token keyword">return</span> <span class="token punctuation">(</span>$STAR<span class="token punctuation">,</span> <span class="token operator">-</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+end
+<span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>ch <span class="token operator">=</span>‘<span class="token punctuation">,</span>’<span class="token punctuation">)</span> <span class="token keyword">return</span> <span class="token punctuation">(</span>$COMMA<span class="token punctuation">,</span> <span class="token operator">-</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>ch <span class="token operator">=</span>‘<span class="token punctuation">(</span>’<span class="token punctuation">)</span> <span class="token keyword">return</span> <span class="token punctuation">(</span>$LPAR<span class="token punctuation">,</span> <span class="token operator">-</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>ch <span class="token operator">=</span>‘<span class="token punctuation">)</span>’<span class="token punctuation">)</span> <span class="token keyword">return</span> <span class="token punctuation">(</span>$RPAR<span class="token punctuation">,</span> <span class="token operator">-</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">else</span> <span class="token function">ProcError</span><span class="token punctuation">(</span> <span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">/* 错误处理*/</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h5 id="状态转换图的代码一般化"><a href="#状态转换图的代码一般化" class="headerlink" title="状态转换图的代码一般化"></a>状态转换图的代码一般化</h5><ul>
+<li><p>变量<code>curState</code>用于保存现有的状态</p>
+</li>
+<li><p>用二维数组表示状态图：<code>stateTrans[state][ch]</code></p>
+</li>
+</ul>
+<pre class="line-numbers language-c"><code class="language-c">curState <span class="token operator">=</span> 初态
+<span class="token function">GetChar</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">while</span><span class="token punctuation">(</span>stateTrans<span class="token punctuation">[</span>curState<span class="token punctuation">]</span><span class="token punctuation">[</span>ch<span class="token punctuation">]</span>有定义<span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token comment" spellcheck="true">//存在后继状态，读入、拼接</span>
+    <span class="token function">Concat</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment" spellcheck="true">//转换入下一状态，读入下一字符</span>
+    curState<span class="token operator">=</span> stateTrans<span class="token punctuation">[</span>curState<span class="token punctuation">]</span><span class="token punctuation">[</span>ch<span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> curState是终态 then 返回strToken中的单词
+    <span class="token function">GetChar</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="http://yoursite.com" rel="external nofollow noreferrer">霜雨</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="http://yoursite.com/2020/05/08/compiler-principles/di-4-jiang/">http://yoursite.com/2020/05/08/compiler-principles/di-4-jiang/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="http://yoursite.com" target="_blank">霜雨</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            <span class="chip bg-color">无标签</span>
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+
+<div id="article-share">
+    
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2020/05/08/compiler-principles/di-6-jiang/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="compiler_principles/第6讲">
+                        
+                        <span class="card-title">compiler_principles/第6讲</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            6.1 有限自动机的等价性DFA与NFA的等价性证明思路二者差别：
+
+
+
+
+NFA
+DFA
+
+
+
+初始状态
+不唯一
+唯一
+
+
+弧上的标记
+字（单字字符、ε）
+字符
+
+
+转换关系
+非确定
+确定
+
+
+如果能够消除二者在初始状态，在弧上的标记以及
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2020-05-08
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            霜雨
+                            
+                        </span>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2020/05/08/compiler-principles/di-5-jiang/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/7.jpg" class="responsive-img" alt="compiler_principles/第5讲">
+                        
+                        <span class="card-title">compiler_principles/第5讲</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            5.1 词法规则形式化-正规集与正规式正规式和正规集程序语言定义的合法单词集合都是正规集
+
+正规集可以用正规式表示
+正规式是表示正规集的一种办法
+一个字集合是正规集当且仅当它能用正规式表示
+
+正规式和正规集的递归定义对于给定的字母表Σ：
+
+
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-05-08
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            霜雨
+                            
+                        </span>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+<script>
+    $('#articleContent').on('copy', function (e) {
+        // IE8 or earlier browser is 'undefined'
+        if (typeof window.getSelection === 'undefined') return;
+
+        var selection = window.getSelection();
+        // if the selection is short let's not annoy our users.
+        if (('' + selection).length < Number.parseInt('120')) {
+            return;
+        }
+
+        // create a div outside of the visible area and fill it with the selected text.
+        var bodyElement = document.getElementsByTagName('body')[0];
+        var newdiv = document.createElement('div');
+        newdiv.style.position = 'absolute';
+        newdiv.style.left = '-99999px';
+        bodyElement.appendChild(newdiv);
+        newdiv.appendChild(selection.getRangeAt(0).cloneContents());
+
+        // we need a <pre> tag workaround.
+        // otherwise the text inside "pre" loses all the line breaks!
+        if (selection.getRangeAt(0).commonAncestorContainer.nodeName === 'PRE') {
+            newdiv.innerHTML = "<pre>" + newdiv.innerHTML + "</pre>";
+        }
+
+        var url = document.location.href;
+        newdiv.innerHTML += '<br />'
+            + '来源: <br />'
+            + '文章作者: 霜雨<br />'
+            + '文章链接: <a href="' + url + '">' + url + '</a><br />'
+            + '本文章著作权归N个大佬所有（白嫖来的文章），随便搞。';
+
+        selection.selectAllChildren(newdiv);
+        window.setTimeout(function () {bodyElement.removeChild(newdiv);}, 200);
+    });
+</script>
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+    
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+<!-- 代码块折行 -->
+
+<style type="text/css">
+code[class*="language-"], pre[class*="language-"] { white-space: pre !important; }
+</style>
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h1, h2, h4, h5, h6'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h1, h2, h4, h5, h6').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+    <footer class="page-footer bg-color">
+    <div class="container row center-align" style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            <span id="year">2019</span>
+            <a href="http://yoursite.com" target="_blank">霜雨</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+            
+            
+            
+            
+            <br>
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link ">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+$(function () {
+    searchFunc("/" + "search.xml", 'searchInput', 'searchResult');
+});
+</script>
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>

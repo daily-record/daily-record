@@ -4,8 +4,10 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="DevOps与CI/CD, null">
-    <meta name="description" content="简单了解了DevOps与CI/CD的概念">
+    <meta name="keywords" content="compiler_principles/第13讲, null">
+    <meta name="description" content="语法分析-自下而上分析4更强的LR分析
+根据当前符号来判断，若当前符号为#，则按第一个项目进行归约，若当前符号为+，则按照第二个项目移进
+SLR(1)分析SLR(1)冲突解决办法假定LR(0)规范族的一个项目集$$I={\textcolor">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -13,7 +15,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>DevOps与CI/CD | null</title>
+    <title>compiler_principles/第13讲 | null</title>
     <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -255,12 +257,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/15.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/12.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">DevOps与CI/CD</h1>
+                    <h1 class="description center-align post-title">compiler_principles/第13讲</h1>
                 </div>
             </div>
         </div>
@@ -375,21 +377,9 @@
             <div class="row tag-cate">
                 <div class="col s7">
                     
-                    <div class="article-tag">
-                        
-                            <a href="/tags/DevOps/">
-                                <span class="chip bg-color">DevOps</span>
-                            </a>
-                        
-                            <a href="/tags/CI/">
-                                <span class="chip bg-color">CI</span>
-                            </a>
-                        
-                            <a href="/tags/CD/">
-                                <span class="chip bg-color">CD</span>
-                            </a>
-                        
-                    </div>
+                          <div class="article-tag">
+                            <span class="chip bg-color">无标签</span>
+                          </div>
                     
                 </div>
                 <div class="col s5 right-align">
@@ -401,7 +391,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-03-31
+                    2020-05-08
                 </div>
                 
 
@@ -410,14 +400,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.9k
+                    1k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    6 分
+                    4 分
                 </div>
                 
 				
@@ -428,121 +418,65 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="DevOps"><a href="#DevOps" class="headerlink" title="DevOps"></a>DevOps</h2><h4 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h4><blockquote>
-<p>DevOps 一词的来自于 Development 和 Operations 的组合，突出重视软件开发人员和运维人员的沟通合作，通过自动化流程来使得软件构建、测试、发布更加快捷、频繁和可靠</p>
-</blockquote>
-<p>DevOps 其实包含了三个部分:</p>
-<ul>
-<li>开发</li>
-<li>测试</li>
-<li>运维</li>
-</ul>
-<p>一个团队中各个角色存在天然上的工作矛盾：<br><img src="https://raw.githubusercontent.com/daily-record/daily-record-img/master/20200331144227.png" alt=""></p>
-<p>对于运维来说，稳定性压到一切，新feature越少越好；而对于研发来说，能够开发的新功能越多越好，这种矛盾会导致大量资源的浪费。</p>
-<p>DevOps 希望将产品交付过程中各种壁垒打破，让Dev和Ops一体化，通过自动化工具辅助开发完成运维的部分工作，减少成本。</p>
-</br>
-
-<h4 id="概述工作流"><a href="#概述工作流" class="headerlink" title="概述工作流"></a>概述工作流</h4><h5 id="传统工作流"><a href="#传统工作流" class="headerlink" title="传统工作流"></a>传统工作流</h5><p>PD(Demond) -&gt; [DEV(Coding) -&gt; SCM(Build) -&gt; QA(Test) -&gt; OPS(Deploy)]-&gt; Release<br>PD 提出需求 -&gt; [开发者根据需求写代码 -&gt; SCM 拿着代码去打包 -&gt; QA 测试 -&gt; 运维进行上线部署]</p>
-</br>
-
-<h4 id="DevOps工作流"><a href="#DevOps工作流" class="headerlink" title="DevOps工作流"></a>DevOps工作流</h4><p>通过高度自动化工具与流程来使得软件构建、测试、发布更加快捷、频繁和可靠；</p>
-<p>同时，<code>CI/CD</code>（持续集成/持续部署）可看作传统工作流的增强版；<code>DevOps</code> 可看作是 <code>CI/CD</code> 的增强版。</p>
-<p><img src="https://raw.githubusercontent.com/daily-record/daily-record-img/master/20200331150116.png" alt=""></p>
-<p><img src="https://raw.githubusercontent.com/daily-record/daily-record-img/master/20200331150144.png" alt=""></p>
-</br>
-
-<h2 id="CI与CD"><a href="#CI与CD" class="headerlink" title="CI与CD"></a>CI与CD</h2><p>CI/CD 是一种通过在应用开发阶段引入自动化来频繁向客户交付应用的方法。CI/CD 的核心概念是持续集成、持续交付和持续部署。</p>
-<p>不过，由于还需要编写自动化测试以适应 CI/CD 管道中的各种测试和发布阶段，因此前期投资还是会很大。</p>
-<ul>
-<li>CI:持续集成(Continuous Integration)</li>
-<li>CD:<ul>
-<li>持续交付(Continuous Delivery)</li>
-<li>持续部署(Continuous Deployment)</li>
-</ul>
-</li>
-</ul>
-</br>
-
-<h4 id="持续集成"><a href="#持续集成" class="headerlink" title="持续集成"></a>持续集成</h4><p><strong>持续集成指的是，频繁地（一天多次）将代码集成到主干。</strong></p>
-<p>持续集成可以帮助开发人员更加频繁地（有时甚至每天）将代码更改合并到共享分支或“主干”中。一旦开发人员对应用所做的更改被合并，系统就会通过自动构建应用并运行不同级别的自动化测试（通常是单元测试和集成测试）来验证这些更改，确保这些更改没有对应用造成破坏。这意味着测试内容涵盖了从类和函数到构成整个应用的不同模块。如果自动化测试发现新代码和现有代码之间存在冲突，CI 可以更加轻松地快速修复这些错误。</p>
-</br>
-
-<h5 id="目的"><a href="#目的" class="headerlink" title="目的"></a>目的</h5><p><strong>让产品可以快速迭代，同时还能保持高质量。</strong>它的核心措施是，代码集成到主干之前，<strong>必须通过自动化测试</strong>。只要有一个测试用例失败，就不能集成。</p>
-</br>
-
-<h5 id="好处"><a href="#好处" class="headerlink" title="好处"></a>好处</h5><ol>
-<li><strong>快速发现错误。</strong>每完成一点更新，就集成到主干，可以快速发现错误，定位错误也比较容易。</li>
-<li><strong>防止分支大幅偏离主干。</strong>如果不是经常集成，主干又在不断更新，会导致以后集成的难度会非常的大，甚至难以集成。</li>
+                <h1 id="语法分析-自下而上分析4"><a href="#语法分析-自下而上分析4" class="headerlink" title="语法分析-自下而上分析4"></a>语法分析-自下而上分析4</h1><h2 id="更强的LR分析"><a href="#更强的LR分析" class="headerlink" title="更强的LR分析"></a>更强的LR分析</h2><p><img src="%E7%AC%AC13%E8%AE%B2.assets/image-20200410144346636.png" alt="image-20200410144346636"></p>
+<p>根据当前符号来判断，若当前符号为#，则按第一个项目进行归约，若当前符号为+，则按照第二个项目移进</p>
+<h2 id="SLR-1-分析"><a href="#SLR-1-分析" class="headerlink" title="SLR(1)分析"></a>SLR(1)分析</h2><h4 id="SLR-1-冲突解决办法"><a href="#SLR-1-冲突解决办法" class="headerlink" title="SLR(1)冲突解决办法"></a>SLR(1)冲突解决办法</h4><p>假定LR(0)规范族的一个项目集<br>$$<br>I={\textcolor{skyblue}{A_1→ α•a_1β_1, A_2 → α • a_2 β_2, …,A_m → α • a_m β_m}, \textcolor{red}{B_1 → α•, B_2 → α•, …, B_n → α•}}<br>$$<br>如果集合$$\textcolor{skyblue}{ {a_1, …, a_m} }, \textcolor{red}{FOLLOW(B_1), …, FOLLOW(B_n)}$$两两不相交(包括不得有两个FOLLOW集合有#)，则当状态I面临任何输入符号a 时：</p>
+<ol>
+<li>若a是某个a<del>i</del>，i=1,2,…,m，则移进；</li>
+<li>若a ∈FOLLOW(B<del>i</del>)，i=1,2,…,n，则用产生式B<del>i</del> → α 进行归约；</li>
+<li>此外，报错。</li>
 </ol>
-<blockquote>
-<p>持续集成并不能消除Bug，而是让它们非常容易发现和改正。</p>
-</blockquote>
-</br>
-
-<h4 id="持续交付"><a href="#持续交付" class="headerlink" title="持续交付"></a>持续交付</h4><p><strong>持续交付指的是，频繁地将软件的新版本，交付给质量团队或者用户，以供评审。</strong>如果评审通过，代码就进入生产阶段。</p>
-<p>在持续交付中，每个阶段（从代码更改的合并，到生产就绪型构建版本的交付）都涉及测试自动化和代码发布自动化。在流程结束时，运维团队可以快速、轻松地将应用部署到生产环境中。</p>
-<p>持续交付可以看作持续集成的下一步。它强调的是，不管怎么更新，软件是随时随地可以交付的。</p>
-</br>
-
-<h4 id="持续部署"><a href="#持续部署" class="headerlink" title="持续部署"></a>持续部署</h4><p><strong>持续部署是持续交付的下一步，指的是代码通过评审以后，自动部署到生产环境。</strong></p>
-<p>持续部署的目标是，代码在任何时刻都是可部署的，可以进入生产阶段。</p>
-<p>持续部署的前提是能自动化完成测试、构建、部署等步骤。</p>
-<p>持续部署意味着开发人员对应用的更改在编写后的几分钟内就能生效（假设它通过了自动化测试）。这更加便于持续接收和整合用户反馈。总而言之，所有这些 CI/CD 的关联步骤都有助于降低应用的部署风险，因此更便于以小件的方式（而非一次性）发布对应用的更改。</p>
-</br>
-
-<h2 id="工作流程"><a href="#工作流程" class="headerlink" title="工作流程"></a>工作流程</h2><h4 id="DevOps工具链"><a href="#DevOps工具链" class="headerlink" title="DevOps工具链"></a>DevOps工具链</h4><p><img src="https://raw.githubusercontent.com/daily-record/daily-record-img/master/20200331175003.png" alt=""></p>
-<ul>
-<li>版本控制&amp;协作开发：GitHub、GitLab、BitBucket、SubVersion、Coding、Bazaar</li>
-<li>自动化构建和测试: Apache Ant、Maven 、Selenium、PyUnit、QUnit、JMeter、Gradle、PHPUnit</li>
-<li>持续集成&amp;交付:Jenkins、Capistrano、BuildBot、Fabric、Tinderbox、Travis CI、flow.ci Continuum、LuntBuild、CruiseControl、Integrity、Gump、Go</li>
-<li>容器平台: Docker、Rocket、Ubuntu（LXC）、第三方厂商如（AWS/阿里云）</li>
-<li>配置管理：Chef、Puppet、CFengine、Bash、Rudder、Powershell、RunDeck、Saltstack、Ansible</li>
-<li>微服务平台：OpenShift、Cloud Foundry、Kubernetes、Mesosphere</li>
-<li>服务开通：Puppet、Docker Swarm、Vagrant、Powershell、OpenStack Heat</li>
-<li>日志管理：Logstash、CollectD、StatsD</li>
-<li>监控，警告&amp;分析：Nagios、Ganglia、Sensu、zabbix、ICINGA、Graphite、Kibana</li>
+<p><code>SLR(1)解决办法</code>： <strong>S-Simple， 1-最多向前看一个单词</strong></p>
+<h4 id="SLR-1-分析表的构造"><a href="#SLR-1-分析表的构造" class="headerlink" title="SLR(1)分析表的构造"></a>SLR(1)分析表的构造</h4><p><img src="%E7%AC%AC13%E8%AE%B2.assets/image-20200410182317207.png" alt="image-20200410182317207"></p>
+<h4 id="SLR-1-文法"><a href="#SLR-1-文法" class="headerlink" title="SLR(1)文法"></a>SLR(1)文法</h4><ul>
+<li>按上述方法构造出的ACTION与GOTO表如果不含多重入口，则称该文法为<strong>SLR(1)文法</strong></li>
+<li>使用SLR表的分析器叫做一个<strong>SLR分析器</strong></li>
+<li>每个SLR(1)文法都是无二义的。但也存在许多无二义文法不是SLR(1)的</li>
+<li><strong>LR(0) ⊂ SLR(1) ⊂ 无二义文法</strong></li>
 </ul>
-</br>
-
-<h4 id="1-提交"><a href="#1-提交" class="headerlink" title="1. 提交"></a>1. 提交</h4><p>开发者向代码仓库提交代码。所有后面的步骤都始于本地代码的一次提交（commit）。</p>
-</br>
-
-<h4 id="2-测试（第一轮）"><a href="#2-测试（第一轮）" class="headerlink" title="2. 测试（第一轮）"></a>2. 测试（第一轮）</h4><p>代码仓库对commit操作配置了钩子（hook），只要提交代码或者合并进主干，就会跑自动化测试。</p>
-<p>测试分为多钟：</p>
-<ul>
-<li>单元测试：针对函数或模块的测试</li>
-<li>集成测试：针对整体产品的某个功能的测试，又称功能测试</li>
-<li>端对端测试：从用户界面直达数据库的全链路测试</li>
+<h4 id="SLR-1-分析表构造示例"><a href="#SLR-1-分析表构造示例" class="headerlink" title="SLR(1)分析表构造示例"></a>SLR(1)分析表构造示例</h4><p><img src="%E7%AC%AC13%E8%AE%B2.assets/image-20200410184405778.png" alt="image-20200410184405778"></p>
+<h2 id="LR-1-分析法"><a href="#LR-1-分析法" class="headerlink" title="LR(1)分析法"></a>LR(1)分析法</h2><h4 id="一个非SLR-1-文法"><a href="#一个非SLR-1-文法" class="headerlink" title="一个非SLR(1)文法"></a>一个非SLR(1)文法</h4><p><img src="%E7%AC%AC13%E8%AE%B2.assets/image-20200410185242540.png" alt="image-20200410185242540"></p>
+<p>对于状态2识别 <code>=</code> ，由于FOLLOW(R)含有 <code>=</code> ，所以不能判断移进归约，但是对文法进行分析，可知文法中没有以 <code>R=</code> 为前缀的规范句型，只有以 <code>*R=*</code> 为前缀的规范句型，所以状态2中的归约项是无效的。</p>
+<p><strong>需要根据当前栈内的活前缀或其它更具体的信息来判断选择下一个能接受的符号。</strong></p>
+<h4 id="LR-1-分析表的构造"><a href="#LR-1-分析表的构造" class="headerlink" title="LR(1)分析表的构造"></a>LR(1)分析表的构造</h4><ul>
+<li>把G拓广为G′</li>
+<li>对G′构造LR(1)项目集规范族C和活前缀识别自动机的状态转换函数GO</li>
+<li>使用C和GO，构造LR(1)分析表</li>
 </ul>
-<p>第一轮至少要跑单元测试。</p>
-</br>
-
-<h4 id="3-构建"><a href="#3-构建" class="headerlink" title="3. 构建"></a>3. 构建</h4><p>通过第一轮测试，代码就可以合并进主干，就算可以交付了。</p>
-<p>交付后，就先进行构建（build），再进入第二轮测试。所谓构建，指的是将源码转换为可以运行的实际代码，比如安装依赖，配置各种资源（样式表、JS脚本、图片）等等。</p>
-<p>常用的构建工具如下：</p>
-<ul>
-<li>Jenkins</li>
-<li>Travis</li>
-<li>Codeship</li>
-<li>Strider</li>
+<h5 id="LR-k-项目"><a href="#LR-k-项目" class="headerlink" title="LR(k)项目"></a>LR(k)项目</h5><ul>
+<li><strong>LR(k)项目</strong>：扩展LR(0)项目，附带有k个终结符$$[A → α•β, a_1a_2…a_k]$$， a<del>1</del>a<del>2</del>…a<del>k</del> 称为<strong>向前搜索符串</strong>(或展望串)。</li>
+<li>归约项目$$[A → α•β, a_1a_2…a_k]$$的意义：当它所属的状态呈现在栈顶且后续的k个输入符号为 a<del>1</del>a<del>2</del>…a<del>k</del> 时，<strong>才可以把栈顶上的α归约为A</strong>。</li>
+<li>对于任何移进或待约项目$$[A → α•β, a_1a_2…a_k]$$，β ≠ ε，搜索符串 a<del>1</del>a<del>2</del>…a<del>k</del> 没有直接作用</li>
 </ul>
-</br>
-
-<h4 id="4-测试（第二轮）"><a href="#4-测试（第二轮）" class="headerlink" title="4. 测试（第二轮）"></a>4. 测试（第二轮）</h4><p>构建完成，就要进行第二轮测试。如果第一轮已经涵盖了所有测试内容，第二轮可以省略，当然，这时构建步骤也要移到第一轮测试前面。</p>
-<p>第二轮是全面测试，单元测试和集成测试都会跑，有条件的话，也要做端对端测试。所有测试以自动化为主，少数无法自动化的测试用例，就要人工跑。</p>
-<p>需要强调的是，新版本的每一个更新点都必须测试到。如果测试的覆盖率不高，进入后面的部署阶段后，很可能会出现严重的问题。</p>
-</br>
-
-<h4 id="5-部署"><a href="#5-部署" class="headerlink" title="5. 部署"></a>5. 部署</h4><p>通过了第二轮测试，当前代码就是一个可以直接部署的版本（artifact）。将这个版本的所有文件打包（ tar filename.tar * ）存档，发到生产服务器。</p>
-<p>生产服务器将打包文件，解包成本地的一个目录，再将运行路径的符号链接（symlink）指向这个目录，然后重新启动应用。这方面的部署工具有Ansible，Chef，Puppet等。</p>
-</br>
-
-<h4 id="6-回滚"><a href="#6-回滚" class="headerlink" title="6. 回滚"></a>6. 回滚</h4><p>一旦当前版本发生问题，就要回滚到上一个版本的构建结果。最简单的做法就是修改一下符号链接，指向上一个版本的目录。</p>
-</br>
-
-<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><p><a href="http://www.ruanyifeng.com/blog/2015/09/continuous-integration.html" target="_blank" rel="noopener">阮一峰：持续集成是什么</a></p>
-<p><a href="https://marlous.github.io/2018/10/31/DevOps%20%E4%B8%8E%20CICD%20%E7%9A%84%E6%A6%82%E5%BF%B5/#%E4%B8%89-DevOps-%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1" target="_blank" rel="noopener">DevOps工作流</a></p>
-<p><a href="https://www.redhat.com/zh/topics/devops/what-is-ci-cd" target="_blank" rel="noopener">RedHat：什么是CI/CD</a></p>
+<h5 id="有效项目"><a href="#有效项目" class="headerlink" title="有效项目"></a>有效项目</h5><p>形式上我们说一个LR(1)项目[A → α•β, a]对于<strong>活前缀γ</strong>是有效的，如果存在规范推导<br>$$<br>S’ \Rightarrow \delta A \omega \Rightarrow \delta \alpha \beta \omega<br>$$</p>
+<ul>
+<li><code>γ ＝ δα</code></li>
+<li>a是ω的第一个符号，或者a为#而ω为ε</li>
+</ul>
+<p><strong>当A归约的瞬间，当时面临的单词应当是a。</strong></p>
+<h5 id="有效项目的性质"><a href="#有效项目的性质" class="headerlink" title="有效项目的性质"></a>有效项目的性质</h5><p><img src="%E7%AC%AC13%E8%AE%B2.assets/image-20200411000611081.png" alt="image-20200411000611081"></p>
+<h4 id="LR-1-分析表构造算法"><a href="#LR-1-分析表构造算法" class="headerlink" title="LR(1)分析表构造算法"></a>LR(1)分析表构造算法</h4><h5 id="项目集的闭包CLOSURE"><a href="#项目集的闭包CLOSURE" class="headerlink" title="项目集的闭包CLOSURE"></a>项目集的闭包CLOSURE</h5><p>假定I是文法G ′的任一项目集，定义和构造I的闭包CLOSURE(I)如下：</p>
+<ol>
+<li>I的任何项目都属于CLOSURE(I)</li>
+<li>若项目[A → α•Bβ, a]属于CLOSURE(I)，B → ξ 是一个产生式，那么，对于FIRST(βa) 中的每个 终结符b，如果[B → •ξ, b]原来不在CLOSURE(I) 中，则把它加进去</li>
+<li>重复执行步骤2，直至CLOSURE(I)不再增大为止</li>
+</ol>
+<h5 id="项目集的转换函数GO"><a href="#项目集的转换函数GO" class="headerlink" title="项目集的转换函数GO"></a>项目集的转换函数GO</h5><p>令I是一个项目集，X是一个文法符号，函数 GO(I，X)定义为：<br>$$<br>GO(I，X)＝CLOSURE(J)\<br>J ＝ { 任何形如[ A→ αX• β, a ]的项目 \space | \space [ A→ α•X β, a ] ∈I }<br>$$<br><strong>J为I读入一个字符X后的项目。</strong></p>
+<h5 id="LR-1-分析表的ACTION和GOTO子表构造"><a href="#LR-1-分析表的ACTION和GOTO子表构造" class="headerlink" title="LR(1)分析表的ACTION和GOTO子表构造"></a>LR(1)分析表的ACTION和GOTO子表构造</h5><p><img src="%E7%AC%AC13%E8%AE%B2.assets/image-20200411003610059.png" alt="image-20200411003610059"></p>
+<h4 id="LR-1-分析表和LR-1-文法"><a href="#LR-1-分析表和LR-1-文法" class="headerlink" title="LR(1)分析表和LR(1)文法"></a>LR(1)分析表和LR(1)文法</h4><ul>
+<li>按上述算法构造的分析表，若不存在多重定义的入口(即，动作冲突)的情形，则称它是文法G的一张规范的<strong>LR(1)分析表</strong></li>
+<li>具有规范的LR(1)分析表的文法称为一个<strong>LR(1)文法</strong></li>
+<li>使用LR(1)分析表的分析器叫做一个<strong>规范的LR分析器</strong></li>
+<li>LR(1)状态比SLR(1)多</li>
+<li><strong>LR(0) ⊂ SLR(1) ⊂ LR(1) ⊂ 无二义文法</strong></li>
+</ul>
+<h4 id="LR-1-分析表构造示例"><a href="#LR-1-分析表构造示例" class="headerlink" title="LR(1)分析表构造示例"></a>LR(1)分析表构造示例</h4><p><img src="%E7%AC%AC13%E8%AE%B2.assets/image-20200411112953729.png" alt="image-20200411112953729"></p>
+<h2 id="分析器产生工具"><a href="#分析器产生工具" class="headerlink" title="分析器产生工具"></a>分析器产生工具</h2><h4 id="YACC"><a href="#YACC" class="headerlink" title="YACC"></a>YACC</h4><p><strong>Yet Another Compiler Compiler</strong></p>
+<ul>
+<li>GNU Bison：基本兼容Yacc，与flex一起使用</li>
+<li>Berkeley Yacc</li>
+</ul>
+<p><a href="http://dinosaur.compilertools.net/" target="_blank" rel="noopener">The Lex &amp; Yacc Page</a></p>
 
             </div>
             <hr/>
@@ -568,7 +502,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://yoursite.com/2020/03/31/devops-yu-ci-cd/">http://yoursite.com/2020/03/31/devops-yu-ci-cd/</a>
+                    <a href="http://yoursite.com/2020/05/08/compiler-principles/di-13-jiang/">http://yoursite.com/2020/05/08/compiler-principles/di-13-jiang/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -605,19 +539,7 @@
                 <div class="post-meta__tag-list" style="display: inline-block;">
                     
                         <div class="article-tag">
-                            
-                                <a href="/tags/DevOps/">
-                                    <span class="chip bg-color">DevOps</span>
-                                </a>
-                            
-                                <a href="/tags/CI/">
-                                    <span class="chip bg-color">CI</span>
-                                </a>
-                            
-                                <a href="/tags/CD/">
-                                    <span class="chip bg-color">CD</span>
-                                </a>
-                            
+                            <span class="chip bg-color">无标签</span>
                         </div>
                     
                 </div>
@@ -660,25 +582,28 @@
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2020/05/07/ji-yu-travis-de-hexo-zi-dong-bu-shu/">
+                <a href="/2020/05/08/compiler-principles/di-14-jiang/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/1.jpg" class="responsive-img" alt="基于Travis的hexo自动部署">
+                        <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="compiler_principles/第14讲">
                         
-                        <span class="card-title">基于Travis的hexo自动部署</span>
+                        <span class="card-title">compiler_principles/第14讲</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            开始之前首先需要能够正常部署hexo到github，这个有许多的教程，hexo的官方文档就够用了。
-弄 Travis CI 持续集成就是为了方便写东西，在哪儿都能写，自动部署好，同时也想借这个机会了解一下 Travis 的持续集成是咋样的。
+                            属性文法和语法制导翻译1属性文法属性文法概念
+属性文法,也称属性翻译文法
+以上下文无关文法为基础
+为每个文法符号（终结符或非终结符）配备若干相关的“值”（称为属性），代表与文法符号相关信息，如类型、值、代码序列、符号表内容等
+对于文法的每个
                         
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-05-07
+                            <i class="far fa-clock fa-fw icon-date"></i>2020-05-08
                         </span>
                         <span class="publish-author">
                             
@@ -687,22 +612,6 @@
                             
                         </span>
                     </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/CI-CD/">
-                        <span class="chip bg-color">CI/CD</span>
-                    </a>
-                    
-                    <a href="/tags/Travis/">
-                        <span class="chip bg-color">Travis</span>
-                    </a>
-                    
-                    <a href="/tags/hexo/">
-                        <span class="chip bg-color">hexo</span>
-                    </a>
-                    
                 </div>
                 
             </div>
@@ -711,27 +620,32 @@
         
         <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge right-badge text-color">
-                本篇&nbsp;<i class="far fa-dot-circle"></i>
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/03/31/devops-yu-ci-cd/">
+                <a href="/2020/05/08/compiler-principles/di-12-jiang/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/15.jpg" class="responsive-img" alt="DevOps与CI/CD">
+                        <img src="/medias/featureimages/19.jpg" class="responsive-img" alt="compiler_principles/第12讲">
                         
-                        <span class="card-title">DevOps与CI/CD</span>
+                        <span class="card-title">compiler_principles/第12讲</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            简单了解了DevOps与CI/CD的概念
+                            语法分析-自下而上分析3活前缀
+字的前缀：是指字的任意首部，如字abc的前缀有 ε，a，ab，abc
+
+活前缀：是指规范句型的一个前缀，这种前缀不含句柄之后的任何符号
+
+对于规范句型 αβδ，β为句柄，如果 αβ = u1 u2…ur，则符
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-03-31
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-05-08
                             </span>
                         <span class="publish-author">
                             
@@ -740,23 +654,6 @@
                             
                         </span>
                     </div>
-                </div>
-
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/DevOps/">
-                        <span class="chip bg-color">DevOps</span>
-                    </a>
-                    
-                    <a href="/tags/CI/">
-                        <span class="chip bg-color">CI</span>
-                    </a>
-                    
-                    <a href="/tags/CD/">
-                        <span class="chip bg-color">CD</span>
-                    </a>
-                    
                 </div>
                 
             </div>
